@@ -35,6 +35,3 @@
   13) 라인 삭제: ctrl + shift + k
   14) 주석: ctrl + / 
 -->
-
-hello world
-hello world

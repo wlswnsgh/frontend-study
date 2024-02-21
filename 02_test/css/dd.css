@@ -3,8 +3,8 @@ div {
   font-size: 100px;   
 }
 
-.logo{
+.logo {
     width: 500px;
     height: 500px;
-    background-image: url("../images/logo.png");
+    background-image: url("/frontend-study/images/logo.png");
 }

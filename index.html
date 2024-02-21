@@ -4,21 +4,26 @@
 <head><!-- <head> 테그 안에 문서에 정보를 담는다  -->
   
     <title>test</title> <!-- <title>은 문서에 제목을 뜻한다. -->
-    <link rel="stylesheet" href="css/dd.css"><!-- 외부 스타일 시트 -->
-
+    <link rel="stylesheet" href="02_test/css/dd.css"><!-- 외부 스타일 시트 -->
+    
+    <!-- style명령어는 css파일을 통해서 끌어다 쓰고 싶지 않고 내부에서 쓰고 싶을때 쓰는 명령어이다. -->
+    <!-- text-decoration텍스트에 효과를 넣어주는 명령어이고 underline은 밑줄을 의미한다. -->
     <style>
       div{    
         text-decoration: underline;
-         }
+         }  
     </style>
+    
 
 </head>
 <body><!-- 사용자 눈에 보이는 구조로 <body>에 이용 -->
-    
-  <div>hello world!</div>
-  <script src="./js/test.js"></script>
-  <script>console.log('내부 스크립트');</script>
 
-    
+  
+  <div>hello world!</div>
+  
+  <script src="/02_test/js/test.js"></script> <!-- 외부 스크립트 -->
+  <script>console.log('내부 스크립트');</script><!-- 내부 스크립트 -->
+
+
 </body>
 </html>
