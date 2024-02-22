@@ -155,12 +155,52 @@
     <label for="volume">음량(0~10):</label>
     <input type="range" id="volume" min="0" max="10">
     
+    
+    
     <hr>
 
     <!-- 비밀번호 -->
-
     <label for="password">비밀번호:</label>
-    <input type="password" id="pwd">
+    <input type="password" id="pwd" maxlength="10">
+    
+    <!-- 셀렉트 박스(콤보 박스) -->
+    <!-- 속성
+      value: 선택한 항목의 값을 서버로 보낼때 필요
+    -->
+    <label for="cars">차량 선택:</label>
+    
+    <select id="cars">
+      <option value="">선택</option>
+      <option value="volvo">volvo</option>
+      <option value="benz">benz</option>
+      <!-- selected 속성을 사용하면 선택사항에서 먼저 선택이 된다. -->
+      <option value="Audi" selected>Audi</option>
+    </select>
+    
+    
+    <!-- 여러 줄 입력 -->
+    <p>
+    <label for="multi">여러 줄 텍스트 입력</label>
+    </p>
+    <textarea id="multi" cols="30" rows="10"></textarea>
+    <br>
+    <!-- spellcheck명령어 false를 입력하면 오타가 나와도 빨간줄이 나오지 않는다. -->
+    <textarea id="multi" cols="30" rows="10" spellcheck="false"></textarea>
+    <br>
+    <textarea id="multi" cols="30" rows="10" style="resize: none;"></textarea>
+
+    <hr>
+
+    <!-- form(동기식): 사용자가 작성한 내용을 어떤 서버 경로로, 어떤 방식(GET, POST)으로 전달할지 설정 -->
+    <form action="/login" method="get">
+      <!-- name 속성: 서버로 전달할 때 유니크하게 구분하기 위한 이름 -->
+      <input type="text" name="id">
+      <br>
+      <input type="password" name="pw">
+      <!-- form 태그 안에 있어야 submit 이벤트가 작동 -->
+      <button type="submit">로그인</button>
+    </form>
+    
     
 </body>
 </html>
