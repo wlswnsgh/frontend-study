@@ -4,6 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <style>
+    span {
+      color: red;
+
+      color: yellow;
+      background-color: black;
+    }
+    div {
+
+      color: brown;
+    }
+
+    
+  </style>
+
+
 </head>
 <body>
   <!-- list(목록) 요소는 주로 메뉴나 탭 목록 등에 쓰임 -->
@@ -53,5 +70,83 @@
       </ul>
     </li>
   </ul>
+
+  <!-- anchor(인라인): 닻, 페이지를 이동하는 하이퍼링크를 지정 -->
+  <!-- 인라인 요소라 수평 배열 -->
+  <!-- 
+      target 속성: 링크된 페이지를 어디에 표시할지 타겟 지정
+      _self: 현재 탭(기본값)
+      _blank: 새로운 탭
+  -->
+  
+  <a href="https://www.naver.com">naver</a>
+  <a href="https://www.google.com" target="_blank">google</a>
+
+  <!-- (추가 설명) 임시 태그 -->  
+  <a href="#">임시 태그</a> 
+  <!-- 해당 #id 영역으로 이동 -->
+  <a href="#intro">intro</a>
+  <a href="#Guide">Guide</a>
+
+  <!-- span(인라인): 텍스트 구분을 위해 사용(주로 글자에 스타일 적용할 때) -->
+  <P>
+    <span>동해물과</span> 백두산이 마르고 닳도록
+  </P>
+
+  <!-- span을 div으로 바꾸기 -->
+  <!-- div는 글자를 다루는데 적합하지 않다. -->
+  <P>
+    <div>동해물과</div> 백두산이 마르고 닳도록
+  </P>
+
+  <!-- break(인라인): 줄바꿈 -->
+  <p>
+      동해물과 백두산이 마르고 닳도록<br>하느님이 보우하사 우리나라 만세
+  </p>
+
+  <p> 
+    동해물과 백두산이
+    
+    
+    
+    마르고 닳도록
+  </p>
+
+  <!-- (참고) HTML 특수문자(HTML Entities)
+    대표적으로 &lt, &gt, &nbsp; &copy; 등 -->
+  <!-- 사용예1: HTML에서 공백 처리 -->
+  <p> 
+    동해물과 백두산이 &lt; &gt; &nbsp; &copy; 마르고 닳도록
+  </p>
+
+  <!-- 사용예2: <div>를 태그가 아닌 그냥 출력하고 싶다면  -->
+  &lt;div&gt;
+  &copy;
+
+  <!-- horizontal rule(블록): 수평줄 -->
+    <hr>
+
+  <!-- Quiz -->
+  <p> 
+    동해물과 백두산이 마르고 닳도록<br>
+    <span>하느님이</span> 보우하사 우리나라 만세
+  </p>
+
+
+
+  <!-- 임시 태그 이동 테스트 -->
+  <!-- 사이트에서 로그인을 했을 때 사용하는 방법인 것 같다. -->
+  <hr>
+  <h2 id="intro">intro</h2>
+  <p style="height: 300px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate est unde eligendi at dolores doloremque quia, illo quos omnis tempora harum architecto debitis sequi voluptas, non rem iure, asperiores ea?</p>
+  <p style="height: 300px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate est unde eligendi at dolores doloremque quia, illo quos omnis tempora harum architecto debitis sequi voluptas, non rem iure, asperiores ea?</p>
+  <p style="height: 300px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate est unde eligendi at dolores doloremque quia, illo quos omnis tempora harum architecto debitis sequi voluptas, non rem iure, asperiores ea?</p>
+
+  <h2 id="Guide">Guide</h2>
+  <p style="height: 300px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate est unde eligendi at dolores doloremque quia, illo quos omnis tempora harum architecto debitis sequi voluptas, non rem iure, asperiores ea?</p>
+  <p style="height: 300px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate est unde eligendi at dolores doloremque quia, illo quos omnis tempora harum architecto debitis sequi voluptas, non rem iure, asperiores ea?</p>
+  <p style="height: 300px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate est unde eligendi at dolores doloremque quia, illo quos omnis tempora harum architecto debitis sequi voluptas, non rem iure, asperiores ea?</p>
+
+
 </body>
 </html>
