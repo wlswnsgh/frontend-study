@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    /* (어떠한 행동을 했을 때 동작하는) 가상 클래스 선택자 */
+    /* :hover(마우스 커서가 올라가 있는 동안 선택) */
+    a:hover{ color: red; }
+
+    
+    .box{ 
+      width: 100px; 
+      height: 100px; 
+      background-color: orange; 
+      transition: 1s;}
+
+    /* .box:hover{ width: 300px; background-color: royalblue;} */
+    
+    /* :active (마우스를 클릭하고 있는 동안 선택) */
+    a:active{ color:lime ;}
+    .box:active{ width:300px; background-color: royalblue;}
+    
+    /* :focus(요소가 포커스(활성화)되면 선택) */
+    /* HTML 대화형(interactive=상호작용) 요소에 사용 가능
+      예) input, a, button, label, select, textarea 등
+    */
+    /* 구글에 HTML 대화형 콘텐츠 mdn  */
+    input:focus{ background-color: orange;}
+
+    .box:focus{width: 300px; height: 300px;background-color: royalblue; }
+
+    /* (특정한 요소를 선택하는) 가상 클래스 선택자 */
+    /* 
+      :first-child (첫번째 자식 요소),
+      :last-child (마지막 자식 요소)
+    */
+
+    /* div가 세번째 자식이라 안됨 */
+    /* .fruits div:first-child{ color: red;} */
+
+    /* 첫번째 자식이 span이여서 동작이 가능하다.*/
+    /* .fruits span:first-child{ color: red;} */
+
+    /* 마지막이 h3라서 동작 그리고 h3를 생략해도 동작은 되지만 구체적으로 쓰면 우선순위가 올라감 */
+    /* .fruits h3:last-child{color: red;}  */
+
+    /* :nth-child(n) (n번째 자식 요소) */
+    /* .fruits *:nth-child(2){color: red;} */
+
+    /* .fruits *:nth-child(2n){color: blue;} */
+
+    /* .fruits span:nth-child(even){ color: red;} */
+
+    /* .fruits span:nth-child(2n+1){ color: red;} */
+
+    /* .fruits *:nth-child(odd){ color: red;} */
+
+    /* .fruits *:nth-child(n+2){ color: red;} */
+
+    /* Quiz: 자식들 중 안에 3개만 선택 */
+    /* n이 앞에 나와야 동작함!! */
+    /* .fruits *:nth-child(-n+3){color: red;} */
+
+    /* :not(s) (선택자 s를 제외) */
+    .fruits *:not(span, h3) { color: red;}
+    
+  </style>
+</head>
+<body>
+  <a href="http://www.naver.com">naver</a>
+
+  <hr>
+  <div class="box"></div>
+
+  <hr>
+  <input type="text">
+  
+  <hr>
+  
+  <div class="box" tabindex="1">1</div>
+
+  <!-- tabindex 속성을 통해 focus 될 수 있는 요소를 만들 수 있음 -->
+  <!-- <div class="box" tabindex="1"></div>-->
+
+  
+  <hr>
+  <div class="fruits">
+    <span>딸기</span>
+    <span>수박</span>
+    <div>오렌지</div>
+    <p>망고</p>
+    <h3>사과</h3>
+  </div>
+
+</body>
+</html>
