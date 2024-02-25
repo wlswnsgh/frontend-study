@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>quiz</title>
+  <link rel="stylesheet" href="">
+
+  <style>
+  
+    /* 1. 14 라인의 <img>태그를 선택하는 선택자를 작성 */
+    /* 2. 18~28 라인의 <ul>태그를 선택하는 선택자를 작성(하위[후손] 선택자 필수) */
+    /* 3. 33~40 라인의 5번째 <a>태그의 <img>를 선택하는 선택자를 작성(가상 클래스 선택자 필수) */
+    /* 4. 45~60 라인의 class가 header인 태그를 선택하는 선택자를 작성(자식 선택자 필수) */
+    /* 5. 62~77 라인의 <ul>태그에서 3번째 <li>을 선택하는 선택자를 작성(가상 클래스 선택자 필수) */
+    /* 6. 78 라인의 <h3>태그에 마우스를 올렸을 때의 선택자를 작성 */
+    /* 7. 82~85 라인의 type이 text인 <input>태그에 focus 됐을 때의 선택자를 작성(속성 선택자 필수) */
+    /* 단, 마지막 읽기 전용 input은 선택에서 제외 */
+    /* border가 아닌 background-color로 테스트 할 것! */
+    
+    
+        h1 img{ border:2px solid red; }
+        ul.main-menu{ border:2px solid brown; }
+        #global_aside *:nth-child(5) img{ border:2px solid violet; }
+        ul.column-1 > .header{ border:2px solid yellow; }
+        #detail_list ul:not(.column-1)  *:nth-child(3){ border:2px solid royalblue;}
+        [value="마지막"]:hover{border:2px solid black; background-color: orange;}
+        [value="테스트"]:focus{background-color: orange;}
+    
+      </style>
+
+</head>
+<body>
+  <header>
+    <h1 class="logo">
+      <a href="#">
+        <img src="https://via.placeholder.com/50x50">
+      </a>
+    </h1>
+    <nav>
+      <ul class="main-menu">
+        <li>
+          <a href="#">로그인</a>
+        </li>
+        <li>
+          <a href="#">회원가입</a>
+        </li>
+        <li>
+          <a href="#">고객센터</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <aside id="global_aside">
+    <a href="#"><img src="https://via.placeholder.com/90x160"></a>
+    <a href="#"><img src="https://via.placeholder.com/90x160"></a>
+    <a href="#"><img src="https://via.placeholder.com/90x160"></a>
+    <a href="#"><img src="https://via.placeholder.com/90x160"></a>
+    <a href="#"><img src="https://via.placeholder.com/90x160"></a>
+    <a href="#"><img src="https://via.placeholder.com/90x160"></a>
+    <a href="#"><img src="https://via.placeholder.com/90x160"></a>
+    <a href="#"><img src="https://via.placeholder.com/90x160"></a>
+  </aside>
+
+  <div id="detail_list">
+    <h3>주제1</h3>
+    <ul class="column-1">
+      <li class="header">
+        <p>게임용 노트북</p>
+      </li>
+      <li>아이온 게임용 노트북</li>
+      <li>디아블로 게임용 노트북</li>
+      <li>블소 게임용 노트북</li>
+      <li class="header">
+        <p>울트라북</p>
+      </li>
+      <li>헬로키티 울트라북</li>
+      <li>리락쿠마 울트라북 초특가</li>
+      <li>카피바라 울트라북</li>
+      <li>쵸파 울트라북</li>
+      <li>고양이 울트라북</li>
+    </ul>
+    <h3>주제2</h3>
+    <ul>
+      <li class="header">
+        <p>게임용 노트북</p>
+      </li>
+      <li>아이온 게임용 노트북</li>
+      <li>디아블로 게임용 노트북</li>
+      <li>블소 게임용 노트북</li>
+      <li class="header">
+        <p>울트라북</p>
+      </li>
+      <li>헬로키티 울트라북</li>
+      <li>리락쿠마 울트라북 초특가</li>
+      <li>카피바라 울트라북</li>
+      <li>쵸파 울트라북</li>
+      <li>고양이 울트라북</li>
+    </ul>
+    <h3>끝</h3>
+  </div>
+
+  <div>
+    <input type="text" value="마지막">
+    <input type="password" value="1234">
+    <input type="text" value="테스트">
+    <input type="text" value="입니다." readonly>
+  </div>
+
+  <footer style="background-color: lightgray;">
+    <p>제작자: 김재현</p>
+    <p>&copy;2023, goni.kim, All rights reserved.</p>
+  </footer>
+</body>
+</html>
