@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+    <style>
+      /* 우선순위 점수가 낮은것부터 실습 */
+      /* body(상속) 우선순위가 없음 -> *(0점) -> 태그(1점) -> 클래스 -> id -> 인라인 -> important */
+      /* 점수가 같으면, 가장 마지막에 해석된 스타일이 적용 */
+
+      body{color: blueviolet; }
+      *{color: aqua;}
+      div{color: blue;}
+      .Hello {color: red;}
+      div.Hello {color: orange;}
+      #Hello{color: black;}
+      
+      /*점수가 무한대이다.
+        css 초보자들이 종종 사용하는데 되도록이면 사용 지양
+        남발하면 나중에 스타일을 바꾸려고 할 때 수정이 불가
+        
+        정말 이 스타일이 무조건 적용되어야 하거나 절대 변경되어서는 
+        안되는 경우에만 사용!
+      */
+      /* div{ color: brown !important;}  */
+
+    </style>
+</head>
+<body>
+  <div
+    id="Hello"
+    class="Hello"
+    style="color: olive;"
+
+  >
+  Hello
+</div>
+</body>
+</html>

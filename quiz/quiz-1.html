@@ -5,22 +5,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>quiz</title>
-  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="./selector_answer.css">
 
   <style>
   
-    /* 1. 14 라인의 <img>태그를 선택하는 선택자를 작성 */
-    /* 2. 18~28 라인의 <ul>태그를 선택하는 선택자를 작성(하위[후손] 선택자 필수) */
-    /* 3. 33~40 라인의 5번째 <a>태그의 <img>를 선택하는 선택자를 작성(가상 클래스 선택자 필수) */
-    /* 4. 45~60 라인의 class가 header인 태그를 선택하는 선택자를 작성(자식 선택자 필수) */
-    /* 5. 62~77 라인의 <ul>태그에서 3번째 <li>을 선택하는 선택자를 작성(가상 클래스 선택자 필수) */
-    /* 6. 78 라인의 <h3>태그에 마우스를 올렸을 때의 선택자를 작성 */
-    /* 7. 82~85 라인의 type이 text인 <input>태그에 focus 됐을 때의 선택자를 작성(속성 선택자 필수) */
+    /* 1. 14 라인의 <img>태그를 선택하는 선택자를 작성 header .logo img{ border:2px solid red; } */
+    /* 2. 18~28 라인의 <ul>태그를 선택하는 선택자를 작성(하위[후손] 선택자 필수) header ul.main-menu{ border:2px solid brown; } / header .main-menu{ border:2px solid brown; }*/
+    /* 3. 33~40 라인의 5번째 <a>태그의 <img>를 선택하는 선택자를 작성(가상 클래스 선택자 필수) #global_aside > a:nth-child(5) > img { border:2px solid violet; }*/
+    /* 4. 45~60 라인의 class가 header인 태그를 선택하는 선택자를 작성(자식 선택자 필수) #detail_list > ul.column-1 > .header{ border:2px solid yellow; }*/
+    /* 5. 62~77 라인의 <ul>태그에서 3번째 <li>을 선택하는 선택자를 작성(가상 클래스 선택자 필수) #detail_list > ul:nth-child(4) > li:nth-child(3){ border:2px solid royalblue;}*/
+    /* 6. 78 라인의 <h3>태그에 마우스를 올렸을 때의 선택자를 작성 #detail_list > h3:last-child:hover{border:2px solid lightskyblue; }*/
+    /* 7. 82~85 라인의 type이 text인 <input>태그에 focus 됐을 때의 선택자를 작성(속성 선택자 필수) input[type="text"]:focus{ border: 2px solid red;} / input[type="text"]:focus:not(input[readonly]){ outline: none; border: 2px solid red;}*/
     /* 단, 마지막 읽기 전용 input은 선택에서 제외 */
     /* border가 아닌 background-color로 테스트 할 것! */
     
-    
-        .logo img{ border:2px solid red; }
+        .logo img{ border:2px solid red; } /*h1 img{ border:2px solid red; } */
         ul.main-menu{ border:2px solid brown; }
         #global_aside *:nth-child(5) img{ border:2px solid violet; }
         ul.column-1 > .header{ border:2px solid yellow; }
