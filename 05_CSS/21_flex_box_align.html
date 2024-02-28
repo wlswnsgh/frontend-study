@@ -74,6 +74,18 @@
     .align-content-end {
       align-content: flex-end;
     }
+
+    .align-item-start{
+      align-items: flex-start;
+    }
+
+    .align-item-center{
+      align-items: center;
+    }
+
+    .align-item-end{
+      align-items: flex-end;
+    }
   </style>
 </head>
 <body>
@@ -191,5 +203,72 @@
     <div>5</div>
     <div>6</div>
   </div>
+
+  <h1>align-item: 교차 축의 여러 줄 정렬 방법</h1>
+  <h2>stretch; (기본값)</h2>
+  <h3>Flex Item에 height 값이 없으면 한 줄에서 최대한 늘려서 사용한다.</h3>
+  <!-- 가로로 꽉 차는 것이 세로로 꽉 찼다고 생각하자 -->
+  <div class="flex-container flex-wrap h-600px ">
+    <div class="h-auto">1</div>
+    <div class="h-auto">2</div>
+    <div class="h-auto">3</div>
+    <div class="h-auto">4</div>
+    <div class="h-auto">5</div>
+    <div class="h-auto">6</div>
+
+    <h2>start;</h2>
+    <div class="flex-container flex-wrap h-600px align-item-start">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+
+      <h2>center;</h2>
+      <div class="flex-container flex-wrap h-600px align-item-center">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+
+        <h2>end;</h2>
+        <div class="flex-container flex-wrap h-600px align-item-end">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+
+          <h1>align-item 활용!</h1>
+          <h2>한 줄만 있어도 동작가능</h2>
+          <h2>flex-start;</h2>
+          <div class="flex-container flex-wrap h-600px align-item-start">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+      
+            <h2>center;</h2>
+            <div class="flex-container flex-wrap h-600px align-item-center">
+              <div>1</div>
+              <div>2</div>
+              <div>3</div>
+      
+              <h2>end;</h2>
+              <div class="flex-container flex-wrap h-600px align-item-end">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+          </div>
+
+          <!-- Tip! flex를 이용한 완벽한 정중아 정렬 -->
+          <!-- Quiz: 연습을 위해 인라인 스타일로 직접 써볼 것 -->
+          <h1>요소의 정중앙 정렬</h1>
+          <div class="flex-container h-600px" style=""></div>
+          <div></div>
+    </div>
 </body>
 </html>
