@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project</title>
+
+    <style>
+
+
+        .ew{
+            height: 50px;
+            border-radius: 6px;
+        }
+
+        .po{
+            width: 800px;
+            height: 800px;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            
+            transition: width 3s;
+        }
+
+        .po:active{
+            width: 2300px;
+            /* width: auto; */
+            
+        }
+
+        .rt{
+            width: 650px;
+            height: 650px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        .NE{
+            display: flex;
+        }
+
+        .NE [type="text"]{
+            width: 306px;
+            height: 25px;
+            border-radius: 6px;
+        }
+
+        [placeholder="email@example.com"]{
+            width: 630px;
+            height: 25px;
+        }
+
+        #Message{
+            width: 630px;
+            height: 80px;
+            border-radius: 6px;
+        }
+
+        .SEND{
+            width: 650px;
+            height: 280px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;   
+        }
+
+    </style>
+</head>
+<body>
+   
+    <h1>연습</h1>
+    <input type="text" >
+    <input type="text" class="ew"><button style="margin-left: 10px;">전송</button>
+ 
+
+    <h3>Your Name</h3>
+    <input type="text" style="height: 70px; border-radius: 10px;">
+
+    <h1>실전</h1>
+    <div class="po">
+        
+        <div class="rt">
+            <h3>Contact Us</h3>
+
+            <p>Your Email</p>
+            <input type="email" placeholder="email@example.com">
+                       
+            <div class="NE">
+            <p>First Name <br><input type="text" style="margin-right: 10px;"></p>
+            <p>Last Name <br><input type="text"></p>
+            </div>
+    
+            <p>Message <br><input type="text" id="Message"></p>
+
+            <input type="checkbox"> Agree
+
+            <div class="SEND"><button>SEND</button></div>
+        </div>
+
+    </div>
+
+</body>
+</html>
