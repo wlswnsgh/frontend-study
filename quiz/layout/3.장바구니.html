@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    /* 공통 스타일 */
+    * {
+      box-sizing: border-box;
+
+    }
+
+    table {
+      border-collapse: collapse;
+
+    }
+
+    tr{
+      border: 1px solid black;
+    }
+
+    .cart-background{
+      width: 100%;
+      background-color: lightblue;
+      padding: 30px;
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+    }
+
+    .inner {
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .cart-list{
+      width: 700px;
+      height: 200px;
+      background-color: white;
+      border:  solid white;
+    }
+
+    .cart-list tr:first-child{
+      height: 50px;
+      text-align: center;
+    }
+
+    .cart-list tr:first-child > *:nth-child(1){
+      width: 350px;
+      text-align: center;
+    }
+
+    .cart-list tr:nth-child(2){
+      text-align: center;
+    }
+
+    .cart-list tr:nth-child(2) > *:nth-child(1){
+      /* 이미지 넣어야 하는 곳 */
+      text-align: center;
+      height: 65px;
+      background-color: aqua;
+    }
+    
+    .cart-list tr:nth-child(2) > *:nth-child(2){
+      text-align: left;
+    }
+
+    .cart-list tr:nth-child(3){
+      text-align: center;
+      height: 65px;
+    } 
+
+    .cart-list tr:nth-child(3) > *:nth-child(1){
+      /* 이미지 넣어야 하는 곳 */
+      background-size: cover;
+      background-image: url(../img.ko/item1.png);
+      
+      text-align: center;
+    } 
+    
+    .cart-list tr:nth-child(3) > *:nth-child(2){
+      text-align: left;
+    } 
+
+    .cart-list tr:last-child{
+      text-align: right;
+    }
+
+    .btn-group{
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .btn{
+
+      color: white;
+      background-color: red;
+      border-radius: 10px;
+      margin-top: 10px;
+      width: 100px;
+      height: 50px;
+
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="cart-background">
+    <!-- 가운데 정렬을 위한 div -->
+    <div class="inner">
+      <h2>장바구니</h2>
+      <table class="cart-list">
+        
+        <!-- 테이블은 4행 5열로 만들기 -->
+        <tr>
+        <td colspan="2">ITEM</td>
+        <td>AMOUNT</td>
+        <td>PRICE</td>
+        <td>TOTAL</td>
+        </tr>
+
+        <tr>
+          <td>1</td>
+          <td>카메라</td>
+          <td>1</td>
+          <td>100,000</td>
+          <td>100,000</td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>신발신발신발</td>
+          <td>2</td>
+          <td>59,000</td>
+          <td>118,000</td>
+        </tr>
+
+        <tr>
+          <td colspan="5">주문금액 218,000원</td>
+        </tr>
+
+      </table>
+      <div class="btn-group">
+        <a href="#">계속 쇼핑하기</a>
+        <button type="button" class="btn">구매하기</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
