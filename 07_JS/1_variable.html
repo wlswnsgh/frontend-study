@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //변수
+    // 데이터를 저장할 수 있는 공간이다.
+    // 쓰는 이유는 변수에 저장해뒀다가 재사용하려고 하기 때문에
+    // (같은 범위 안)에서 동일한 이름으로 중복 선언 불가
+    
+    let a = 10; //let은 변수 재사용이 가능하다. 변수를 재사용하면 값이 바뀐다. 
+    a = 100;
+
+    console.log(a)
+
+    const b =7; //const는 변수 재사용이 불가하다. 변수를 재사용할 시 error
+    console.log(b)
+
+    const ba = 5;
+
+    var c = 9; //var변수 선언할 때 사용되지만 요즘에는 잘 사용을 안한다.
+    console.log(c)
+
+    console.log(a + b);
+    console.log(a - b);
+    console.log(a * b);
+    console.log(a / b);
+    
+    //const: 변수를 선언하는 가장 기본적인 키워드(상수 재할당이 불가)
+
+    const ca = 24;
+
+    //ca = 100; (TypeEorror 발생)
+    console.log(ca);
+
+    //재할당이 되는 let은 편리하지만 지정된 값이 언제든지 바뀔 수 있으므로
+    //해석과 관리가 어려울 수 있고 잘못된 값이 들어갈 수도 있다.
+    //Tip! 일단 const를 먼저 사용하고 나중에 상수를 써야한다 싶을때 let를 사용한다.
+    let d = 80;
+    console.log(d);
+
+    //예약어란 특별한 의미를 가지고 있는 함수로써 변수나 상수를 줄 수 없다.
+    //각 시스템의 언어를 뜻한다.
+    
+    // 에러나는 예
+    // const if = true;
+    // const this = 123;
+
+    
+  </script>
+</body>
+</html>

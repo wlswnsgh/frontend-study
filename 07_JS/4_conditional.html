@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 조건문
+    // 조건식의 결과에 따라 다른 코드를 실행(분기)하는 구문
+    // if문, switch문
+
+    // if
+    // if (값 또는 조건식) {
+    //   실행코드
+    // }
+    let isShow = true; //참
+    let checked = false; //거짓
+    
+    // show!라고 출력된다.
+    if (isShow) {
+      console.log('show!');
+    }
+
+    // 아무것도 출력되지 않는다. 
+    if (checked) {
+      console.log('show!');
+    }
+
+    // if ~ else
+    
+    // 결과값이 참이여서 '보임'으로 결과값이 나온다.
+    if (isShow) {
+      console.log('보임');
+    } else{
+      console.log('숨김!');
+    }
+
+    // 결과값이 거짓이라 '숨김!'으로 결과값이 나온다.
+    if (checked) {
+      console.log('보임');
+    } else{
+      console.log('숨김!');
+    }
+
+    // if ~ else if ~ else
+    const score = 100;
+
+    if (score >= 95) {
+      console.log('넌 성공해라!');
+    } else if(score >= 70){
+      console.log('um...........그으래요...');
+    } else {
+      console.log('노오력하세욧!');
+    }
+  </script>
+</body>
+</html>
