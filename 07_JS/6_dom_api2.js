@@ -7,6 +7,8 @@ console.log(boxEls); //요소들의 리스트가 반환됨 => 앞에서 사용�
 // 인수(인자값)으로 반복을 돌면서 꺼내온 요소를 처리하는 함수 작성
 // 처리 함수 작성 시 매개변수(현재 꺼내온 요소, 요소의 인덱스) <= 순서가 중요!!!
 
+// const boxEls = 1; 중복선언을 하면 에러가 난다.
+
 boxEls.forEach(function(boxEl, index) {
     console.log(index, boxEl);
 
