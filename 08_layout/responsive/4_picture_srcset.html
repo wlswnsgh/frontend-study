@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    body{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <picture>
+    <!-- 1024px 이상에서 -->
+    <source srcset="https://via.placeholder.com/1000X458.png" 
+    media="(min-width: 1024px)">
+    
+    <!-- 768px 이상에서 -->
+    <source srcset="https://via.placeholder.com/740X280.jpg" 
+    media="(min-width: 768px)">
+    
+    <!-- 320px 이상에서 -->
+    <source srcset="https://via.placeholder.com/300x150.gif" 
+    media="(min-width: 320px)">
+    
+    <!-- 순차적으로 위에서부터 모든 요소의 이미지 사용이 불가능하면  마지막 <img>를 랜더링 -->
+    <img src="https://via.placeholder.com/1024x768" alt="original" style="max-width: 100%;">
+  </picture>
+</body>
+</html>

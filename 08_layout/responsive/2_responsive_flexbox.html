@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .product-container {
+      display: flex;
+    }
+
+    .product {
+      width: 25%;
+      padding: 20px;
+    }
+
+    @media screen and (max-width: 1200px) {
+      
+      .product-container{
+        flex-wrap: wrap;
+      }
+
+      .product{
+        width: 50%;
+      }
+
+    @media screen and (max-width: 768px) {
+      .product {
+        width: 100px;
+      }
+    }
+
+    }
+
+    
+  </style>
+</head>
+<body>
+  <div class="product-container">
+
+    <div class="product" style="background-color: #aaa;">
+    <h4>상품 1</h4>
+    <p>상품정보</p>
+    </div>
+
+    <div class="product" style="background-color: #aaa;">
+    <h4>상품 2</h4>
+    <p>상품정보</p>
+    </div>
+
+    <div class="product" style="background-color: #aaa;">
+    <h4>상품 3</h4>
+    <p>상품정보</p>
+    </div>
+
+    <div class="product" style="background-color: #aaa;">
+      <h4>상품 4</h4>
+      <p>상품정보</p>
+    </div>
+
+  </div>
+</body>
+</html>
