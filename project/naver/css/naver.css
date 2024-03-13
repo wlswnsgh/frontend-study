@@ -1,0 +1,19 @@
+.head{
+  width: 100%;
+  height: 250px;
+  background-color: orange;
+}
+
+.sub-head {
+  width: 2500px;
+  height: inherit;
+  background-color: bisque;
+  margin-left: 0;
+  margin: 0 auto;
+}
+
+.content .parent-content {
+  width: 2000px;
+  height: 100%;
+  background-color: aqua;
+}
