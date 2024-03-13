@@ -1,0 +1,23 @@
+.kakaohead{
+  width: auto;
+  height: 350px;
+  background-color: orange;
+  display: flex;
+  justify-content: center;
+
+}
+
+.kakaosub{
+  width: 5000px;
+  height: inherit;
+  background-color: bisque;
+  display: flex;
+  align-items: center;
+
+}
+
+.kakaosub img{
+  width: 450px;
+  height: inherit;
+  margin-left: 50px;
+}
