@@ -1,10 +1,10 @@
-.head{
+.naverhead .head{
   width: 100%;
-  height: 250px;
+  height: 300px;
   background-color: orange;
 }
 
-.sub-head {
+.naverhead .head .sub-head {
   width: 2500px;
   height: inherit;
   background-color: bisque;
@@ -13,7 +13,24 @@
 }
 
 .content .parent-content {
-  width: 2000px;
-  height: 100%;
+  width: 2500px;
+  height: 2500px;
   background-color: aqua;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.content .parent-content .descendent-pr1{
+  width: 250px;
+  height: inherit;
+  background-color: blue;
+  flex:2; 
+}
+
+.content .parent-content .descendent-pr2{
+  width: 250px;
+  height: inherit;
+  background-color: rebeccapurple;
+  flex:1;
 }
