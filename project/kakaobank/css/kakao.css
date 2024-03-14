@@ -1,23 +1,52 @@
+/* header */
 .kakaohead{
   width: auto;
-  height: 320px;
-  background-color: orange;
+  height: 100px;
   display: flex;
   justify-content: center;
-
 }
 
 .kakaosub{
-  width: 5000px;
-  height: inherit;
-  background-color: bisque;
+  width: 1080px;
+  height: 100px;
+  /* background-color: orange; */
   display: flex;
   align-items: center;
-
+  justify-content: space-between;
 }
 
-.kakaosub img{
-  width: 450px;
+.kakao-mn .main-menu{
+  display: inline-block;
+}
+
+.kakao-mn .main-menu li{
+  display: inline-block;
+  margin: 10px;
+}
+
+.kakao-mn .main-menu li a{
+  text-decoration: none;
+  margin: 8x;
+}
+
+.kakaohead .kakao-focus{
+  margin: 8px;
+}
+
+.content{
+  background-color: #ffef6b;
+  width: 100%;
+  height: 720px;
+  display: flex;
+  justify-content: center;
+}
+
+.teddybear{
+  width: 1080px;
   height: inherit;
-  margin-left: 50px;
+  background-image: url("../kaka.img/main-bg3.png");
+  background-size: cover;
+  position: absolute;
+  top: 172px;
 }
+
