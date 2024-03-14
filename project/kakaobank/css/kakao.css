@@ -50,3 +50,54 @@
   top: 172px;
 }
 
+.content h3{
+  margin-top: 135px;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.teddybear p{
+  line-height: 25px;
+  margin-top: 20px;
+}
+
+.teddybear button{
+  width: 178px;
+  height: 56px;
+  border-radius: 12px;
+  background-color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-top: 100px;
+  margin-left: 8px;
+}
+
+.jo-content{
+  margin-top: 75px;
+  width: auto;
+  height: 750px;
+  background-color: royalblue;
+  display: flex;
+  justify-content: center;
+}
+
+.jo-content img{ width: 500px; }
+
+.con-font{
+  margin-top: 25%;
+  line-height: 1.2;
+}
+
+.con-font h3{
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.con-font p{
+  margin-top: 24px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+
+
+
