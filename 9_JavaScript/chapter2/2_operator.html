@@ -146,7 +146,77 @@
     // ||(OR): 둘 중 하나라도 맞을 때 참
     // !(NOT): 부정 연산자, true <=> false
 
-    
+    document.write("<h2>논리 연산자</h2>");
+    result = 10 > 20 || 20 >= 30 || 30 > 40; // false || false || false
+    document.write(result, "<br>");
+
+    result = 10 > 20 || 20 >= 30 || 30 <= 40; // false || false || true
+    document.write(result, "<br>");
+
+    result = 10 <= 20 && 20 >= 30 && 30 <= 40; // true || false || true
+    document.write(result, "<br>");
+
+    result = 10 <= 20 && 20 <= 30 && 30 <= 40; // true || true || true
+    document.write(result, "<br>");
+
+    result = 10 > 20; //false
+    document.write(result, '<br>');
+
+    // (응용) 사이 범위 확인하기
+    // age(나이)가 14세 이상 90세 이하에 속하는지를 확인하는 if문 작성
+    //  "이상과 이하"는 범위에 14나 90이 포함된다는 의미
+
+    //Quiz
+    const age = 50;
+    result =  age >= 14  && age <= 90; 
+    if (result) {
+      document.write(result, '<br>');
+    }
+
+    // (응용) 바깥 범위 확인하기
+    // age(나이)가 14세 미만 90세 초과하는지를 확인하는 if문 작성
+
+    //Quiz
+  
+    // age = 50;
+    // result = age < 14 || age > 90;
+    // if (result) {
+    //   document.write(result, '<br>'); 
+    // }
+    // result = !(age >= 14 || age <= 90);
+    // if (result) {
+    //   document.write(result, '<br>'); 
+    // }
+
+    // Short-circuit evaluation(단축 평가)
+    // &&(AND): 앞에 값이 truthy면 뒤로 넘어간다.
+    // ||(OR): 앞에 값이 falsy면 뒤로 넘어간다.
+    result = age > 14 && age <= 90; //false &&
+    document.write(result, '<br>');
+
+    result = age < 14 || age <= 90; //true ||
+    document.write(result, '<br>');
+
+    //(응용) 기본값 설정 시 사용
+    const dbData = null;
+    result = dbData || '기본값';
+    if(dbData === null){
+      result = '기본값';
+    }
+    // document.write(result, '<br>');
+
+    //Quiz
+    //null, false, undefined, 0, '', NaN
+
+    //(심화 Quiz)
+    let aa;
+    let bb = null;
+    let cc = undefined;
+    let dd = 4;
+    let ee = 'five';
+    let ff = aa || bb || cc || dd || ee;
+    document.write(ff);
+    // 4
   </script>
 </body>
 </html>
