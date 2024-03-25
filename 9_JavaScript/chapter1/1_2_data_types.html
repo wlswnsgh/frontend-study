@@ -126,24 +126,22 @@
     console.log(typeof 'Goni');
     console.log(typeof 3.14);
     console.log(typeof true);
-    console.log(typeof {x: 1, y:1 });
+    console.log(typeof {x: 1, y: 1});
     console.log(typeof [1, 2, 3]); //배열도 JS에서는 객체이기
     //때문에 Array가 아니라 Object가 나옴
     console.log(typeof undefined);
     console.log(typeof null);
 
     // 1번 문제 - 변수 선언 및 할당
-    let admin = 'a';
-    
-    let NAME = 'b';
+    let admin;
+    let NAME;
     NAME = 'John';
-    console.log(NAME);
-
     NAME = admin;
-    console.log(NAME);
+    alert(admin);
 
-    document.write(NAME);
-
+    const ourPlanetName = 'Earth';
+    const currentUserName = 'Kim';
+    
   </script>
 </body>
 </html>
