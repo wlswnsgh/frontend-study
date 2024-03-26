@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 조건문
+    // 특정 조건에 대한 만족 여부(true/false)에 따라 코드 수행 여부가 결정됨
+    // if문, switch문
+    
+    // 예1) 유효성 검사(입력한 데이터가 올바른 값이면 넘어가고 아니면 오류 메세지)
+    // 예2) 로그인 시 사용자 정보가 맞으면 성공 처리, 틀리면 실패 처리
+
+    // 1. if, else, else if
+    // 1) if문
+    // 조건식을 만족하는 경우에만 코드블록을 실행
+    // if(조건식){
+    //   실행코드
+    // }
+
+    let age = 17;
+    let isAdult = false;
+
+    if(age > 18){
+      isAdult = true;
+    } else {
+      isAdult = false;
+    }
+
+    // const bc = prompt('하루 걷는 양은 몇 보인가요?', '0');
+    // if(bc > 10000){
+    //   document.write('훌륭합니다.', '<br>');
+    // } else {
+    //   document.write('걸으세요--', '<br>');
+    // }
+
+    // 2) if-else문
+    // 조건식을 만족하면 if문 실행, 만족하지 않으면 else문 실행
+    // 조건식의 결과에 따라 두 가지 중 하나를 실행시킬때 사용
+
+    // window.confirm('메서지'): 확인 상자는 사용자가 무엇가를 확인하거나 수락하기를 하는 경우
+    // 확인 누르면 true를, 취소를 누르면 false를 반환
+    // const result = confirm('정말로 회원 탈퇴를 하시겠습니다!');
+    // if (result) {
+    //   document.write('탈퇴 처리되었습니다.');
+    // } else {
+    //   document.write('탈퇴 취소되었습니다.');
+    // }
+
+    //Quiz
+    // const num = prompt('숫자 입력', '0');
+    // const result = num % 2 == 0 ? "짝수" : "홀수";
+    // document.write(result);
+
+    // if(num % 2 === 0){
+    //   document.write('짝수입니다.');
+    // } else {
+    //   document.write('홀수입니다.');
+    // }
+
+    // 3) if-else if문
+    // 여러 if문 조건식 중 만족하는 것을 찾아 실행, 만족하는게 없으면 else문 실행
+    // 조건식의 결과에 따라 여러가지 중 하나를 실행시킬 때 사용
+
+    // const hour = prompt('숫자 입력', '0');
+
+    // if(hour < 10){
+    //   document.write('Good morning');
+    // } else if(hour < 18) {
+    //   document.write('Good afternoon');
+    // } else if(hour < 21) {
+    //   document.write('Good evening');
+    // } else {
+    //   document.write('Good night');
+    // }
+
+    const month = prompt('현재는 몇 월입니까.', '0');
+    
+    if (month > 3 && month < 5) { // 3~5
+      document.write('햇살 가득한 봄이네요!!!');
+    } else if (month > 6 && month < 8) {
+      document.write('여행 가기 좋은 여름이네요!!!');
+    } else if (month > 9 && month < 11) {
+      document.write('독서의 계절 가을이네요!!!');
+    } else if (month = 12 || month = 1 || month = 2) { // 나머지 입력
+      document.write('눈이 오는 겨울이네요!!!');
+    } 
+
+    // Quiz: 명확히 하려면 else if문을 사용하여 12, 1~2를 체크하는 조건식 넣기
+
+  </script>
+</body>
+</html>
