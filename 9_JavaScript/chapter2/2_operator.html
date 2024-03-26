@@ -203,10 +203,23 @@
     if(dbData === null){
       result = '기본값';
     }
+
     // document.write(result, '<br>');
 
     //Quiz
     //null, false, undefined, 0, '', NaN
+
+    // const dbData = null;
+    const dbDeta = '';
+    result = dbDeta || '기본값';
+    document.write(result, '<br>');
+
+    // (참고) null 병합 연산자(ES2020)
+    // nullish(null 계열의 값): null. undefined
+    // const inputName = 'Goni';
+    const inputName = null;
+    const nickName = inputName ?? 'Guest';
+    document.write(nickName, '<br>');
 
     //(심화 Quiz)
     let aa;
@@ -215,8 +228,34 @@
     let dd = 4;
     let ee = 'five';
     let ff = aa || bb || cc || dd || ee;
-    document.write(ff);
-    // 4
+    
+    // ff에 저장된 값은? 4
+    document.write(ff, '<br>');
+    
+    // 7. 삼항 연산자
+    // 조건에 따라 2개의 값 중 하나를 반환
+    // 조건식 ? 값1 : 값2;
+    document.write('<h2>삼항 연산자</h2>');
+    result = true ? 'javascript' : 'hello';
+    document.write(result,'<br>');
+    document.write(true,'<br>');
+
+    const score = 85;
+    // result = score >= 90 ? 'A' : 'B';
+    result = score >= 90 ? 'A' : (score >= 80 ? 'B' : 'C');
+    document.write(result, '<br>');
+
+    // 홀짝 판별기
+    // window.prompt('메세지', '기본값'); 입력을 요청하는 대화상자를 띄어준다.
+    // 확인을 누르면 입력값이, 취소를 누르면 null을 반환
+    const number = Number(prompt('숫자를 입력하세여', '0'));
+    document.write(number, ' ', typeof number, '<br>');
+
+    // (참고) % 연산 시 문자가 숫자로 자동 타입 변환이 일어남.
+    result = number % 2 === 0 ? '짝수' : '홀수';
+    document.write(result, '<br>');
+
   </script>
-</body>
+
+  </body>
 </html>
