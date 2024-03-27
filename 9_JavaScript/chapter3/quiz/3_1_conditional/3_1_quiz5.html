@@ -19,14 +19,16 @@
     const num3 = Number(prompt('정수3 입력', '0'));
 
     const sum = num1 + num2 + num3;
-    document.write('합계:' + sum);
-
+    if (sum) { document.write('합계:' + sum); }
+    
     const avg = (num1 + num2 + num3) / 3;
-    document.write('평균:' + avg);
+    if (avg) { document.write(' 평균:' + avg); }
 
-    const max = num1 > num2 || num2 < num3 ;
-    document.write('최대값:' + max);
-
+    const max = num1 > num2 || num2 < num3;
+    if (max) { document.write(' 최대값:' + max); }
+    
+    // const min = num1 < num2 
+    // if (min) { document.write(' 최소값:' + min); }
 
   </script>
 </head>
