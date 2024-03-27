@@ -77,19 +77,20 @@
     //   document.write('Good night');
     // }
 
+       // Quiz: 명확히 하려면 else if문을 사용하여 12, 1~2를 체크하는 조건식 넣기
     const month = prompt('현재는 몇 월입니까.', '0');
     
-    if (month > 3 && month < 5) { // 3~5
+    if (month >= 3 && month <= 5) { // 3~5
       document.write('햇살 가득한 봄이네요!!!');
-    } else if (month > 6 && month < 8) {
+    } else if (month >= 6 && month <= 8) {
       document.write('여행 가기 좋은 여름이네요!!!');
-    } else if (month > 9 && month < 11) {
+    } else if (month >= 9 && month <= 11) {
       document.write('독서의 계절 가을이네요!!!');
-    } else if (month = 12 || month = 1 || month = 2) { // 나머지 입력
+    } else if (month == 12 || month > 0 && month <= 2) { // 나머지 입력
       document.write('눈이 오는 겨울이네요!!!');
-    } 
+    }
 
-    // Quiz: 명확히 하려면 else if문을 사용하여 12, 1~2를 체크하는 조건식 넣기
+ 
 
   </script>
 </body>
