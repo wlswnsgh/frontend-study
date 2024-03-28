@@ -18,12 +18,90 @@
     // for(1. 초기화식; 2. 5. 조건식; 4. 증감식) {
     //   3. 실행코드
     // }
+    // 참고로 4번에는 모든 증감식이 올 수 있다.(i++, i--, i = i * 10등)
 
     // 반복1~10까지 10를 출력하고 싶다.
     
     for(let i = 1; i <= 10; i++) {
       document.write(i +'. hello world', '<br>');
     }
+
+    document.write('==================<br>');
+
+    let sum = 0;
+    for(let i = 1; i <= 100; i++){
+      sum += i;
+      //sum = sum + i;
+    }
+
+    document.write("1~100까지의 합: "+sum,'<br>');
+    document.write('==================<br>');
+
+
+    // 2) break문
+    // switch문 또는 반복문을 빠져나갈때 사용
+
+    // 1~10까지 반복중 i의 값이 6일때 강제 종료
+
+    for(let i = 1; i <= 10; i++){
+      if(i === 6) break; 
+        document.write(i,'<br>');
+    }
+    document.write('==================<br>');
+
+    // 3) continue문
+    // 반복문에서만 사용 가능
+    // 뒤에 오는 코드는 무시하고 다음 반복을 계속할 때 사용
+
+    // 1~10까지 홀수만 출력(짝수일때는 건너뛰기)
+    for(let i = 1; i <= 10; i++){
+      if (i % 2 === 0) continue; {
+        document.write(i,'<br>');
+        
+      }
+    }
+    document.write('==================<br>');
+
+    // 중첩 for문
+    // for문 안에 for문 사용
+    // 중첩할수록 퍼포먼스가 떨어짐
+
+    // for (초기화식; 조건식; 증감식) { // 바깥 for문
+    //   for (초기화식; 조건식; 증감식) { // 안쪽 for문
+        
+    //   }
+    // }
+
+    for (let i= 1; i <= 3; i++) {
+      for(let j = 1; j <= 2; j++) {
+        document.write(i + "행" + j + "열 ");
+      }
+      document.write('<br>', '<br>');
+    }
+
+    document.write('==================<br>');
+
+    for (let i= 1; i <= 5; i++) {
+      for (let j =1; j <= i; j++) {
+        document.write(' *'); 
+      }
+      document.write('<br>');
+    }
+
+    document.write('==================<br>');
+
+    for (let i= 2; i <= 9; i++) {
+      document.write(i+' 단', '<br>');
+
+      for (let j =1; j <= 9; j++) {
+        document.write(i+' * '+j+' = '+i * j);
+        document.write('<br>');
+      }
+      document.write('<br>');
+    }
+
+    document.write('==================<br>');
+
   </script>
 </body>
 </html>
