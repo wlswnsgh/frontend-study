@@ -18,7 +18,7 @@
 
     if (EnterTheScore) {
       const Score = prompt('점수를 입력하세요.');
-      if (EnterTheScore <= 3 && Score >= 60) {
+      if (EnterTheScore >= 1 && EnterTheScore <= 3 && Score >= 60) {
         document.write('합격');
       } else if (EnterTheScore >= 4 && EnterTheScore <= 6 && Score >= 70) {
         document.write('합격');
