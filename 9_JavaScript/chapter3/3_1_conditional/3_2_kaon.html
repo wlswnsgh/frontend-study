@@ -102,9 +102,85 @@
       document.write('<br>');
     }
 
-    document.write('==================<br>');
+      document.write('==================<br>');
 
+      // 2. while문
+      // 1) 기본 문법
+      // while (1. 3.조건식) {
+      //   2. 실행코드
+      // }
 
-  </script>
-</body>
+      // 안녕하세요
+      num = 1;
+      while (num <= 10) {
+        document.write(num +". 안녕하세요", '<br>');
+        num++;
+      }
+
+      document.write('==================<br>');
+      // Quiz
+      // 1~30까지 숫자 중 2의 배수이면서 3의 배수인 숫자만 출력
+
+      number1 = 1;
+      while (number1 <= 30) {
+        if (number1 % 2 === 0 && number1 % 3 === 0){
+          document.write(number1,'<br>');
+        }
+        number1++;
+      }
+
+      document.write('==================<br>');
+      
+      // 20~10까지 숫자 중 짝수일 경우 파란색, 홀수일 경우 빨간색으로 출력
+      // document.write('<p style="color: blue;">2</p>');
+      // document.write('<p style="color: red;">1</p>');
+
+      number2 = 10;
+      while (number2 <= 20) {
+        if (number2 % 2 === 0){
+          // document.write('<p style="color: red;">'+ number2 +'</p>');
+          document.write(`<p style="color: blue;"> ${number2}</p>`);
+        }
+        if (number2 % 2 === 1){
+          // document.write('<p style="color: red;">'+ number2 +'</p>');
+          document.write(`<p style="color: red;"> ${number2}</p>`);
+        }
+
+        number2++;
+      }
+      
+      document.write('==================<br>');
+      let inputPrice = 7000; // 사용자가 넣은 지폐 금액 
+      const coinUnit = 500; // 반환할 동전 금액
+      let coinCount = 0; //반환될 동전 개수
+
+      // 사용자가 넣은 금액이 0원이 될 때까지 while문을 이용하여 500원씩 차감
+      while (inputPrice > 0) {
+        inputPrice =  inputPrice - coinUnit;
+        document.write(inputPrice, '<br>');
+        coinCount++;
+      }
+      
+      document.write('==================<br>');
+      document.write(coinCount, '개<br>');
+      
+      document.write('==================<br>');
+      // 이처럼 특정 조건을 만족하는 동안 반복문을 실행하고자 할 때 while문 사용
+      
+      // 2) do while문(잘 안씀)
+      // while문과 차이점: 무조건 한 번은 코드를 실행하고 조건식 검사
+      //do{
+      //  실행코드
+      //} while (2. 조건식)
+
+      i = 5;
+      do{
+        document.write('hello<br>');
+        i++;
+      } while(i < 3)
+      document.write('==================<br>');
+
+      
+    </script>
+  </body>
 </html>
