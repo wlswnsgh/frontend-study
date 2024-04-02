@@ -20,18 +20,59 @@
     const operator = prompt('사칙연산(+, -, *, /) 중 하나 입력');
     const num2 = Number(prompt('숫자2 입력'));
 
-    function add() { // +라고 입력
-      if (operator === '+') { // 만약 +
-        result = num1 + num2;
-        
+    function add(){
+      // const num1 = Number(prompt('숫자1 입력'));
+      // const operator = prompt('사칙연산(+, -, *, /) 중 하나 입력');
+      // const num2 = Number(prompt('숫자2 입력'));
+      
+      if (operator === '+') {
+        result = num1 + num2; 
+        document.write("연산결과: " + result);
       }
-      document.write(result);
-    }
-    
-      document.write('연산 결과: ' + calculator(num1, num2, operator));
+    } // add();
 
-    
+    function minus() { 
+      // const num1 = Number(prompt('숫자1 입력'));
+      // const operator = prompt('사칙연산(+, -, *, /) 중 하나 입력');
+      // const num2 = Number(prompt('숫자2 입력'));
+      
+      if (operator === '-') {
+        result = num1 - num2; 
+        document.write("연산결과: " + result);
+      }
+    } // minus();
+  
 
+    function multiple() { 
+      // const num1 = Number(prompt('숫자1 입력'));
+      // const operator = prompt('사칙연산(+, -, *, /) 중 하나 입력');
+      // const num2 = Number(prompt('숫자2 입력'));
+      
+      if (operator === '*') {
+        result = num1 * num2; 
+        document.write("연산결과: " + result);
+      }
+    } // multiple();
+
+    function divide() { 
+      // const num1 = Number(prompt('숫자1 입력'));
+      // const operator = prompt('사칙연산(+, -, *, /) 중 하나 입력');
+      // const num2 = Number(prompt('숫자2 입력'));
+      
+      if (operator === '/') {
+        result = num1 / num2; 
+        document.write("연산결과: " + result);
+      }
+
+    } // divide();
+
+    function calculator() {
+      add();
+      minus();
+      multiple();
+      divide();
+    }  calculator();
+    
   </script>
 </body>
 </html>
