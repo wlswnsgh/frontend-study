@@ -14,7 +14,6 @@
     // 2) 사용자에게 정수 2개와 연산자를 입력받아 사칙연산을 수행하고 
     // 그 결과를 반환하는 calculator 함수를 만들고 연산 결과를 화면에 출력해보세요.
 
-
     // 풀이3
     const num1 = Number(prompt('숫자1 입력'));
     const operator = prompt('사칙연산(+, -, *, /) 중 하나 입력');
@@ -24,7 +23,7 @@
       // const num1 = Number(prompt('숫자1 입력'));
       // const operator = prompt('사칙연산(+, -, *, /) 중 하나 입력');
       // const num2 = Number(prompt('숫자2 입력'));
-      
+
       if (operator === '+') {
         result = num1 + num2; 
         document.write("연산결과: " + result);
@@ -35,19 +34,18 @@
       // const num1 = Number(prompt('숫자1 입력'));
       // const operator = prompt('사칙연산(+, -, *, /) 중 하나 입력');
       // const num2 = Number(prompt('숫자2 입력'));
-      
+
       if (operator === '-') {
         result = num1 - num2; 
         document.write("연산결과: " + result);
       }
     } // minus();
-  
 
     function multiple() { 
       // const num1 = Number(prompt('숫자1 입력'));
       // const operator = prompt('사칙연산(+, -, *, /) 중 하나 입력');
       // const num2 = Number(prompt('숫자2 입력'));
-      
+
       if (operator === '*') {
         result = num1 * num2; 
         document.write("연산결과: " + result);
@@ -58,7 +56,7 @@
       // const num1 = Number(prompt('숫자1 입력'));
       // const operator = prompt('사칙연산(+, -, *, /) 중 하나 입력');
       // const num2 = Number(prompt('숫자2 입력'));
-      
+
       if (operator === '/') {
         result = num1 / num2; 
         document.write("연산결과: " + result);
@@ -71,7 +69,7 @@
       minus();
       multiple();
       divide();
-    }  calculator();
+    } calculator();
     
   </script>
 </body>

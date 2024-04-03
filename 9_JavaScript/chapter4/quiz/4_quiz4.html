@@ -14,13 +14,40 @@
     // (from 값이 to 값보다 작은 수가 입력된다고 가정하고 풀 것!)
     // 숫자는 1초 간격으로 출력되어야 합니다.
     // 힌트: setInterval(), clearInterval()을 이용
+    // const 타이머 = setInterval(function () {
 
-
-    // 풀이4
+    // }, 1000); // 1초마다 실행
+    // clearInterval(타이머); // 타이머를 취소
     
+    // setInterval()
+    // clearInterval()
+    // setTimeout()
+    
+    // 풀이4
+    // 한글로 풀이(플로우 차트)
+    // 1) 함수 printNumber(from, to)를 선언하기
+    // 2) 1초 간격으로(setInterval(함수, 1000)) from 값을 출력시키기
+    // 3) 출력되는 숫자를 1씩 증가 (+1, ++)
+    // 4) to 값까지만(조건: from === to, from >= to) 출력하고 멈추기(clearInterval)
+    let from = 0;
+    let to = 0;
 
-    printNumbers(5, 10); // 5~10까지 1초 간격으로 출력
+    function printNumbers(from, to) {
+      // console.log(printNumbers);
+      const time = setInterval(function () {
+        for (let i = from; i <= to; i++) {
+          document.write(i+" ");
 
+          if (i >= to) {
+            clearInterval(time);
+            break;
+          }
+        }
+      }, 1000);
+
+    }
+
+    printNumbers(5, 10); //5~10까지 1초 간격으로 출력
   </script>
 </body>
 </html>
