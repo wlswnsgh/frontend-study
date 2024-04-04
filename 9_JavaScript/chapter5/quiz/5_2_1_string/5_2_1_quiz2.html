@@ -11,6 +11,17 @@
     // 연락처를 입력받은 후 정보가 노출되지 않도록 뒤의 네자리는 ****로 출력하세요.
 
     // 풀이2
+    const name = prompt("이름을 입력하세요");
+    const number = prompt("전화번호를 입력하세요");
+
+    const NAME = name.toUpperCase();
+    document.write(`이름: ${NAME}`, '<br>');
+    
+    const NUMBER = number;
+    const numEl = number.substring(0,number.length - 4) + '****';
+    const numEls = numEl.substring(9,12);
+    document.write(`전화번호: ${numEls}`, '<br>');
+
     
   </script>
 </head>
