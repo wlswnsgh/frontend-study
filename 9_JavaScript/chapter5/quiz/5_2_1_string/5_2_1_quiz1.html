@@ -15,7 +15,7 @@
     const ssn = prompt('주민등록번호를 입력하세요.');
 
     // 풀이1 
-    const registration = ssn.substring(0,ssn.length - 6) + '******';
+    const registration = ssn.substring(0,ssn.length - 6);
 
     if (registration.substring(7,8) == '1' || registration.substring(7,8) == '3') {
       document.write('남자입니다.');
@@ -23,7 +23,7 @@
       document.write('여자입니다.');
     } else {
         const aaa = prompt('주민등록번호을 다시 입력하세요.'); 
-        const registration = aaa.substring(0,aaa.length - 6) + '******';
+        const registration = aaa.substring(0,aaa.length - 6);
         if (registration.substring(7,8) == '1' || registration.substring(7,8) == '3') {
         document.write('남자입니다.');
       } else if (registration.substring(7,8) == '2' || registration.substring(7,8) == '4') {
@@ -31,7 +31,6 @@
       }
     }
     
-
   </script>
 </head>
 <body>

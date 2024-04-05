@@ -197,10 +197,91 @@
     const arrBirthday = birthday.split('-'); // 하이픈(-)을 기준으로 문자열을 분리
     console.log(arrBirthday);
 
+    // 2. Array 객체
+    // 여러 데이터를 순차적으로 저장 가능한 객체로 배열을 다룰 때 유용한 속성과 함수를 제공
+    // 배열 객체 생성 3가지 방식
+    // 첫번째 방식
+    // 변수 = new Array(값1, 값2, 값3);
 
+    // 두번째 방식
+    // 변수 = new Array(); 
+    // 변수[0] = 값1;
+    // 변수[0] = 값2;
+    // 변수[0] = 값3;
 
+    // 세번째 방식
+    // 변수 = [값1, 값2, 값3]; => 리터럴 방식
 
+    document.write('<h1>Array 객체</h1>');
+    const arr = ['Apple', 'Banana', 'Mango'];
 
+    // 배열 요소 변경
+    // 인덱스로 접근해서 새로운 요소를 할당
+    arr[0] = 'Kiwi';
+    console.log(arr);
+
+    // 배열 요소 접근
+    document.write('<h4>배열값 가져오기 - 1</h4>');
+    document.write(arr[0], '<br>');
+    document.write(arr[1], '<br>');
+    document.write(arr[2], '<br>');
+
+    document.write('<h4>배열값 가져오기 - 2</h4>');
+    for (let i = 0; i < arr.length; i++) {
+          document.write(arr[i]+" ");    }
+    document.write('<h4>배열값 가져오기(권장 안함) - 3</h4>');
+    for (const i in arr) { // key 값을 가져옴
+          document.write(i+" ");    }
+    document.write('<h4>배열값 가져오기 - 4</h4>');
+    for (const el of arr) { // Value 값을 가져옴
+      document.write(el+" ");     }
+    document.write('<h4>배열값 가져오기 - 5</h4>');
+    // array.forEach(function(index, element) {
+    //   document.write(index, ': ', element, '<br>');
+    // });
+
+    // function forEach(callback) {
+    //   let arr = [1,2,3];
+    //   callback(arr[0], 0);
+    // }
+
+    // 1) toString()
+    // 배열 안의 모든 요소를 쉼표(,)를 이용해 결합해서 하나의
+    // 문자열로 반환
+    let fruits = ['Banana', 'Orange', 'Apple', 'Mango'];
+    console.log(fruits.toString());
+
+    // 2) join()
+    // 배열 안의 모든 요소를 지정한 문자를 이용해 결합해서 하나의 문자열로 반환
+    console.log(fruits.join(' * '));
+
+    // 4) pop()
+    // 배열에서 마지막 데이터를 제거하고, 마지막 데이터를 반환
+    // 원본 배열이 변경됨
+    let x = fruits.pop();
+    console.log(x);
+    console.log(fruits);
+
+    // 5) shift()
+    // 배열에서 첫 번째 데이터를 제거하고, 첫 번째 데이터를 반환
+    // 원본 배열이 변경됨
+    let y = fruits.shift();
+    console.log(x);
+    console.log(fruits);
+
+    // 6) push()
+    // 배열에 새로운 요소를 추가하고, 배열의 길이를 반환
+    // 원본 배열이 변경됨
+    let ln = fruits.push('Mango');
+    console.log(fruits);
+    console.log(ln);
+
+    // 6) unshift()
+    // 배열의 맨 앞에 요소를 추가하고, 배열의 길이를 반환
+    // 원본 배열이 변경됨
+    ln = fruits.push('Banana');
+    console.log(fruits);
+    console.log(ln);
     </script>
 </body>
 </html>

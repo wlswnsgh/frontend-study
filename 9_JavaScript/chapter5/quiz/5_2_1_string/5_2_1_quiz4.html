@@ -30,8 +30,39 @@
       console.log(fileInput.files[0]); // File 객체
 
       // 풀이4
+      const fileName = fileInput.files[0].name;
+      console.log(fileName);
+      const fileExt = fileName.substring(fileName.lastIndexOf('.') + 1)
+      .toLowerCase();
+      console.log(fileExt);
       
+      // 하드 코딩 - 관리 불편
+      // if(!(fileExt === 'jpg' ||
+      //     fileExt === 'png' ||
+      //     fileExt === 'git')) {
+      //     alert('이미지 파일이 아닙니다.');
+      //   }
+
+      // 배열로 관리하면 편함!
+      // let valid = false;
+      // for (let i = 0; i < imgFileExt.length; i++) {
+      //   if (fileExt.indexOf(imgFileExt[i]) > -1) {
+      //     valid = true;
+      //     break;
+      //   }
+      // }
+      // if (!valid) {
+      //   alert('이미지 파일이 아닙니다.');
+      // }
+
+      // 개선 코드
+      if (imgFileExt.includes(fileExt)) {
+        alert('이미지 파일이 아닙니다.');
+      }
+
     });
+
+    
   </script>
 </body>
 </html>
