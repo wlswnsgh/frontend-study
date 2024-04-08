@@ -10,12 +10,22 @@
     // 배열에서 최대값, 최소값 구하기(여러 가지 방법이 존재)
     // 힌트: for문 또는 sort() 사용
     const points = [40, 100, 1, 5, 25, 10];
-
+    
     // 풀이4
+    let max = points[0];
+    let min = points[0];
+    for (let i = 0; i < points.length; i++) {
+      if (points[i] > max) { max = points[i]; }
+      if (points[i] < min) { min = points[i]; }
+    }
+
+    console.log(max);
+    document.write("최대값: "+ max);
+    console.log(min);
+    document.write(" 최솟값: "+ min);
     
   </script>
 </head>
 <body>
-  
 </body>
 </html>

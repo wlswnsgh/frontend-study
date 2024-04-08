@@ -11,14 +11,13 @@
     // 입력한 과일이 배열에 없을 경우 '제거할 과일이 없습니다.' 라고 alert창을 띄운다.
 
     const fruits = ['사과', '바나나', '딸기', '포도', '두리안', '파인애플'];
- 
-    // 풀이3
     const input = prompt("과일을 입력해주세요");
-    
-      if (fruits !== input) {
-        console.log('제거할 과일이 없습니다.'); 
-      }
-  
+    // 풀이3
+    if (fruits.includes(input)) {
+      document.write("이 과일은 "+input+"입니다.");
+    } else {
+      alert("제거할 과일이 없습니다.");
+    }
   </script>
 </head>
 <body>

@@ -21,7 +21,10 @@
     // 즉, 원본도 같이 변경됨
 
     // 풀이1
-    originArr[4] = 6 ;
+    const copyArr1 = originArr.slice(0, 4);
+    console.log(copyArr1);
+    copyArr1.push(99);
+    console.log(copyArr1);
     console.log(originArr);
 
   </script>
