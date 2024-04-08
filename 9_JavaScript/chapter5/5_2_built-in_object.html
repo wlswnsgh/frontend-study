@@ -503,7 +503,7 @@
     document.write(getRandomInteger(30, 50), '<br>');
 
     // 실습: 가위 바위, 보 맞추기
-    document.write('<h4>가위, 바위, 보 게임</h4>');
+    document.write('<h2>가위, 바위, 보 게임</h2>');
     // const Rockpaperscissors = prompt('가위, 바위, 보 중에 선택하세요');
 
     // switch (Rockpaperscissors) {
@@ -536,42 +536,6 @@
     // }
     // document.write('<br>');
 
-    // Quiz: 가위, 바위, 보 게임 만들기
-    // document.write('<h4>가위, 바위, 보 게임</h4>');
-    const Rockpaperscissors = prompt('가위, 바위, 보 중에 선택하세요');
-    switch (Rockpaperscissors) {
-      case '가위':
-        user = 1;
-        break;
-
-      case '바위':
-      user = 2;
-      break;
-
-      case '보':
-      user = 3;
-      break;
-
-      default:
-        alert('잘못 작성하셨습니다.');
-        location.reload();
-        break;
-    }
-    // 컴퓨터가 낸 것 이미지 출력
-    document.write('VS 내가 낸 것');
-    const ex = Math.floor(Math.random() * 3) + 1;
-    if (ex === 1 || ex === 2 || ex === 3) {
-      document.write(`<img src="images/math_img_${ex}.jpg">`);
-    } 
-    document.write('<br>');
-    
-    // 내가 낸 것 이미지 출력
-    document.write('컴퓨터가 낸 것'); 
-    const com = Math.floor(Math.random() * 3) + 1;
-    document.write(`<img src="images/math_img_${com}.jpg">`);
-
-    // 누가 이겼는지 출력하기
-    
 </script>
 </body>
 </html>

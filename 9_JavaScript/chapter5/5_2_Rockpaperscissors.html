@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rockpaperscissors</title>
+</head>
+<body>
+    <script>
+    // Quiz: 가위, 바위, 보 게임 만들기
+    // 내가 낸 것 이미지 출력
+    document.write('<h2>가위, 바위, 보 게임</h2>');
+    document.write('내가 낸 것', '<br>');
+    const Rockpaperscissors = prompt('가위, 바위, 보 중에 선택하세요');
+      switch (Rockpaperscissors) {
+        case '가위':
+        user = 1;
+        break;
+
+        case '바위':
+        user = 2;
+        break;
+
+        case '보':
+        user = 3;
+        break;
+
+        default:
+        alert('잘못 작성하셨습니다.');
+        location.reload();
+        break;
+    }
+    document.write(`<img src="images/math_img_${user}.jpg">`);
+    document.write('<br>');
+
+    // 컴퓨터가 낸 것 이미지 출력
+    document.write('컴퓨터가 낸 것', '<br>'); 
+    const ex = Math.floor(Math.random() * 3) + 1;
+    if (ex === 1 || ex === 2 || ex === 3) {
+        document.write(`<img src="images/math_img_${ex}.jpg">`);
+    }
+
+    // 누가 이겼는지 출력하기
+    // 1. 가위 2. 바위 3. 보
+    document.write('<br>');
+    document.write('내가 낸 것 VS 컴퓨터가 낸 것', '<br>');
+    if (user > ex) {
+        document.write(`<img src="images/game_1.jpg">`);
+    } else if (user === ex) {
+        document.write("<h2>무승부입니다.</h2>");
+    } else {
+        document.write(`<img src="images/game_2.jpg">`);
+    }
+    
+    </script>
+</body>
+</html>
