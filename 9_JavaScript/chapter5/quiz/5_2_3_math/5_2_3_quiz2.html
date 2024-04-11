@@ -21,10 +21,7 @@
     const menu = ['짜장면', '돈가스', '된장국', '김치찌개', '회덮밥'];
     const menuNum = Math.floor(Math.random() * menu.length) + 0;
 
-    for (let i = 1; i <= menuNum; i++) {
-      document.write(menu);
-      break;
-    }
+    document.write(menu[menuNum]);
   </script>
 </head>
 <body>

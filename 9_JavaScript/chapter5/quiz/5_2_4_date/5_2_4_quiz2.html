@@ -21,17 +21,28 @@
     // 풀이2-1
     let date = new Date(2023, 0, 5);
     const Day = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-    document.write(Day.toString(date));
 
-    // for (let i = 0; i < Day.length; i++) {
-    //   let date = new Date(2023, 0, 5);
-    //   if (date.getMonth()) {
-    //     document.write(Day.toString(date));
-    //   }
-    // }
-   
-    // 풀이2-2
+    // console.log(date.getMonth());
+    // console.log(Day.includes(date));
+    // console.log(Day.slice(date));
+    // console.log(Day.slice(Day[date]));
+    // console.log(date.getMonth() === Day.slice(Day[date]));
+    // console.log(date.getMonth(Day[date]));
+
+    // document.write(date.getMonth(Day[date]));
+    // document.write(date.getMonth(Day[date]), '<br>');
+    // document.write(Day.toString(Day), '<br>');
     
+    // if (date.getMonth(Day[date]) === date.include(Day)) {
+    //   document.write(Day.toString(Day), '<br>');
+    // }
+
+      for (let i = 0; i < Day.length; i++) {
+        if (date.getMonth()) {
+          document.write(Day[i]);
+        }
+      }
+
   </script>
 </head>
 <body>
