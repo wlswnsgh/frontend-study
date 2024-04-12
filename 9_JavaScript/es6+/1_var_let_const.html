@@ -92,7 +92,7 @@
 
     //===================================================================================
 
-    
+
     // (정리) var와 let, const의 차이점
     // 1) 스코프가 다르다. var로 선언한 변수는 블록 스코프가 아닌 함수 수준 스코프를 갖는다.
     // 2) var는 정의되기 전에 접근할 수 있다.(정의되기 전에는 undefined)
@@ -100,51 +100,53 @@
 
     // Quiz
     // 1.1 다음 코드의 올바른 출력은? 2 // 하나 틀림
-    var greeting = 'Hello';
+    // var greeting = 'Hello';
 
-    greeting = 'Farewell';
+    // greeting = 'Farewell';
 
-    for (var i = 0; i < 2; i++) {
-      var greeting = 'Good morning'; // 전역변수이기 때문에 
-    }
+    // for (var i = 0; i < 2; i++) {
+    //   var greeting = 'Good morning'; // 전역변수이기 때문에 
+    // }
 
-    console.log(greeting);
+    // console.log(greeting);
 
     // 1) Hello
     // 2) Good morning
     // 3) Farewell
 
     // 1.2 다음 코드의 올바른 출력은? 2
-    let value = 1;
+    // let value = 1;
 
-    if (true) {
-      let value = 2;
-      console.log(value);
-    }
+    // if (true) {
+    //   let value = 2;
+    //   console.log(value);
+    // }
     
-    value = 3;
+    // value = 3;
 
     // 1) 1
     // 2) 2
     // 3) 3
 
     // 1.3 다음 코드의 올바른 출력은? 100
-    let a = 100;
+    // let a = 100;
 
-    if (a > 50) {
-      let a = 10;
-    }
+    // if (a > 50) {
+    //   let a = 10;
+    // }
 
-    console.log(a);
+    // console.log(a);
 
     // 1) 10
     // 2) 100
     // 3) 50
 
     // 1.4 다음 코드의 올바른 출력은? error
-    console.log(b);
+    // console.log(b);
 
-    const b = 1;
+    // const b = 1;
+
+    
   </script>
 </body>
 </html>
