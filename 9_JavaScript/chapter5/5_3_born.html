@@ -28,6 +28,10 @@
   <button type="button" onclick="back()">뒤로가기</button>
   <button type="button" onclick="forward()">앞으로가기</button>
 
+  <!-- ***** -->
+  <h1>Geolocation</h1>
+  <button type="button" onclick="GetLocation()">좌표 얻기</button>
+
   <script>
     // 브라우저 객체 모델(BOM)
     // 브라우저에 내장된 객체를 가리키고 브라우저를 제어 및 조작 가능
@@ -166,8 +170,31 @@
     } else if (info.includes('android')) {
       osImg = 'android.png';
     }
-
     document.write(`<img src="images/${osImg}">`);
+
+    // Tip! 위치 정보(좌표) 가져오기(위에 **** 참조)
+    // HTML Geolocation API는 사용자의 위치를 찾는 데 사용
+    function GetLocation() {
+      if (navigator.geolocation) {
+        // getCurrentPosition(): 사용자의 위치를 반환
+        navigator.geolocation.getCurrentPosition(function (position) {
+          console.log(position);
+          alert(`위도: ${position.coords.latitude}, 경도:${position.coords.longitude}`);
+        } /*함수, 옵션*/); // 함수는 에러처리 함수이고, 옵션은 추가로 뭘 넣는 걸 말한다. 예) 시간 등
+
+
+
+
+        // (참고)
+        // watchPosition(): 사용자의 현재 위치를 반환하고 사용자가 움직일때마다 업데이트된 위치를 계속 반환
+        // clearWatch(): watchPosition()을 취소
+      } else {
+        alert('이 브라우저는 위치정보가 지원되지 않습니다.');
+      }
+
+    }
+
+
   </script>
 </body>
 </html>
