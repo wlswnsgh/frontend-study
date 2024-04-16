@@ -112,6 +112,79 @@
     const [name2, surname2] = person; // 25는 어디에도 할당되지 않음
     console.log(name2, surname2);
 
+       // 정리: 구조 분해 할당을 쓰는 이유
+    // 1) 객체 속성의 값(또는 배열의 값)을 변수에 할당할 때 개수만큼 선언해야 되는데 구조 분해 할당은 한 줄로 줄일 수 있음
+    // 2) 함수에 값을 넘길때 인자값으로 객체를 넘기고 매개변수에서 구조 분해 할당을 사용하면 이점이 있음
+
+
+    // Quiz 
+    // 1. 다음 작업을 수행하는 코드를 작성하자.
+    // 한 줄의 코드로 다음 배열의 각 값을 저장하는 변수를 선언하자.
+    const arr = ['one', 'two', 'three'];
+
+    // 여기에 코드를 작성하자.
+    const [ one1, two1, three3 ] = arr;
+    console.log(one1, two1, three3);
+    // 예상결과
+    // console.log(one); // one
+    // console.log(two); // two
+    // console.log(three); // three
+
+    // 2. 다음 작업을 수행하는 코드를 작성하자.
+    const user = {
+      nickname: 'Goni',
+      years: 30
+    };
+
+    // 구조 분해 할당을 사용해 아래 미션을 수행해 보세요.
+    // nickname 프로퍼티의 값을 변수 nickname에 할당하세요.
+    // years 프로퍼티의 값을 변수 ages에 할당하세요.
+    // isAdmin 프로퍼티의 값을 변수 isAdmin에 할당하세요. isAdmin이라는 프로퍼티가 없으면 false를 할당하세요.
+    
+    const { nickname,  years: ages, isAdmin = false} = user;
+    console.log(nickname, ages, isAdmin);
+
+
+    // 3. 최대 급여 계산하기
+    // 급여 관련 정보가 저장된 salaries가 있다고 가정
+    const salaries = [
+      {
+        name: 'John',
+        salary: 100
+      },
+      {
+        name: 'Pete',
+        salary: 300
+      },
+      {
+        name: 'Mary',
+        salary: 250
+      }
+    ];
+
+    // 가장 많은 급여를 받는 사람의 이름을 반환해주는 함수 topSalary(salaries)를 만들어봅시다. 
+    // 조건은 아래와 같습니다.
+    // salaries가 비어있으면 함수는 null을 반환해야 합니다.
+    // 최대 급여를 받는 사람이 여러 명이라면 그 중 아무나 한 명 반환하면 됩니다.
+
+    console.log(topSalary(salaries));
+    // 예상 결과: Pete
+
+    function topSalary(salaryList) {
+      let max = 0;
+      let maxName = null;
+      
+      // 여기에 코드를 작성하자.
+      // 힌트: for of문 + 객체 구조 분해 할당 사용
+      for (const {name, salary} of salaryList) {
+        if (max < salary) {
+          max = salary;
+          maxName = name;
+        }
+      }
+      
+      return maxName;
+    }
     
   </script>
 </body>
