@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1. ... 스프레드(spread) 연산자
+    // 스프레드 문법을 사용하면 객체의 요소를 펼칠 수 있다.
+    
+    // 1) 배열의 결합
+    const veggie = ['토마토', '오이', '콩'];
+    const meat = ['돼지고기', '닭고기', '소고기'];
+
+    const menu = [...veggie,'파스타', ...meat];
+    console.log(menu);
+
+    // 2) 배열의 복사
+    // ES5에 배열의 복사본을 만드는 방법
+    const copyVeggie = [].concat(veggie);
+    copyVeggie.push('완두콩');
+    console.log(copyVeggie);
+    console.log(veggie);
+
+    // ES6에서 배열의 복사본을 만드는 방법
+    const copyVeggieES6 = [...veggie];
+    copyVeggieES6.push('완두콩ES6');
+    console.log(copyVeggieES6);
+    console.log(veggie); // 원본은 변경 안됨.
+
+    // 3) 함수와 스프레드 연산자
+    // 인자값들을 요소로 가지는 배열에 스프레드 연산자를 사용하면 함수를 쉽게 호출 가능
+    function doStuff(x, y, z) {
+      console.log(x + y + z);
+    } 
+    const ages = [0, 1, 2];
+    console.log(ages);
+    // doStuff(ages); // 매개변수 x에 ages 배열이 할당됨, y와 z는 undefined
+    doStuff(...ages);
+
+    // 다른 예
+    const name = ['Goni', 'Kim'];
+    
+    function greet(first, last) {
+      console.log(`Hello ${first} ${last}`);
+    } greet(...name);
+
+    // 지정된 매개변수보다 더 많은 값을 제공하면..?
+    const otherName = ['Goni', 'kim', 'goni'];
+    greet(...otherName); // 세 번째인 'goni'는 제외된다.
+
+    // (활용) 최대값 구하기
+    const number = [23, 55, 21, 87, 56];
+    console.log(Math.max(...number));
+
+    // 4) 객체 리터널과 스프레드(ES2018부터 객체에도 적용됨)
+    // 4-1) 객체의 복사
+    const person = {
+      name: 'Goni',
+      surname: 'kim',
+      age: 30
+    };
+
+    const clone = {...person};
+    console.log(clone);
+
+    clone.age = 15;
+    console.log(clone);
+    console.log(person);
+
+    // 4-2) 객체의 결합
+    const teacher = {
+      name: 'JH kim',
+      age: 30
+    };
+
+    // 기존 객체에 새로운 속성을 추가하여 객체 정의
+    const classInfo1 = {
+      ...teacher,
+      subject: 'Web Frontend'
+    }; console.log(classInfo1);
+
+    const classInfo2 = {
+      ...classInfo1,
+      day: 'weekday'
+    }; console.log(classInfo2);
+
+    // 2. ...레스트(rest) 매개변수
+    // 생긴 것은 스프레드 연산자와 동일하지만 기능적으로는 정반대
+    // 스프레드는 '확장(펼치다)'하는 반면, 레스트는 나머지 여러 요소를 하나의 요소로 '압축'
+
+    // 1) 배열과 레스트
+    const runners = ['Kim', 'Lee', 'Park', 'Choi'];
+    // 구조 분해 할당
+    const [first, second, ...losers] = runners; // 레스트 연산자로 압축
+    console.log(losers); // ['Park', 'Choi']
+    console.log(...losers); // 함수 호출을 하는 경우 스프레드 연산자
+
+    // 2) 함수와 레스트
+    function sum(...args) {
+      console.log(args); // [4, 5, 16, 25, 100]
+
+      let sum = 0;
+      for (const num of args) {
+        sum += num;
+      }
+      return sum;
+    }
+
+    const result = sum(4, 5, 16, 25, 100);
+    console.log('합계: ' + result);
+
+    // 3) 객체 리터널과 레스트(ES2018부터 객체에도 적용됨)
+    const myObj = {
+      a: 1,
+      b: 2,
+      c: 3,
+      d: 7,
+      e: 9
+    };
+
+    // 레스트 연산자를 사용하여 a, b를 제외한 나머지 속성을 변수 z에 할당
+    const { a, b, ...z } = myObj; // ...z의 뜻은 myObj c,d,e를 압축해서 출력한다는 의미이다.
+    console.log(a);
+    console.log(b);
+    console.log(z); // {c: 5, d: 7, e: 9}
+
+    // Quiz 
+    // 1. 배열의 값을 확장하기 위한 스프레드의 올바른 문법은? 3
+
+    // 1) [.]
+    // 2) (...)
+    // 3) [...]
+    // 4) {...}
+
+    // 3. 다음 작업을 수행하는 코드를 작성하자.
+    // 다음과 같이 배열 colors가 주어졌을 때, 
+    // 처음 2개는 순서대로 mainColor, backgroundColor라는 변수에 할당하고
+    // 처음 2개 이후의 모든 값을 포함하는 themes라는 새 배열을 생성하자.
+    const colors = ['royalblue', 'gray', 'yellow', 'indigo', 'green'];
+
+    const [mainColor, backgroundColor, ...themes] = colors;
+    console.log(mainColor);
+    console.log(backgroundColor);
+    console.log(themes);
+    // 4. 다음 코드의 올바른 출력은? 1 (틀림) 정답 => 3
+    const arr = [1, 2, 3, 4];
+    const arr2 = arr;
+
+    arr2.push(5);
+    console.log(arr);
+    console.log();
+    // 1) [1, 2, 3, 4]
+    // 2) [1, 2, 4, 5]
+    // 3) [1, 2, 3, 4, 5]
+    // 4) "1, 2, 3, 4, 5"
+
+  </script>
+</body>
+</html>
