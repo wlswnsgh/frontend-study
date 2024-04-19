@@ -23,14 +23,14 @@
     // 조건문을 사용하여 빈 문자가 아닌 값이 들어왔을 때만 
     // 입력 받은 이름과 함께 '님 환영합니다!' 라는 환영 문구를 출력하세요.
     
-    // const yourName = prompt('당신의 이름은?');
-    // let No = true;
+    const yourName = prompt('당신의 이름은?');
     
-    // if (yourName) {
-    //   document.write(`${yourName}님 환영합니다!`);
-    // } else {
-    //   location.reload();
-    // }
+    
+    if (yourName) {
+      document.write(`${yourName}님 환영합니다!`);
+    } else {
+      location.reload();
+    }
 
 
     // 3.
@@ -70,17 +70,17 @@
     // [4, 2]
     // [5, 1]
     
-    // for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 6; i++) {
 
-    //   for (let j = 6; j >= i;  j--) {
-    //     document.write(j, '<br>');
-    //   }
+      for (let j = 6; j >= i;  j--) {
+        document.write(j, '<br>');
+      }
 
-    //   for (let y = 1; y <= j; y++) {
-    //     document.write(y);
-    //   }
+      for (let y = 1; y <= j; y++) {
+        document.write(y);
+      }
 
-    // }
+    }
 
 
     // 6.
@@ -104,16 +104,16 @@
     // 8.
     // 아래 함수 선언문을 화살표 함수로 리팩터링 하세요.
     // 조건: 암시적 반환을 사용하여 return 키워드 제거할 것
-    // const race = '100m dash';
-    // const runners = ['Kim', 'Lee', 'Park'];
+    const race = '100m dash';
+    const runners = ['Kim', 'Lee', 'Park'];
 
-    // const results = runners.map( () => 
-    //     runners,
-    //     race,
-    //     index + 1,
-    // );
+    const results = runners.map( () => 
+        runners,
+        race,
+        index + 1,
+    );
 
-    // console.log(results);
+    console.log(results);
 
 
 
@@ -168,30 +168,31 @@
     //   { id: 'a5', name: 'Noni', age: 45 }
     // ]
 
-    // const members = [
-    //   { id: 'a1', name: 'Goni', age: 36 },
-    //   { id: 'a2', name: 'Pony', age: 32 },
-    //   { id: 'a3', name: 'Tony', age: 12 },
-    //   { id: 'a4', name: 'Moly', age: 24 },
-    //   { id: 'a5', name: 'Noni', age: 45 }
-    // ];
+    const members = [
+      { id: 'a1', name: 'Goni', age: 36 },
+      { id: 'a2', name: 'Pony', age: 32 },
+      { id: 'a3', name: 'Tony', age: 12 },
+      { id: 'a4', name: 'Moly', age: 24 },
+      { id: 'a5', name: 'Noni', age: 45 }
+    ];
 
 
-    // const EX = members.filter(members =>
-    //   members.id === 'a3'
-    // ); 
+    const EX = members.filter(members =>
+      members.id === 'a3'
+    ); 
 
-    // console.log(EX);
+    console.log(EX);
     
     // 13.
     // 보기에 주어진 객체의 복사본을 만들어서 이메일 속성(email: 'geoblo@naver.com')이 추가된 새로운 객체를 만들어보세요.
     // 힌트: 스프레드(Spread) 연산자 사용
-    // const userInfo = {
-    //   name: 'Goni Kim',
-    //   age: 30
-    // };
+    const userInfo = {
+      name: 'Goni Kim',
+      age: 30
+    };
 
-    // const userInfo1 = {...userInfo};
+    const userInfo1 = {...userInfo};
+    console.log(userInfo1);
 
 
     // 14.
@@ -210,7 +211,7 @@
     const myInfo = {
       name: 'Goni Kim',
       age: 30,
-      value: value
+      [key]: value
     }; console.log(myInfo);
 
 
@@ -224,13 +225,13 @@
     // const a1 = ['Kim', 'Lee', 'Park'];
     // const a2 = 'Choi';
     
-    // const ex2 = [...a1, a2];
-    // console.log(ex2);
+    const ex2 = [...a1, a2];
+    console.log(ex2);
 
 
   </script>
 </head>
 <body>
-  
+
 </body>
 </html>
