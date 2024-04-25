@@ -1,12 +1,15 @@
-function EX(props) {
+function EX() {
   
-  for (let i = 0; i <= {props}; i++) {
-    document.write(props);
-  }
+  const weekArr = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
   return (
-    <div>hello world</div>
+    <>
+      {weekArr.map((week, index) => (
+        <span key={index}> {week} </span>
+      ))}
+    </>
   );
+
 }
 
 export default EX;
