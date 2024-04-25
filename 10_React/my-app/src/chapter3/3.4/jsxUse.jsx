@@ -1,4 +1,6 @@
 import React from "react";
+import './jsxUse.css'; // css 가져오기
+
 
 function JsxUse() {
   // JSX의 사용법(문법)
@@ -47,10 +49,46 @@ function JsxUse() {
     return `${user.firstName} ${user.lastName}`
   };
 
+  // const element = (
+  //   <>
+  //   <div> {name} 배우기</div>
+  //   <h1>Hello, {formatName(user)}</h1>
+  //   </>
+  // );
+
+  // 4. style과 className
+  // 인라인 스타일은 객체 형태로 작성하는데 background-color처럼 -로 구분되어
+  // 있는 이름은 camelCase 형태로 네이밍
+  const style = {
+    backgroundColor : 'black',
+    color: 'aqua',
+    fontSize: 24, // 기본 단위 px
+    padding: '1rem' // 다른 단위 사용 시 문자열로 설정
+  };
+
+  // const element = (
+  //   <>
+  //   <div style= { style }>리액트 공부하기</div>
+  //   <div className ="gray-box"></div>
+  //   </>
+  // );
+
+  // 5. JSX 주석
+  // const a = 1; // JS 주석 
+
+
   const element = (
     <>
-    <div> {name} 배우기</div>
-    <h1>Hello, {formatName(user)}</h1>
+      {/* 주석은 화면에 보이지 않습니다. */}
+      // 주석은 화면에 보이지 않습니다.
+      /* 주석은 화면에 보이지 않습니다. */
+    
+    <div
+      // 열리는 태그 내부에서는 이렇게 주석 작성
+    >
+      주석 테스트
+    </div>
+    
     </>
   );
 
@@ -58,4 +96,4 @@ function JsxUse() {
 }
 
 export default JsxUse; // JsxUse 함수 컴포넌트 내보내기
-// // export를 해줘야 다른곳에서 import해서 사용 가능
+// export를 해줘야 다른곳에서 import해서 사용 가능
