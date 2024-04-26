@@ -13,8 +13,9 @@ import CommentEx from './chapter5/5.6/CommentEX';
 import Avatar from './chapter5/5.6/Avatar';
 import UserInfo from './chapter5/5.6/UserInfo';
 import CommentList from './chapter5/5.6/CommentList';
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import Counter from './chapter7/7.2/Counter';
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
 // Root DOM Node에 리액트 컴포넌트를 렌더링 하도록 하는 함수(React 엘리먼트를 DOM 엘리먼트로 렌더링하는 역할)
 // 처음으로 렌더링할 컴포넌트를 지정하는데 App 컴포넌트가 기본적으로 들어가있음
 root.render(
@@ -25,7 +26,7 @@ root.render(
     {/* <JsxUse /> */}
     {/* <Library /> */}
     {/* <PropUse /> */}
-    <CommentEx 
+    {/* <CommentEx 
         date = {new Date()} // 날짜
         text = "리액트를 즐기세요!"
         user = {{
@@ -40,9 +41,13 @@ root.render(
         user = {{ 
             name: "Hello World"
         }}
-    />
+    /> */}
 
-    <CommentList />
+    {/* <CommentList /> */}
+
+    {/* 예제 7 */}
+    <Counter />
+    
     </>
 );
 

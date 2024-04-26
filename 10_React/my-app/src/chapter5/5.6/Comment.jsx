@@ -34,6 +34,7 @@ const styles = {
 };
 
 function Comment(props) {
+  
   return (
     <div style={styles.wrapper}>
       {/* 사람 모양의 프로필 이미지 */}
