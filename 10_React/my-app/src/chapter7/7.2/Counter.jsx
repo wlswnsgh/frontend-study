@@ -10,7 +10,7 @@ function Counter(props) {
 
   // state 미사용 시
   let wrongCount = 0;
-  const [ClickEX, setColor] = useState('bule');
+  const [ClickEX, setColor] = useState('blue');
   const [changeText, settext] = useState('구독을 환영해욧!');
 
   return (
@@ -47,7 +47,7 @@ function Counter(props) {
 
       {/* Quiz: 글자색 바꾸기, 버튼 내용 바꾸기 */}
       <p style={{ color: ClickEX }}>현재 글자색: {ClickEX}</p>
-      <button onClick = {() => setColor('blue') }>글자색 변경</button>
+      <button onClick = {() => setColor('red') }>글자색 변경</button>
 
       <p>{changeText ? '안녕하세욧!!!!' : '구독자입니당'}</p> 
       <button onClick = {() => settext(!changeText)}>구독</button>
