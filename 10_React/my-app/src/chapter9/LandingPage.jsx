@@ -33,7 +33,7 @@ function LandingPage(props) {
         onClickLogout =  {handleClickLogout}
       />
       
-    <div style={{ padding: 16 }}>리엑트 공부 사이트</div>
+    <div style={{ padding: 16 }}>💻리엑트 공부 사이트</div>
       {/* Quiz:
         로그인/로그아웃 버튼을 누를 때마다 isLoggedIn 값이 바뀌고
         로그인/로그아웃 버튼이 바뀌도록 조건부 렌더링

@@ -14,7 +14,7 @@ const styles = {
 
 function Toolbar(props) {
   // 사용자의 로그인 여부를 상태로 관리
-  let {isLoggodin, onClickLogin, onClickLogout} = props; // 객체 구조 분해 할당
+  const {isLoggodin, onClickLogin, onClickLogout} = props; // 객체 구조 분해 할당
   
 
   return (
