@@ -16,7 +16,8 @@ function ListKey(props) {
     // setValue(state); // set함수를 쓴다고 하더라도 기존 배열을 넣어주면 값의 변경을 감지하지 못함.
 
     // 올바른 코드 - 기존 배열을 복사하여 새로운 배열(새로운 주소값)을 만들어야 함
-    // setstate([value, ...state]);
+    // setstate([value, ...state]); // 전체로 렌더링이 된다. 비효율적인 코딩
+    // setstate([...state, value]); // 전체 렌더링이 아닌 하나씩 배열이 바뀜, 효율적인 코딩이며 뒤에 .값을 넣어준다.
     setstate([...state]);
 
     // input에 입력한 이전값 초기화
@@ -37,8 +38,8 @@ function ListKey(props) {
       <div>
         {state.map((str, index) => {
           // return <div>{str}</div>;
-          // return <div key={index}>{str}</div>;
-          // return <div key={str}>{index}</div>; 
+          return <div key={index}>{str}</div>;
+          // return <div key={str}>{index}</div>; // index를 키 값으로 사용하면 고유하지 않고 바뀔 수도 있음. 
           })}
       </div>
 
