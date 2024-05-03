@@ -25,10 +25,13 @@ const students = [
 function AttendanceBook() {
 
   return (
+    <>
+    
     <ul>
       {/* Quiz: 배열을 반복 렌더링 해보기 */}
       {students.map((array, index) => <li key={index.id}>{array.name} {array.email}</li>)}
-    </ul> 
+    </ul>
+    </> 
   );
 };
 
