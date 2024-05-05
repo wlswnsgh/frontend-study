@@ -19,24 +19,39 @@
 
 import React, { useState } from 'react';
 
-function Signup(props) {
+function Signup() {
   const [Name, SetName] = useState('');
+  const [gender, Setgender] = useState('남자');
+
 
   const handleChangeName = (e) => {
     SetName(e.target.value);
   };
 
+  const handleChangeGender = (e) => {
+    Setgender(e.target.value);
+  }; 
+  
+  const handleSumit = (e) => {
+    e.preventDefault();
+    alert(`이름: ${Name}, 성별: ${gender}입니다. 가입을 환영합니다!`);
+  }; 
+
   return (
 
     <>
-      <form>
+      <form onSubmit={handleSumit}>
         <label>
           이름: <input type="text" value={Name} onChange={handleChangeName}/>
         </label>
         
         <section>
-          
+          성별: 
+          남자<input type='checkbox' value='남자' checked={gender === '남자'} onClick={handleChangeGender}/> 
+          여자<input type='checkbox' value='여자' checked={gender === '여자'} onClick={handleChangeGender}/>
         </section>
+
+         <button type='submit'>가입</button>
       </form>
     </>
   );
