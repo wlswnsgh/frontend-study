@@ -20,21 +20,48 @@
 import React, { useState } from 'react';
 
 function Signup() {
-  const [Name, SetName] = useState('');
-  const [gender, Setgender] = useState('남자');
+  // 여러 개의 state로 관리 시 
+  // const [Name, SetName] = useState('');
+  // const [gender, Setgender] = useState('남자');
+  
+  // 객체 관리 시
+  const [inputs, Setinput] = useState({
+    name: '',
+    gender: '남자'
+  });
 
+  const { name, gender } = inputs;
 
-  const handleChangeName = (e) => {
-    SetName(e.target.value);
+  // const handleChangeName = (e) => {
+  //   SetName(e.target.value);
+  // };
+
+  // const handleChangeGender = (e) => {
+  //   Setgender(e.target.value);
+  // }; 
+  
+  const handleUser = (e) => {
+    console.log(e.target);
+    const { name, value } = e.target;
+
+    // 방법 1
+    // const copyObj =  {
+    //   ... inputs
+    // };
+
+    // copyObj[name] = value;
+    // Setinput(copyObj);
+
+    // 방법2
+    Setinput({
+      ...inputs, // 기존의 input 객체를 복사한 뒤
+      [name]: value // name 값을 키로 갖는 속성을 동적으로 정의
+    });
   };
 
-  const handleChangeGender = (e) => {
-    Setgender(e.target.value);
-  }; 
-  
   const handleSumit = (e) => {
     e.preventDefault();
-    alert(`이름: ${Name}, 성별: ${gender}입니다. 가입을 환영합니다!`);
+    alert(`이름: ${name}, 성별: ${gender}입니다. 가입을 환영합니다!`);
   }; 
 
   return (
@@ -42,16 +69,20 @@ function Signup() {
     <>
       <form onSubmit={handleSumit}>
         <label>
-          이름: <input type="text" value={Name} onChange={handleChangeName}/>
+          이름: <input type="text" value={name} onChange={handleUser}/>
         </label>
         
-        <section>
-          성별: 
-          남자<input type='checkbox' value='남자' checked={gender === '남자'} onClick={handleChangeGender}/> 
-          여자<input type='checkbox' value='여자' checked={gender === '여자'} onClick={handleChangeGender}/>
-        </section>
+        <label>
+        성별: 
+          <section name="gender" value={gender} onChange={handleUser}>
+            <option type='text' value="남자">남자</option>
+            <option type='text' value="여자">여자</option>
+          </section>
+        </label>
 
-         <button type='submit'>가입</button>
+        <div>
+        <button type='submit'>가입</button>
+        </div>
       </form>
     </>
   );
