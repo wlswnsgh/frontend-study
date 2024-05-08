@@ -9,12 +9,8 @@ function App() {
 
   const [showPostDetail, setshowPostDetail] = useState(false);
 
-  const handleClick1 = () => {
-    setshowPostDetail(true);
-  };
-
-  const handleClick2 = () => {
-    setshowPostDetail(false);
+  const handleClick = () => {
+    setshowPostDetail(!showPostDetail);
   };
 
 
@@ -63,9 +59,9 @@ function App() {
 
         {/* 포스트 상세보기 */}
         {/* Quiz: 조건부 랜더링 */}
-        {showPostDetail ? <PostDetail onclick ={handleClick1} />: <PostDetail onclick ={handleClick2} /> }
+        <p>{showPostDetail ? <PostDetail />: null }</p>
 
-        <button type='button' on>버튼</button>
+        <button type='button' onClick={handleClick}>누르면 나와요^^</button>
       </div>
     </>
   );
