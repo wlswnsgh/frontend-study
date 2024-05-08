@@ -68,7 +68,7 @@ root.render(
     {/* <Counter /> */}
 
     {/* <Toggle /> */}
-    {/* <MyButton /> */}
+    <MyButton />
     {/* <ConfirmButton /> */}
     {/* <Greeting isLoggodin = {true} />
     <Greeting isLoggodin = {false} />
@@ -89,7 +89,7 @@ root.render(
     {/* <FlavorForm /> */}
     {/* <Reservation /> */}
     {/* <ReservationRefactoring /> */}
-    <Signup />
+    {/* <Signup /> */}
     </>
 );
 
