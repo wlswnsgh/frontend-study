@@ -90,8 +90,7 @@ function App() {
                 // 또는 배열의 filter() 함수 사용
                 const filterPost = posts.filter((value, idx) => {
                   return index !== idx;
-                });
-                setposts(filterPost);
+                }); setposts(filterPost);
 
                 // (버그 수정) 삭제 시 해당 포스트의 좋아요 카운트도 같이 삭제
                 const copylikeCount = [...likeCount];

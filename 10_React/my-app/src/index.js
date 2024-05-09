@@ -33,6 +33,14 @@ import FlavorForm from './chapter11/11.3/FlavorForm';
 import Reservation from './chapter11/11.4/Reservation';
 import ReservationRefactoring from './chapter11/11.4/ReservationRefactoring';
 import Signup from './chapter11/11.5/Signup';
+import TextInputWithFocusButton from './chapter7/7.6/TextInputWithFocusButton';
+import FileInput from './chapter11/11.3/FileInput';
+import UnitCounter from './chapter12/UnitCounter';
+import UnitCalculator from './chapter12/UnitCalculator';
+import UnitInput from './chapter12/UnitInput';
+import FancyBorder from './chapter13/13.1.1.1/FancyBorder';
+import WelcomeDialog from './chapter13/13.1.1.1/WelcomeDialog';
+import SplitPaneSection from './chapter13/13.1.1.2/SplitPaneSection2';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // Root DOM Node에 리액트 컴포넌트를 렌더링 하도록 하는 함수(React 엘리먼트를 DOM 엘리먼트로 렌더링하는 역할)
@@ -68,7 +76,7 @@ root.render(
     {/* <Counter /> */}
 
     {/* <Toggle /> */}
-    <MyButton />
+    {/* <MyButton /> */}
     {/* <ConfirmButton /> */}
     {/* <Greeting isLoggodin = {true} />
     <Greeting isLoggodin = {false} />
@@ -90,6 +98,13 @@ root.render(
     {/* <Reservation /> */}
     {/* <ReservationRefactoring /> */}
     {/* <Signup /> */}
+
+    {/* <TextInputWithFocusButton /> */}
+    {/* <FileInput /> */}
+    {/* <UnitCounter /> */}
+    {/* <UnitCalculator /> */}
+    <WelcomeDialog />
+    {/* <SplitPaneSection /> */}
     </>
 );
 
