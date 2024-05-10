@@ -10,6 +10,14 @@
   border-color: red;
 }
 
+.FancyBorder-green {
+  border-color: green;
+}
+
+.FancyBorder-lightblue {
+  border-color: lightblue;
+}
+
 .Dialog-title {
   margin: 0;
   font-family: sans-serif;
