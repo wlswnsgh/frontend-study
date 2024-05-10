@@ -28,6 +28,7 @@ function UnitCounter(props) {
       <button type='button' onClick={() => { 
         onLengthChange(length+1); 
       }}>+</button>
+      
     </>
   );
 }
