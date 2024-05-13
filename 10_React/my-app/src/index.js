@@ -46,6 +46,7 @@ import SignUpDialog from './chapter13/13.1.3/SignUpDialog';
 import ProfileCard from './chapter13/13.3.3/ProfileCard';
 import Card from './chapter13/13.3.3/Card';
 import StyledPage from './chapter15/StyledPage';
+import Blocks from './chapter15/theme/Blocks';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // Root DOM Node에 리액트 컴포넌트를 렌더링 하도록 하는 함수(React 엘리먼트를 DOM 엘리먼트로 렌더링하는 역할)
@@ -112,7 +113,8 @@ root.render(
     {/* <SplitPaneSection /> */}
     {/* <DialogContainer /> */}
     {/* <ProfileCard /> */}
-    <StyledPage />
+    {/* <StyledPage /> */}
+    <Blocks />
     </>
 );
 
