@@ -6,7 +6,7 @@ function FileInput() {
   useEffect(() => {
     fileInput.current.focus();
     console.log(fileInput);
-  }, [])
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
