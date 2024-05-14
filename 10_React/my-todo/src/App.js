@@ -3,6 +3,7 @@ import reset, { Reset } from "styled-react";
 import TodoTemplate from "./Components/TodoTemplate";
 import TodoInsert from "./Components/TodoInsert";
 import TodoList from "./Components/TodoList";
+import React, { useState } from "react";
 
 // 패키지 설치
 // npm install styled-components styled-react style-icons
@@ -21,6 +22,24 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+    // todos 배열 안에 객체 형태로 데이터가 존재
+    const [todos, settodos] = useState([
+      {
+        id: 1,
+        text: '수업 교안 작성하기',
+        done: true
+      },
+      {
+        id: 2,
+        text: '시험 체점하기',
+        done: true
+      },
+      {
+        id: 3,
+        text: '단계별 실습 예제 만들기',
+        done: false
+      }
+    ]);
   return (
     <>
     
@@ -28,8 +47,7 @@ function App() {
       <GlobalStyle />
       <TodoTemplate>
       <TodoInsert />
-        <TodoList />
-      
+        <TodoList todos={todos} />
       </TodoTemplate>
     </>
   );
