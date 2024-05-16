@@ -11,8 +11,8 @@ const TodoListWrapper = styled.div`
 // 이렇게 받아올 수도 있다.
 // function TodoList({props})
 
-function TodoList(props) {
-  const { todos } = props;
+function TodoList({ todos, onRemove, onToggle } ) {
+  // const { todos, onRemove, onToggle } = props;
 
   return (
     <TodoListWrapper>
@@ -20,12 +20,13 @@ function TodoList(props) {
       <TodoListItem/>
       <TodoListItem/> */}
 
-      {todos.map((todo, index) => {
-        return <TodoListItem key={todo.id} todo={todo} />;
+      {todos.map((todo) => {
+        return <TodoListItem 
+        key={todo.id} todo={todo} onRemove={onRemove} onToggle={onToggle}/>;
       })}
 
       {/* 문제풀이 */}
-      {[
+      {/* {[
         <TodoListItem 
         key={1} 
           todo={{
@@ -49,7 +50,8 @@ function TodoList(props) {
           done: false
       }}
         />
-      ]}
+      ]} */}
+      
     </TodoListWrapper>
   );
 };
