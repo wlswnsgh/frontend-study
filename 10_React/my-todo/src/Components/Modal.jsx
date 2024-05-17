@@ -1,0 +1,78 @@
+import { Children } from "react";
+import { MdClose } from "react-icons/md";
+import styled from "styled-components";
+
+// 화면 전체에 효과를 넣는 명령어 - 외워도됨
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+
+`;
+
+const ModalContainer = styled.div`
+  width: 25rem;
+  background: #f1f1f1;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  overflow-y: auto;
+
+  svg{
+    cursor: pointer;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+  }
+
+  hr {
+    margin: 0;
+    border: 0.5px solid #ccc;
+  }
+
+  .body {
+    padding: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.125rem;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px;
+  }
+`;
+
+function Modal(props) {
+  const { title, Children, onCloseModal } = props;
+
+  return (
+    <Background>
+      <ModalContainer>
+        <div className="header">
+          <span className="modal-title">{title}</span>
+          <MdClose onClick={onCloseModal}/>
+        </div>
+        <div className="body">
+          {Children}
+        </div>
+        <div className="footer">
+          <button type="button" onClick={undefined}>확인</button>
+        </div>
+      </ModalContainer>
+    </Background>
+  );
+};
+
+export default Modal;

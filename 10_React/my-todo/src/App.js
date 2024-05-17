@@ -5,6 +5,7 @@ import TodoInsert from "./Components/TodoInsert";
 import TodoList from "./Components/TodoList";
 import React, { useRef, useState, useEffect } from "react";
 import { v4 as uuidv4  } from "uuid";
+import Modal from "./Components/Modal";
 
 // 패키지 설치
 // npm install styled-components styled-react style-icons
@@ -29,22 +30,47 @@ function App() {
     // id, 내용, 완료 여부
     // TodoList에 props로 전달
     const [todos, settodos] = useState([
-      {
-        id: 1,
-        text: '수업 교안 작성하기',
-        done: true
-      },
-      {
-        id: 2,
-        text: '시험 체점하기',
-        done: true
-      },
-      {
-        id: 3,
-        text: '단계별 실습 예제 만들기',
-        done: false
-      }
+      // {
+      //   id: 1,
+      //   text: '수업 교안 작성하기',
+      //   done: true
+      // },
+      // {
+      //   id: 2,
+      //   text: '시험 체점하기',
+      //   done: true
+      // },
+      // {
+      //   id: 3,
+      //   text: '단계별 실습 예제 만들기',
+      //   done: false
+      // }
     ]);
+
+    const [showModal, setShowModal] = useState(false); // 모달 상태
+    const [editTodo, setEditTodo] = useState([]); // 현재 수정할 todo 상태
+    
+    const handleOpenModal = (id) => {
+      // 모달 열면서 현재 수정할 todo를 state에 저장
+      setEditTodo(todos.find(todo => todo.id === id));
+      setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+      setShowModal(false);
+    };
+
+    const handleChange = (e) => { // 제어 컴포넌트
+      setEditTodo({
+        ...editTodo,
+        text: e.target.value
+      });
+    };
+
+    const handleEdit = () => { // 실제 수정
+      settodos(todos.map((todo) => todo.id == editTodo.id ? editTodo :todo));
+      handleCloseModal();
+    };
 
     // 로컬 스토리지에서 가져오기
     useEffect(() => {
@@ -76,9 +102,9 @@ function App() {
       };
 
       // 방법1
-      const copyTodos = [...todos];
-      copyTodos.push(todo);
-      settodos(copyTodos); // 새로운 배열을 만들어 넣어줌
+      // const copyTodos = [...todos];
+      // copyTodos.push(todo);
+      // settodos(copyTodos); // 새로운 배열을 만들어 넣어줌
 
       // (편법)
       // settodos([...todos, todo]);
@@ -110,9 +136,9 @@ function App() {
       // settodos(copyTodos);
 
       // 방법2 - 배열의 내장 함수
-      settodos(todos.map((todo) => {
-        return todo.id === id ? { ...todo, done: !todo.done } : todo;
-      }));
+      settodos(todos.map((todo) => 
+        todo.id === id ? { ...todo, done: !todo.done } : todo
+      ));
 
     };
 
@@ -125,6 +151,17 @@ function App() {
       <TodoInsert onInsert={handleInsert}/>
         <TodoList todos={todos} onRemove={handleRemove} onToggle = {handleToggle}/>
       </TodoTemplate>
+
+      {/* 수정하기 모달 */}
+      {showModal && (
+            <Modal 
+              title = "할 일 수정"
+              onCloseModal = {handleCloseModal}
+              onEdit = {handleEdit}
+              >
+              <input type="text" value={editTodo.text} onChange={handleChange} />
+            </Modal>
+      )}
     </>
   );
 }
