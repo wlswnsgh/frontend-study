@@ -1,12 +1,12 @@
 function HotGamePage() {
   return (
     <>
-      <h1>신규 게임 리스트</h1>
+      <h1>인기 게임 리스트</h1>
       <ul>
-        <li>신규1</li>
-        <li>신규2</li>
-        <li>신규3</li>
-        <li>신규4</li>
+        <li>인기1</li>
+        <li>인기2</li>
+        <li>인기3</li>
+        <li>인기4</li>
       </ul>
     </>
   );
