@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import TodoListItemCopy from "./TodoListItemCopy";
 
 const TodoListWrapper = styled.div`
   min-height: 320px;
@@ -6,10 +7,13 @@ const TodoListWrapper = styled.div`
   overflow-y: auto;
 `;
 
-function TodoListCopy() {
+function TodoListCopy({ todos, onRemove, onToggle, onModal}) {
   return (
-    <>
-    </>
+    <TodoListWrapper>
+      {todos.map((todo) => {
+        return <TodoListItemCopy key={todo.id} todo={todo} onRemove = {onRemove} onToggle = {onToggle} onModal = {onModal} />
+      })}
+    </TodoListWrapper>
   );
 };
 
