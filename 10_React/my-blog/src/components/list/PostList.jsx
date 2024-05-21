@@ -17,8 +17,8 @@ function PostList(props) {
   return (
     <Wrapper>
       {/* Quiz: posts 배열을 반복 렌더링하기 */}
-      {posts.map(() => {
-        return <PostListItem key = {posts.id} post={post} />
+      {posts.map((post) => {
+        return <PostListItem key = {post.id} post={post} />
       })}
     </Wrapper>
   );

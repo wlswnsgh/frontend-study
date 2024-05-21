@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import data from "../../data.json"
+import CommentListItem from "./CommentListitem";
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,12 +14,17 @@ const Wrapper = styled.div`
 `;
 
 
-// 글의 제목만 표시해주는 컴포넌트
-function CommentList() {
-  
+// map() 함수를 사용하여 CommentListItem을 반복 렌더링하는 컴포넌트
+function CommentList(props) {
+  const { comments } = props;
+
   return (
-    <>
-    </>
+    <Wrapper>
+      {/* Quiz: comments 배열을 반복 렌더링하기 */}
+      {comments.map((comment) => {
+        return <CommentListItem key={comment.id} comment={comment}/>
+      })}
+    </Wrapper>
   );
 };
 
