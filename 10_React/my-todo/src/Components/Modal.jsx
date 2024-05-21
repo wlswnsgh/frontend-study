@@ -1,4 +1,3 @@
-import { Children } from "react";
 import { MdClose } from "react-icons/md";
 import styled from "styled-components";
 
@@ -55,7 +54,7 @@ const ModalContainer = styled.div`
 `;
 
 function Modal(props) {
-  const { title, Children, onCloseModal } = props;
+  const { title, children, onCloseModal, onEdit } = props;
 
   return (
     <Background>
@@ -65,10 +64,10 @@ function Modal(props) {
           <MdClose onClick={onCloseModal}/>
         </div>
         <div className="body">
-          {Children}
+          {children}
         </div>
         <div className="footer">
-          <button type="button" onClick={undefined}>확인</button>
+          <button type="button" onClick={onEdit}>확인</button>
         </div>
       </ModalContainer>
     </Background>

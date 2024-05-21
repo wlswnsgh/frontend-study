@@ -48,7 +48,7 @@ function App() {
     ]);
 
     const [showModal, setShowModal] = useState(false); // 모달 상태
-    const [editTodo, setEditTodo] = useState([]); // 현재 수정할 todo 상태
+    const [editTodo, setEditTodo] = useState({}); // 현재 수정할 todo 상태
     
     const handleOpenModal = (id) => {
       // 모달 열면서 현재 수정할 todo를 state에 저장
@@ -93,6 +93,7 @@ function App() {
     console.log(nextId);
 
     // todos 배열에 새 할일 객체를 추가하기 위한 함수
+    
     const handleInsert = (text) => {
       const todo = {
         // id: nextId.current,
@@ -110,7 +111,7 @@ function App() {
       // settodos([...todos, todo]);
 
       // 방법2 - 배열의 내장 함수 이용
-      settodos(todos.concat(todos));
+      settodos(todos.concat(todo));
 
       nextId.current += 1; // nextId에 1씩 더하기
     };
