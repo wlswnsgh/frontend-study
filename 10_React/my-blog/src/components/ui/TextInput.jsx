@@ -10,6 +10,7 @@ const StyledTextarea = styled.textarea`
 // 공통 텍스트 컴포넌트
 function TextInput(props) {
   const { height, value, onChange } = props;
+  
   return (
     <StyledTextarea height = {height} value={value} onChange={onChange} />
   );

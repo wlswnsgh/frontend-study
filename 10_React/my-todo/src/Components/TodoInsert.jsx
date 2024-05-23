@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 // Tip: as를 사용하여 별칭을 붙여 사용하면 추후 아이콘 바꿀때 한곳만 바꾸면 되서 편함!
 // npm install react-icons

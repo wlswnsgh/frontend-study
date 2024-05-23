@@ -63,9 +63,11 @@ function Modal(props) {
           <span className="modal-title">{title}</span>
           <MdClose onClick={onCloseModal}/>
         </div>
+
         <div className="body">
           {children}
         </div>
+
         <div className="footer">
           <button type="button" onClick={onEdit}>확인</button>
         </div>

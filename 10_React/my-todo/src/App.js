@@ -8,7 +8,7 @@ import { v4 as uuidv4  } from "uuid";
 import Modal from "./Components/Modal";
 
 // 패키지 설치
-// npm install styled-components styled-react style-icons
+// npm install styled-components styled-react react-icons-md
 
 // 글로벌(공통) 스타일 적용과 reset css 적용
 // createGlobalStyle을 이용하여 글로벌 스타일 컴포넌트를 만들고  가장 첫번째로 렌더링하면 된다.
@@ -151,7 +151,7 @@ function App() {
       <TodoTemplate>
       <TodoInsert onInsert={handleInsert}/>
         <TodoList todos={todos} onRemove={handleRemove} onToggle = {handleToggle}/>
-      </TodoTemplate>
+      </TodoTemplate>   
 
       {/* 수정하기 모달 */}
       {showModal && (

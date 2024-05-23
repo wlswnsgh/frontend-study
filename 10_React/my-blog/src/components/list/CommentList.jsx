@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import data from "../../data.json"
 import CommentListItem from "./CommentListitem";
 
 const Wrapper = styled.div`

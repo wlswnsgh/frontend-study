@@ -27,6 +27,7 @@ function PostListItem(props) {
   const { post: { id, title } } = props;
 
   const navigate = useNavigate();
+
   return (
     <Wrapper onClick={() => navigate(`/post/${id}`)}>
     <TitleText>{title}</TitleText>
