@@ -10,7 +10,7 @@ export const store = configureStore({
   // 4. Redux Store에 Slice Reducers 추가하기 (app/store.js)
   // Slice Reducer를 Store에 등록을 해야 컴포넌트들이 전역 state를 사용 가능
   reducer: {
-    counter: counterReducer,
+    counter: counterSlice,
   }
 });
 
