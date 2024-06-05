@@ -4,6 +4,7 @@ import axios from "axios";
 import NewsItem from "./NewsItem";
 import { useParams } from "react-router-dom";
 
+
 const NewsListBlock = styled.div`
   box-sizing: border-box;
   padding-bottom: 3rem;
@@ -87,5 +88,6 @@ function NewsList() {
     </NewsListBlock>
   );
 };
+
 
 export default NewsList;

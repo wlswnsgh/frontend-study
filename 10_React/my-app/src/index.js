@@ -57,6 +57,7 @@ import ApiRequest from './chapter17/ApiRequest';
 import { Provider } from "react-redux";
 import ReduxTestApp from './chapter18/ReduxTestApp';
 import { store } from './chapter18/app/store';
+import ProductList from './chapter18/product/ProductList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // Root DOM Node에 리액트 컴포넌트를 렌더링 하도록 하는 함수(React 엘리먼트를 DOM 엘리먼트로 렌더링하는 역할)
@@ -140,6 +141,7 @@ root.render(
     <Provider store={store}>
         <ReduxTestApp />
     </Provider>
+    
     </>
 
 );
