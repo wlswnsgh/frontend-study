@@ -10,8 +10,8 @@ const productslice = createSlice({
   initialState: init,
   reducers: {
     addToProductList: (ex1, ex2) => {
-      // ex1.value = ex2.payload;
-      ex1.productList.push(ex2.payload);
+      // ex1.productList.push(ex2.payload);
+      ex1.productList = [...ex1.productList, ex2.payload];
     }
   }
 });

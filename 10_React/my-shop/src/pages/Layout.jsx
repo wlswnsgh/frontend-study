@@ -1,7 +1,9 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function Layout() {
+  const navigate = useNavigate();
+
   return (
     <>
       {/* 헤더 */}
@@ -10,8 +12,8 @@ function Layout() {
         <Container>
           <Navbar.Brand href="#">주노샵</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link>홈</Nav.Link>
-            <Nav.Link>장바구니</Nav.Link>
+            <Nav.Link onClick={() => navigate('/')}>홈</Nav.Link>
+            <Nav.Link onClick={() => navigate('/cart')}>장바구니</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

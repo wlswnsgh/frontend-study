@@ -13,14 +13,19 @@ const productslice = createSlice({
     getAllProducts: (state, action) => {
       console.log(action.payload);
       state.productList =  action.payload;
+    },
+    getSelectedProduct: (state, action) => {
+      console.log(action.payload);
+      state.productList = action.payload;
     }
   }
 });
 
 // 액션 생성 함수
-export const { getAllProducts } = productslice.actions;
+export const { getAllProducts, getSelectedProduct } = productslice.actions;
 
-export const selectProductList = (state) => state.product;
+// 선택자 함수
+export const selectProductList = (state) => state.product.productList;
 
 // 리듀서 함수들
-export default productslice.reducers;
+export default productslice.reducer;
