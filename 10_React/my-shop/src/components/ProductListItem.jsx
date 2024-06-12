@@ -9,7 +9,7 @@ const StyledCol = styled(Col)`
 // 방법2: GlobalStyle에 공통 스타일로 작성 
 
 function ProductListItem(props) {
-  const { product: { id, title, price, imagePath} } = props;
+  const { Is: { id, title, price, imagePath} } = props;
 
   // 숫자 포맷 적용
   const formatter = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' });

@@ -82,7 +82,7 @@ function Main() {
             {productList.map((product) => {
               return <ProductListItem 
                 key={product.id}
-                product = {product}
+                Is = {product}
               />;
             })}
 
