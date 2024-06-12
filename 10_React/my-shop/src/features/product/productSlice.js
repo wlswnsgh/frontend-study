@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   productList: [],
-  selectProduct: null
+  selectProduct: null,
 }
 
 // 상품 정보를 담을 slice 만들기
@@ -17,15 +17,19 @@ const productslice = createSlice({
     getSelectedProduct: (state, action) => {
       console.log(action.payload);
       state.productList = action.payload;
-    }
+    },
+    clearSelectedProduct: (state) => {
+      state.selectProduct = null;
+    },
   }
 });
 
 // 액션 생성 함수
-export const { getAllProducts, getSelectedProduct } = productslice.actions;
+export const { getAllProducts, getSelectedProduct, clearSelectedProduct } = productslice.actions;
 
 // 선택자 함수
 export const selectProductList = (state) => state.product.productList;
+export const selectSelectProduct = (state) => state.product.productList;
 
 // 리듀서 함수들
 export default productslice.reducer;
