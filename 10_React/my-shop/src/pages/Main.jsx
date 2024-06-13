@@ -3,13 +3,14 @@
 import yonexImg from "../images/yonex.jpg";
 
 import styled from "styled-components";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import axios from "axios";
-import React, {useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { getAllProducts, selectProductList } from "../features/product/productSlice";
+import { getAllProducts, selectProductList, addMoreProduct, getMoreProductsAsync, selectStatus } from "../features/product/productSlice";
 import ProductListItem from "../components/ProductListItem";
+import { getMoreProducts } from "../api/ProductAPI";
+import { RingLoader } from "react-spinners";
 
 // 2) public 폴더 안 이미지(root 경로로 바로 접근)
 // 빌드 시 src 폴더에 있는 코드와 파일은 압축이 되지만 public 폴더에 있는 것들은 그대로 보존
@@ -27,7 +28,9 @@ const MainBackground = styled.div`
 function Main() {
   const dispatch = useDispatch();
   const productList = useSelector(selectProductList);
+  const status = useSelector(selectStatus); // API 요청 상태(로딩 상태)
   
+  // const [add, setAdd] = useState([]);
 
   // 처음 마운트 됐을 때 서버에 상품 목록 데이터를 요청하고
   // 그 결과를 리덕스 스토어에 전역 상태로 저장
@@ -42,6 +45,23 @@ function Main() {
       console.error(err);
     });
   }, []);
+
+  const handleGetMoreProducts = async () => {
+    const result = await getMoreProducts();
+    dispatch(addMoreProduct(result));
+
+    // try {
+    //   const result = await getMoreProducts();
+    //   setAdd([...result, ...add]); // result도 배열이다 보니 ...result를 써준다.
+    // } catch (error) {
+    //   console.error(error);
+    // }
+
+  };
+
+  const handleGetMoreProductsAsyncductsAsync = () => {
+    dispatch(getMoreProductsAsync());
+  };
 
   return (
     <>
@@ -79,15 +99,46 @@ function Main() {
               3) 상품 정보를 props로 넘겨서 데이터 바인딩 하기
             */}
 
-            {productList.map((product) => {
-              return <ProductListItem 
+            {productList.map((product) =>
+              <ProductListItem 
                 key={product.id}
                 Is = {product}
-              />;
-            })}
+              />
+            )}
+
+            {/* {add.map((product2) => 
+              <ProductListItem 
+                key={product2.id}
+                Is = {product2} />
+            )} */}
+
+            {/* 로딩 만들기 */}
+            {status === 'loading' && 
+              <div>
+                <RingLoader 
+                  color="#36d7b7" 
+                  margin={50}
+                  size={30}
+                  cssOverride={{
+                    display: 'block',
+                    
+                  }}
+                  />
+              </div>
+            }
 
           </Row>
         </Container>
+
+        {/* 상품 더보기 기능 만들기
+          더보기 버튼 클릭 시 axios를 사용하여 데이터 요청
+          받아온 결과를 전역 상태에 추가하기 위해 리듀서 및 액션 생성 함수 export
+          스토어에 dispatch로 요청(액션) 보내기
+        */}
+        <Button variant="secondary" className="mb-4" onClick={handleGetMoreProducts}>더보기</Button>
+
+        {/* thunk를 이용한 비동기 작업 처리하기 */}
+        <Button variant="secondary" className="mb-4" onClick={handleGetMoreProductsAsyncductsAsync}>더보기 {status}</Button>
       </section>
     </>
   );
