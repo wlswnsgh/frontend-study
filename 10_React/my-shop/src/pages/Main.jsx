@@ -3,7 +3,7 @@
 import yonexImg from "../images/yonex.jpg";
 
 import styled from "styled-components";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Nav } from "react-bootstrap";
 import axios from "axios";
 import React, {useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,7 @@ import { getAllProducts, selectProductList, addMoreProduct, getMoreProductsAsync
 import ProductListItem from "../components/ProductListItem";
 import { getMoreProducts } from "../api/ProductAPI";
 import { RingLoader } from "react-spinners";
+import TabContent from "../components/TabContent";
 
 // 2) public 폴더 안 이미지(root 경로로 바로 접근)
 // 빌드 시 src 폴더에 있는 코드와 파일은 압축이 되지만 public 폴더에 있는 것들은 그대로 보존
@@ -29,6 +30,8 @@ function Main() {
   const dispatch = useDispatch();
   const productList = useSelector(selectProductList);
   const status = useSelector(selectStatus); // API 요청 상태(로딩 상태)
+  const [currentTabIndex, setCurrentTabIndex] = useState(0); // 현재 탭 상태
+  const [currentTab, setCurrentTab] = useState('detail');
   
   // const [add, setAdd] = useState([]);
 
@@ -126,8 +129,61 @@ function Main() {
                   />
               </div>
             }
-
           </Row>
+
+          {/* 탭 버튼 UI */}
+          {/* defaultActiveKey: 기본으로 active 할 탭, active 클래스가 들어가 있음 */}
+          <Nav variant="tabs" defaultActiveKey="/link-0" className="my-3">
+            <Nav.Item>
+              <Nav.Link eventKey="link-0" onClick={() => {setCurrentTab('detail')}}>상세정보</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="link-1" onClick={() => {setCurrentTab('review')}}>리뷰</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="link-2" onClick={() => {setCurrentTab('qa')}}>Q&map;A</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="link-3" onClick={() => {setCurrentTab('exchange')}}>반품/교환정보</Nav.Link>
+            </Nav.Item>
+          </Nav>
+
+          {/* 탭의 내용을 다 만들어 놓고 조건부 렌더링하면 됨 */}
+          {/* 방법1: 삼항 연산자 사용(가독성 나쁨) */}
+          {/* {currentTabIndex === 0 
+          ? <div>탭 내용1</div>
+          : currentTabIndex === 1 
+          ? <div>탭 내용2</div> 
+          : currentTabIndex === 2 
+          ? <div>탭 내용3</div> 
+          : currentTabIndex === 3 
+          ? <div>탭 내용4</div> : null } */}
+
+          {/* 방법2 : 컴포넌트로 추출(가독성 개선) */}
+          {/* <TabContent currentTabIndex = {currentTabIndex} /> */}
+
+          {/* 방법3(편법): 배열이나 객체 형태로 만들어서 조건부 렌더링하기 */}
+          {/* 배열 형태 */}
+          {/* {[
+            <div>탭 내용1</div>,
+            <div>탭 내용2</div>,
+            <div>탭 내용3</div>,
+            <div>탭 내용4</div>
+          ][currentTabIndex]} */}
+
+          {/* Quiz: 객체 형태 */}
+          {/* {{
+            'detail': <div>탭 내용1</div>,
+            'review': <div>탭 내용2</div>,
+            'qa': <div>탭 내용3</div>,
+            'exchange': <div>탭 내용4</div>
+          }[currentTab]} */}
+
+          {currentTab === 'detail'&& <div>탭 내용1</div> }
+          {currentTab === 'review'&& <div>탭 내용2</div> }
+          {currentTab === 'qa'&& <div>탭 내용3</div> }
+          {currentTab === 'exchange'&& <div>탭 내용4</div> }
+
         </Container>
 
         {/* 상품 더보기 기능 만들기

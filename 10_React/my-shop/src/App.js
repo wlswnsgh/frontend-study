@@ -1,10 +1,11 @@
 import { createGlobalStyle } from "styled-components";
-import { Button, Navbar, Container, Nav  } from "react-bootstrap";
+import { Button, Navbar, Container, Nav, Card  } from "react-bootstrap";
 import Layout from "./pages/Layout";
 import { Route, Routes } from "react-router-dom";
 import Main from "./pages/Main";
 import ProductDetail from "./pages/ProductDetail";
 import { ToastContainer } from "react-toastify";
+import Cart from "./pages/Cart";
 
 // 글로벌(공통) 스타일 설정
 const GlobalStyle = createGlobalStyle`
@@ -54,6 +55,8 @@ function App() {
             예: /detail/1로 접속하면 productId에 1이 담기도록 설정
           */}
           <Route path="detail/:productId" element={<ProductDetail />}/>
+          <Route path="cart" element= {<Cart />}/>
+          <Route path="*" element= {<div>페이지가 존재하지 않습니다.</div>} />
         </Route>
       </Routes>
       
