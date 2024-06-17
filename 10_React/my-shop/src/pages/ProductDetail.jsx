@@ -1,11 +1,12 @@
-import { Button, Container, Row, Col, Alert, Form } from "react-bootstrap";
-import { useParams } from 'react-router-dom';
+import { Button, Container, Row, Col, Alert, Form, Modal } from "react-bootstrap";
+import { useNavigate, useParams } from 'react-router-dom';
 import React,{ useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { clearSelectedProduct, getSelectedProduct, selectSelectProduct } from "../features/product/productSlice";
 import { keyframes, styled } from "styled-components";
 import { toast } from "react-toastify";
+import { addItemToCart } from "../features/cart/cartSlice";
 
 // 스타일드 컴포넌트를 이용한 애니메이션 속성 적용
 const highlight = keyframes`
@@ -24,6 +25,11 @@ function ProductDetail() {
   const product = useSelector(selectSelectProduct);
   const [state, setstate] = useState(true); // 처음에는 화면에 보여야 되니까 true
   const [usete, setusete] = useState(1); // 주문수량 상태
+  
+  const [showModal, setShowModal] =useState(false); // 모달상태
+  const handleCloseModal = () => setShowModal(false);
+  const handleOpenModal = () => setShowModal(true);
+  const navigate = useNavigate();
 
   const formatter = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' });
 
@@ -68,6 +74,14 @@ function ProductDetail() {
     setusete(Number(e.target.value)); // 숫자로 바꾸고 싶다면 Number()명령어를 사용한다.
   };
 
+  const handleClickCart = () => {
+    dispatch((addItemToCart({
+      ...product,
+      count: usete
+    })));
+    handleOpenModal();
+  };
+
   if (!product) {
     return null;
   }
@@ -104,8 +118,28 @@ function ProductDetail() {
 
           </Col>
           <Button variant="primary">주문하기</Button>
+          <Button variant="warning" onClick={() => handleClickCart()}>장바구니</Button>
         </Col>
       </Row>
+      
+      {/* 장바구니 모달 => 추후 범용적인 공통 모달로 만들고 구체화하여 사용하는 것이 좋음 */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>🛒 주노네 샵 알림</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          장바구니에 상품을 담았습니다.<br />
+          장바구니로 이동하시겠습니까?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            취소
+          </Button>
+          <Button variant="primary" onClick={() => navigate('/cart')}>
+            확인
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };
