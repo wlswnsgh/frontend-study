@@ -6,7 +6,8 @@ function CounterEffect() {
 
   // 실행 시점: HTML DOM 렌더링 직후(즉, 우리가 만든 컴포넌트가 화면에 나타난 상태 이후)
   useEffect(() => { 
-    console.log('effect 실행!');
+    console.log(count);
+    // console.log('effect 실행!');
 
     // Dom API로 문서 타이틀 업데이트
     document.title = `clicked ${count} times`;
@@ -23,7 +24,8 @@ function CounterEffect() {
     <>
       <p>총 {count}번 클릭했습니다.</p>
       {/* 첫번째 방법 */}
-      <button type="button" onClick={() => { 
+      <button type="button" onClick={() => {
+        // console.log(count);
         SetCount(count + 1); 
 
         // useEffect와 차이점 비교 테스트
