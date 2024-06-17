@@ -66,3 +66,5 @@ export const {
   removeItemFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
+
+// error: failed to push some refs to 'https://github.com/wlswnsgh/frontend-study.git' 
