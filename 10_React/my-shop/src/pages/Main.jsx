@@ -12,6 +12,7 @@ import ProductListItem from "../components/ProductListItem";
 import { getMoreProducts } from "../api/ProductAPI";
 import { RingLoader } from "react-spinners";
 import TabContent from "../components/TabContent";
+import RecentProduct from "../components/RecentProduct";
 
 // 2) public 폴더 안 이미지(root 경로로 바로 접근)
 // 빌드 시 src 폴더에 있는 코드와 파일은 압축이 되지만 public 폴더에 있는 것들은 그대로 보존
@@ -195,6 +196,9 @@ function Main() {
 
         {/* thunk를 이용한 비동기 작업 처리하기 */}
         <Button variant="secondary" className="mb-4" onClick={handleGetMoreProductsAsyncductsAsync}>더보기 {status}</Button>
+
+        {/* 최근 본 상품 컴포넌트 */}
+        {productList.length > 0 && <RecentProduct  productList = {productList} />}
       </section>
     </>
   );

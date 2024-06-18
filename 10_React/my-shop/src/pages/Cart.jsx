@@ -57,6 +57,20 @@ function Cart() {
             </td>
           </tr>;
           })}
+          
+          {/* 합계 구하기 */}
+          <tr>
+            <th>합계</th>
+            <td></td>
+            <td></td>
+            <th>
+              {/* .reduce()는 초기값을 꼭 정해둬야 한다. 없으면 NaN으로 출력*/}
+              {formatter.format(cartList.reduce((prev, cartItem) => {
+                console.log(prev); // 주의: 초기값이 없으면 배열 인덱스 0이 초기값으로 사용됨
+                return prev + (cartItem.price * cartItem.count);
+              }, 0))}원
+            </th>
+          </tr>
         </tbody>
       </Table>
     </>

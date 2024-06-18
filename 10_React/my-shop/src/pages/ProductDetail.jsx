@@ -55,6 +55,7 @@ function ProductDetail() {
   }, []);
 
   useEffect(() => { 
+    
     const timer = setTimeout(() => {
       setstate(false); 
     }, 3000);
@@ -64,10 +65,28 @@ function ProductDetail() {
     return () => clearTimeout(timer); // 컴포넌트가 사라질 때 타이머 정리
   }, []); // 빈 배열을 넣어 처음 렌더링될 때 한 번만 실행
 
+  // 상품 상세페이지에 들어갔을 때 해당 상품이 존재할때만 id값을 localStorage에 추가
+  useEffect(() => {
+    console.log(product);
+
+    if (!product) {
+      return;
+    }
+
+    // JSON.parse() 객체로 바꾸는 명령어
+    let recentProducts = JSON.parse(localStorage.getItem('recentProducts')) || []; // 처음엔 null이니까 기본값으로 빈배열 넣어줌
+
+    // id값을 넣기 전에 기존 배열에 존재하는지 검사하거나 아니면 일단 배열에 넣고 Set 자료형을 이용하여 중복 제거
+    recentProducts.push(productId);
+    recentProducts = new Set(recentProducts); // 배열을 Set 객체로 만듦(중복 요소가 제거됨)
+    recentProducts = [...recentProducts]; // Set 객체를 다시 배열로 변환
+    localStorage.setItem('recentProducts', JSON.stringify(recentProducts)); // JSON문자열로 저장
+  }, [product]);
+
   const handleChange = (e) => {
     // 숫자 외 입력 시 유효성 검사 후 경고 토스트 띄우기
     if (isNaN(e.target.value)) {       
-      toast.error('숫자만 입력하세요');
+      toast.error('100 숫자만 입력하세요');
       return;
     }
 
@@ -140,6 +159,7 @@ function ProductDetail() {
           </Button>
         </Modal.Footer>
       </Modal>
+      
     </Container>
   );
 };
