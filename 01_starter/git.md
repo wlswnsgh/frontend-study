@@ -104,6 +104,8 @@ git checkout feature/login <-브렌치로 push 완료
 3. 기능 설명 적기
 4. 후 초록 버튼 클릭
 
+git checkout main으로 돌아오기 
+
 ## 브랜치란?
 branch: 독립적인 작업을 위한 프로젝트의 가지
 (branch 뜻? 나뭇가지, 지사[분점], 갈라지다[나뉘다])
