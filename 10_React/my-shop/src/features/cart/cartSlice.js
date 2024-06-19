@@ -45,6 +45,7 @@ const cartSlice = createSlice({
         state.cartList.push(product);
       }
     },
+
     // Quiz: 장바구니에서 삭제하는 리듀서 만들기
     // 1. state, action으로 매개변수를 지정한다.(state는 장바구니 상태를 나타내고 action는 전달하는 정보를 뜻한다.)
     // 2. state.cartList.filter()는 filter()명령어를 사용해 cartList를 걸러내는 작업을 한다.
@@ -54,6 +55,8 @@ const cartSlice = createSlice({
     removeItemFromCart: (state, action) => {
       state.cartList = state.cartList.filter(item => item.id !== action.payload);
     },
+
+    
   }
 });
 
