@@ -89,6 +89,19 @@ C:\fullstack\프론트엔드\frontend-study>git branch
 * feature/login <- 이 브렌치로 이동
   main
 
+// 하는 순서
+git branch 브렌치이름생성  -> 예)git branch feature/login 브렌치 생성 명령어
+git checkout feature/login -> 브렌치로 이동
+git add .
+git commit -m "이름생성"
+git checkout feature/login <-브렌치로 push 완료
+
+// 파이널 프로젝트
+1. git hub 사이트 들어가기
+2. Pull requests 클릭
+3. 기능 설명 적기
+4. 후 초록 버튼 클릭
+
 ## 브랜치란?
 branch: 독립적인 작업을 위한 프로젝트의 가지
 (branch 뜻? 나뭇가지, 지사[분점], 갈라지다[나뉘다])
