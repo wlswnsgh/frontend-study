@@ -80,7 +80,7 @@ GUI 툴 연습2
 
 
 # Git 추가 수업
-git pull origin main
+git pull origin main <- 최신 업데이트가 되어있는지 확인해야함 중요!!!!!!!!!!!!!!!!!!
 git branch -> branch에 현재 뭐가 있는지 확인가능
 git branch 브렌치이름생성  -> 예)git branch feature/login 브렌치 생성 명령어
 git checkout feature/login -> 브렌치로 이동
@@ -90,14 +90,14 @@ C:\fullstack\프론트엔드\frontend-study>git branch
   main
 
 
-# 하는 순서 - git hub
+# 하는 순서 - git hubssss
 git branch 브렌치이름생성  -> 예)git branch feature/login 브렌치 생성 명령어
 git checkout feature/login -> 브렌치로 이동
 git add .
 git commit -m "이름생성"
+git push 
 git checkout feature/login <-브렌치로 push 완료
 
-// 파이널 프로젝트
 1. git hub 사이트 들어가기
 2. Pull requests 클릭
 3. 기능 설명 적기
