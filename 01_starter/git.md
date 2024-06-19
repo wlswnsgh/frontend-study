@@ -84,6 +84,7 @@ git pull origin main <- 최신 업데이트가 되어있는지 확인해야함 �
 git branch -> branch에 현재 뭐가 있는지 확인가능
 git branch 브렌치이름생성  -> 예)git branch feature/login 브렌치 생성 명령어
 git checkout feature/login -> 브렌치로 이동
+git branch -D <삭제할 브렌치이름>
 
 C:\fullstack\프론트엔드\frontend-study>git branch
 * feature/login <- 이 브렌치로 이동
