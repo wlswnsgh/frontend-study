@@ -89,7 +89,8 @@ C:\fullstack\프론트엔드\frontend-study>git branch
 * feature/login <- 이 브렌치로 이동
   main
 
-// 하는 순서
+
+# 하는 순서 - git hub
 git branch 브렌치이름생성  -> 예)git branch feature/login 브렌치 생성 명령어
 git checkout feature/login -> 브렌치로 이동
 git add .
@@ -139,7 +140,7 @@ branch: 독립적인 작업을 위한 프로젝트의 가지
 나: 로그인 기능 개발
 
 
-하이
+
 ## git 충돌 해결 연습
 1. 작업 전 브랜치를 가장 최신으로 (git pull)
 - 그래야 충돌을 최소화 할 수 있음(습관화하기), 했는지 안했는지 기억이 안나면 무조건하기!
