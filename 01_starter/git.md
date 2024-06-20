@@ -97,12 +97,14 @@ git checkout feature/login -> 브렌치로 이동
 git add .
 git commit -m "이름생성"
 git push origin <현재 존재하는 브렌치 입력> <- 브렌치로 push 완료
-git checkout main
+
 
 1. git hub 사이트 들어가기
 2. Pull requests 클릭
 3. 기능 설명 적기
 4. 후 초록 버튼 클릭
+
+git checkout main
 
 git pull 
 
