@@ -8,14 +8,17 @@ import 'react-toastify/dist/ReactToastify.min.css'; // ReactToastify CSS 추가
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from "react-redux";
 import { store } from './app/store';
+import FoodSidebar from './components/FoodSidebar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    // <Provider store={store}>
+    //   <BrowserRouter>
+    //     <App />
+    //   </BrowserRouter>
+    // </Provider>
+
+    <FoodSidebar />
 );
 
 // If you want to start measuring performance in your app, pass a function
