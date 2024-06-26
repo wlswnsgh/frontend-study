@@ -59,6 +59,7 @@ import ReduxTestApp from './chapter18/ReduxTestApp';
 import { store } from './chapter18/app/store';
 import ProductList from './chapter18/product/ProductList';
 import CounterApp from './chapter7/7.2/CounterApp';
+import Car from './chapter19/Car';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // Root DOM Node에 리액트 컴포넌트를 렌더링 하도록 하는 함수(React 엘리먼트를 DOM 엘리먼트로 렌더링하는 역할)
@@ -128,13 +129,14 @@ root.render(
     {/* <StyledPage /> */}
     {/* <Blocks /> */}
     {/* <ComponentVariable /> */}
-    <CounterEffect />
+    {/* <CounterEffect /> */}
     {/* <CounterApp /> */}
     {/* <Timer /> */}
     {/* <EffectSummary /> */}
     {/* <EffectContainer /> */}
     {/* <SimpleRouter /> */}
     {/* <ApiRequest /> */}
+    <Car />
 
     {/* 18장 예제 */}
     {/* 2. 리액트에 Redux Store 제공하기 (index.js) */}

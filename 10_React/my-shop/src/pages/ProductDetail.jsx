@@ -7,6 +7,7 @@ import { clearSelectedProduct, getSelectedProduct, selectSelectProduct } from ".
 import { keyframes, styled } from "styled-components";
 import { toast } from "react-toastify";
 import { addItemToCart } from "../features/cart/cartSlice";
+import { addProduct } from "../api/ProductAPI";
 
 // 스타일드 컴포넌트를 이용한 애니메이션 속성 적용
 const highlight = keyframes`
@@ -136,7 +137,7 @@ function ProductDetail() {
             <Form.Control type = "text" onChange={handleChange} value={usete}/>
 
           </Col>
-          <Button variant="primary">주문하기</Button>
+          <Button variant="primary" onClick={addProduct}>주문하기</Button>
           <Button variant="warning" onClick={() => handleClickCart()}>장바구니</Button>
         </Col>
       </Row>
