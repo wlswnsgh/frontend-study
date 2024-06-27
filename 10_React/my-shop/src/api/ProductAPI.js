@@ -11,7 +11,6 @@ import axios from "axios";
 export const getMoreProducts = async () => {
   try {
     const response = await axios.get('https://my-json-server.typicode.com/wlswnsgh/db-shop/more-products');
-
     if (response.status === 200) { // 응답 코드가 200 OK 일때만 결과를 리턴
       return response.data;
     } else { // 서버가 에러 코드 전송 시
