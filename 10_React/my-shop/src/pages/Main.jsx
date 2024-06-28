@@ -208,7 +208,7 @@ function Main() {
         <Button variant="secondary" className="mb-4" onClick={async () => {
           try {
             const token = localStorage.getItem('token'); // 토큰정보를 가져옴
-            const response = await axios.get(`http://ec2-13-209-77-178.ap-northeast-2.compute.amazonaws.com:8080/board/list`, {
+            const response = await axios.get(`http://ec2-13-209-77-178.ap-northeast-2.compute.amazonaws.com:8080/board/list`, { // /board/list 지연 쌤이 보내준 서버
               headers: { // 헤더에 요정
                 Authorization: token // 사용자(클라이언트)가 서버에 내 신원을 요청(서버에 인증 토큰 전달)
               }
