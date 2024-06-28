@@ -13,6 +13,9 @@ import { getMoreProducts } from "../api/ProductAPI";
 import { RingLoader } from "react-spinners";
 import TabContent from "../components/TabContent";
 import RecentProduct from "../components/RecentProduct";
+import { logoutSuccess } from "../features/user/userSlice";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 // 2) public 폴더 안 이미지(root 경로로 바로 접근)
 // 빌드 시 src 폴더에 있는 코드와 파일은 압축이 되지만 public 폴더에 있는 것들은 그대로 보존
@@ -33,6 +36,7 @@ function Main() {
   const status = useSelector(selectStatus); // API 요청 상태(로딩 상태)
   const [currentTabIndex, setCurrentTabIndex] = useState(0); // 현재 탭 상태
   const [currentTab, setCurrentTab] = useState('detail');
+  const navigate = useNavigate();
   
   // const [add, setAdd] = useState([]);
 
@@ -199,6 +203,27 @@ function Main() {
 
         {/* 최근 본 상품 컴포넌트 */}
         {productList.length > 0 && <RecentProduct  productList = {productList} />}
+
+        {/* (테스트용) 게시물 목록 조회 */}
+        <Button variant="secondary" className="mb-4" onClick={async () => {
+          try {
+            const token = localStorage.getItem('token'); // 토큰정보를 가져옴
+            const response = await axios.get(`http://ec2-13-209-77-178.ap-northeast-2.compute.amazonaws.com:8080/board/list`, {
+              headers: { // 헤더에 요정
+                Authorization: token // 사용자(클라이언트)가 서버에 내 신원을 요청(서버에 인증 토큰 전달)
+              }
+            }); 
+            console.log(response.data);
+          } catch (error) {
+            console.log(error);
+            toast.error(error.response.data.message, {
+              position: 'top-center'
+            });
+            navigate('/login');
+          }
+        }}>
+          게시물 조회
+        </Button>
       </section>
     </>
   );
