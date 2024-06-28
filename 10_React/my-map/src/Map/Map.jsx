@@ -100,7 +100,7 @@ const Map = () => {
   useEffect(() => {
     const script = document.createElement('script');
     script.async = true;
-    script.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_MAPS_APP_KEY&libraries=services';
+    script.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=8eb4e510757118f8218df5b91c7413bf&libraries&libraries=services';
     document.head.appendChild(script);
 
     script.onload = () => {
