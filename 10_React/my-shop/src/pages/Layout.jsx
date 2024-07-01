@@ -11,15 +11,18 @@ function Layout() {
 
   const handleLogout = async () => {
     const token = localStorage.getItem('token');
-    const result = await axios.get(`http://ec2-13-209-77-178.ap-northeast-2.compute.amazonaws.com:8080/logout`, {
+    const result = await axios.get(`${process.env.REACT_APP_API_URL}/logout`, {
       headers: {
         Authorization: token
       }
     });
     console.log(result);
     
+    // 전역 상태 초기화
     dispatch(logoutSuccess());
+    // 로컬 스트리지 초기화
     localStorage.removeItem('user');
+    
     navigate('/');
   };
 
@@ -37,7 +40,7 @@ function Layout() {
               {user ? (
                 <>
                   <Link to="/profile">{user.nickname}</Link>
-                  <Button variant="outline-success" onClick={undefined}></Button>
+                  <Button variant="outline-success" onClick={handleLogout}></Button>
                 </>
               ) :  <Button variant="outline-success" onClick={() => navigate('/login')}>로그인</Button>}
           </Container>
