@@ -295,12 +295,6 @@ function Map() {
         >
           편의점
         </CategoryItem>
-        <CategoryItem
-          className={currCategory === "AD5" ? "on" : ""}
-          onClick={() => onClickCategory("AD5")}
-        >
-          광고편의시설
-        </CategoryItem>
       </CategoryList>
 
       <MapContainer id="map">

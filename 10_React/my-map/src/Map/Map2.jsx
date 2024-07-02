@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -94,7 +94,7 @@ function Map() {
   const [currCategory, setCurrCategory] = useState("");
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
-  const [infoWindow, setInfoWindow] = useState(null);
+  const infoWindow = useRef();
 
   useEffect(() => {
     const initMap = () => {
@@ -120,14 +120,7 @@ function Map() {
     }
   }, []);
 
-  const closeInfoWindow = () => {
-    if (infoWindow) {
-      infoWindow.close();
-    }
-  };
-
   const displayPlaceInfo = (marker, place) => {
-    closeInfoWindow();
 
     let content = '<div class="placeinfo">' +
       '   <a class="title" href="' +
@@ -171,13 +164,17 @@ function Map() {
       content += '</div>';
     }
 
+    if (infoWindow.current) {
+      infoWindow.current.close();
+    }
+
     const newInfoWindow = new window.kakao.maps.InfoWindow({
       content: content,
       position: marker.getPosition(),
     });
 
     newInfoWindow.open(map, marker);
-    setInfoWindow(newInfoWindow);
+    infoWindow.current = newInfoWindow;
   };
 
   const displayPlaces = (places) => {
@@ -265,41 +262,40 @@ function Map() {
         >
           은행
         </CategoryItem>
+
         <CategoryItem
           className={currCategory === "MT1" ? "on" : ""}
           onClick={() => onClickCategory("MT1")}
         >
           대형마트
         </CategoryItem>
+
         <CategoryItem
           className={currCategory === "HP8" ? "on" : ""}
           onClick={() => onClickCategory("HP8")}
         >
           병원
         </CategoryItem>
+
         <CategoryItem
           className={currCategory === "CT1" ? "on" : ""}
           onClick={() => onClickCategory("CT1")}
         >
           문화시설
         </CategoryItem>
+
         <CategoryItem
           className={currCategory === "CE7" ? "on" : ""}
           onClick={() => onClickCategory("CE7")}
         >
           카페
         </CategoryItem>
+
         <CategoryItem
           className={currCategory === "CS2" ? "on" : ""}
           onClick={() => onClickCategory("CS2")}
         >
           편의점
-        </CategoryItem>
-        <CategoryItem
-          className={currCategory === "AD5" ? "on" : ""}
-          onClick={() => onClickCategory("AD5")}
-        >
-          광고편의시설
         </CategoryItem>
       </CategoryList>
 
