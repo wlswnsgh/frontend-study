@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>카테고리별 장소 검색하기</title>
+    <style>
+/* 전체 요소들의 여백과 패딩을 초기화하고, 기본 폰트 설정 */
+.map_wrap, .map_wrap * {
+    margin: 0;
+    padding: 0;
+    font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+    font-size: 12px;
+}
+
+/* 지도를 감싸는 컨테이너의 스타일 설정 */
+.map_wrap {
+    position: relative;
+    width: 100%;
+    height: 350px;
+}
+
+/* 카테고리 목록 컨테이너의 스타일 설정 */
+#category {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border-radius: 5px;
+    border: 1px solid #909090;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    background: #fff;
+    overflow: hidden;
+    z-index: 2;
+}
+
+/* 카테고리 목록 항목들의 스타일 설정 */
+#category li {
+    float: left;
+    list-style: none;
+    width: 50px; /* 각 항목의 너비 */
+    border-right: 1px solid #acacac;
+    padding: 6px 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* 선택된 카테고리 항목의 스타일 설정 */
+#category li.on {
+    background: #eee;
+}
+
+/* 마우스를 올렸을 때의 카테고리 항목 스타일 설정 */
+#category li:hover {
+    background: #ffe6e6;
+    border-left: 1px solid #acacac;
+    margin-left: -1px;
+}
+
+/* 마지막 카테고리 항목의 스타일 설정 */
+#category li:last-child {
+    margin-right: 0;
+    border-right: 0;
+}
+
+/* 카테고리 아이콘의 스타일 설정 */
+#category li span {
+    display: block;
+    margin: 0 auto 3px;
+    width: 27px; /* 아이콘의 너비 */
+    height: 28px; /* 아이콘의 높이 */
+}
+
+/* 각 카테고리 항목의 배경 이미지 설정 */
+#category li .category_bg {
+    background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;
+}
+
+/* 각 카테고리에 따른 아이콘 배경 위치 설정 */
+#category li .bank {
+    background-position: -10px 0;
+}
+#category li .mart {
+    background-position: -10px -36px;
+}
+#category li .pharmacy {
+    background-position: -10px -72px;
+}
+#category li .oil {
+    background-position: -10px -108px;
+}
+#category li .cafe {
+    background-position: -10px -144px;
+}
+#category li .store {
+    background-position: -10px -180px;
+}
+
+/* 선택된 카테고리 항목의 배경 이미지 위치 조정 */
+#category li.on .category_bg {
+    background-position-x: -46px;
+}
+
+/* 장소 정보를 표시할 랩퍼의 스타일 설정 */
+.placeinfo_wrap {
+    position: absolute;
+    bottom: 28px;
+    left: -150px;
+    width: 300px;
+}
+
+/* 각 장소 정보의 스타일 설정 */
+.placeinfo {
+    position: relative;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    background: #fff;
+}
+
+/* 첫 번째 장소 정보 스타일 설정 */
+.placeinfo:nth-of-type(n) {
+    border: 0;
+    box-shadow: 0px 1px 2px #888;
+}
+
+/* 장소 정보 뒷 부분 스타일 설정 */
+.placeinfo_wrap .after {
+    content: '';
+    position: relative;
+    margin-left: -12px;
+    left: 50%;
+    width: 22px;
+    height: 12px;
+    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png');
+}
+
+/* 장소 정보 링크와 관련된 스타일 설정 */
+.placeinfo a,
+.placeinfo a:hover,
+.placeinfo a:active {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* 장소 정보 텍스트 스타일 설정 */
+.placeinfo a,
+.placeinfo span {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* 장소 제목 스타일 설정 */
+.placeinfo .title {
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 6px 6px 0 0;
+    margin: -1px -1px 0 -1px;
+    padding: 10px;
+    color: #fff;
+    background: #d95050;
+    background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;
+}
+
+/* 장소 전화번호 스타일 설정 */
+.placeinfo .tel {
+    color: #0f7833;
+}
+
+/* 장소 지번 주소 스타일 설정 */
+.placeinfo .jibun {
+    color: #999;
+    font-size: 11px;
+    margin-top: 0;
+}
+
+</style>
+</head>
+<body>
+<div class="map_wrap">
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+    <ul id="category">
+        <li id="BK9" data-order="0"> 
+            <span class="category_bg bank"></span>
+            은행
+        </li>       
+        <li id="MT1" data-order="1"> 
+            <span class="category_bg mart"></span>
+            마트
+        </li>  
+        <li id="PM9" data-order="2"> 
+            <span class="category_bg pharmacy"></span>
+            약국
+        </li>  
+        <li id="OL7" data-order="3"> 
+            <span class="category_bg oil"></span>
+            주유소
+        </li>  
+        <li id="CE7" data-order="4"> 
+            <span class="category_bg cafe"></span>
+            카페
+        </li>  
+        <li id="CS2" data-order="5"> 
+            <span class="category_bg store"></span>
+            편의점
+        </li>      
+    </ul>
+</div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8eb4e510757118f8218df5b91c7413bf&libraries&libraries=services"></script>
+<script>
+
+// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
+var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
+    contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
+    markers = [], // 마커를 담을 배열입니다
+    currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        level: 5 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 장소 검색 객체를 생성합니다
+var ps = new kakao.maps.services.Places(map); 
+
+// 지도에 idle 이벤트를 등록합니다
+kakao.maps.event.addListener(map, 'idle', searchPlaces);
+
+// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
+contentNode.className = 'placeinfo_wrap';
+
+// 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
+// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다 
+addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
+addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
+
+// 커스텀 오버레이 컨텐츠를 설정합니다
+placeOverlay.setContent(contentNode);  
+
+// 각 카테고리에 클릭 이벤트를 등록합니다
+addCategoryClickEvent();
+
+// 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
+function addEventHandle(target, type, callback) {
+    // target 요소가 addEventListener 메서드를 지원하는지 확인합니다.
+    if (target.addEventListener) {
+        // 지원할 경우, addEventListener 메서드를 사용하여 이벤트를 추가합니다.
+        target.addEventListener(type, callback);
+    } else {
+        // target 요소가 addEventListener 메서드를 지원하지 않는 경우,
+        // attachEvent 메서드를 사용하여 이벤트를 추가합니다. (IE8 이하 버전 지원)
+        target.attachEvent('on' + type, callback);
+    }
+}
+
+// 카테고리 검색을 요청하는 함수입니다
+function searchPlaces() {
+    if (!currCategory) {
+        return;
+    }
+    
+    // 커스텀 오버레이를 숨깁니다 
+    placeOverlay.setMap(null);
+
+    // 지도에 표시되고 있는 마커를 제거합니다
+    removeMarker();
+    
+    ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true}); 
+}
+
+// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
+function placesSearchCB(data, status, pagination) {
+    if (status === kakao.maps.services.Status.OK) {
+
+        // 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
+        displayPlaces(data);
+    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+        // 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
+
+    } else if (status === kakao.maps.services.Status.ERROR) {
+        // 에러로 인해 검색결과가 나오지 않은 경우 해야할 처리가 있다면 이곳에 작성해 주세요
+        
+    }
+}
+
+// 지도에 마커를 표출하는 함수입니다
+function displayPlaces(places) {
+
+    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
+    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
+    var order = document.getElementById(currCategory).getAttribute('data-order');
+
+    for ( var i=0; i<places.length; i++ ) {
+            // 마커를 생성하고 지도에 표시합니다
+            var marker = addMarker(new kakao.maps.LatLng(places[i].y, places[i].x), order);
+
+            // 마커와 검색결과 항목을 클릭 했을 때
+            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
+            (function(marker, place) {
+                kakao.maps.event.addListener(marker, 'click', function() {
+                    displayPlaceInfo(place);
+                });
+            })(marker, places[i]);
+    }
+}
+
+// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
+function addMarker(position, order) {
+    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+        imageSize = new kakao.maps.Size(27, 28),  // 마커 이미지의 크기
+        imgOptions =  {
+            spriteSize : new kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
+            spriteOrigin : new kakao.maps.Point(46, (order*36)), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+            offset: new kakao.maps.Point(11, 28) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+        },
+        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+            marker = new kakao.maps.Marker({
+            position: position, // 마커의 위치
+            image: markerImage 
+        });
+
+    marker.setMap(map); // 지도 위에 마커를 표출합니다
+    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
+
+    return marker;
+}
+
+// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+function removeMarker() {
+    for ( var i = 0; i < markers.length; i++ ) {
+        markers[i].setMap(null);
+    }   
+    markers = [];
+}
+
+// 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
+function displayPlaceInfo(place) {
+    // 장소 정보를 표시할 HTML 내용을 생성합니다.
+    var content = '<div class="placeinfo">' +
+                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
+
+    if (place.road_address_name) {
+        content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
+                    '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
+    } else {
+        content += '    <span title="' + place.address_name + '">' + place.address_name + '</span>';
+    }                
+
+    content += '    <span class="tel">' + place.phone + '</span>' + 
+                '</div>' + 
+                '<div class="after"></div>';
+
+    // contentNode의 innerHTML을 생성한 content로 설정하여 HTML을 렌더링합니다.
+    contentNode.innerHTML = content;
+
+    // placeOverlay의 위치를 주어진 위도(latitude)와 경도(longitude)로 설정합니다.
+    placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
+
+    // placeOverlay를 지도에 표시합니다.
+    placeOverlay.setMap(map);  
+}
+
+
+
+// 각 카테고리에 클릭 이벤트를 등록합니다
+function addCategoryClickEvent() {
+    // 'category'라는 id를 가진 요소를 가져와 변수에 할당합니다.
+    var category = document.getElementById('category'),
+        // 'category' 요소의 자식 요소들을 모두 가져와 변수에 할당합니다.
+        children = category.children;
+
+    // 'category'의 각 자식 요소에 대해 반복문을 실행합니다.
+    for (var i=0; i<children.length; i++) {
+        // 각 자식 요소(children[i])에 클릭 이벤트 핸들러로 onClickCategory 함수를 할당합니다.
+        children[i].onclick = onClickCategory;
+    }
+}
+
+
+// 카테고리를 클릭했을 때 호출되는 함수입니다
+function onClickCategory() {
+    // 클릭된 요소의 id와 className을 변수에 저장합니다.
+    var id = this.id,
+        className = this.className;
+
+    // placeOverlay를 지도에서 숨깁니다.
+    placeOverlay.setMap(null);
+
+    // 만약 클릭된 요소의 className이 'on'인 경우
+    if (className === 'on') {
+        // 현재 카테고리를 초기화합니다.
+        currCategory = '';
+        // 카테고리의 클래스를 변경하여 선택 상태를 해제합니다.
+        changeCategoryClass();
+        // 모든 마커를 제거합니다.
+        removeMarker();
+    } else {
+        // 클릭된 요소의 id를 현재 카테고리로 설정합니다.
+        currCategory = id;
+        // 클릭된 카테고리에 대한 스타일을 변경하여 선택 상태를 나타냅니다.
+        changeCategoryClass(this);
+        // 장소를 검색하여 해당 카테고리의 장소를 표시합니다.
+        searchPlaces();
+    }
+}
+
+// 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
+function changeCategoryClass(el) {
+    // 'category'라는 id를 가진 요소를 가져와 변수에 할당합니다.
+    var category = document.getElementById('category'),
+        // 'category' 요소의 모든 자식 요소들을 가져와 변수에 할당합니다.
+        children = category.children,
+        i;
+
+    // 모든 자식 요소의 클래스 이름을 초기화합니다.
+    for (i = 0; i < children.length; i++) {
+        children[i].className = '';
+    }
+
+    // el이 주어졌을 경우(el이 undefined가 아닌 경우), 해당 요소(el)의 클래스를 'on'으로 설정합니다.
+    if (el) {
+        el.className = 'on';
+    }
+}
+
+</script>
+</body>
+</html>
