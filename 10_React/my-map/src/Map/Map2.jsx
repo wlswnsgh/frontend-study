@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import ReactDOMServer from "react-dom/server";
+import ReactDOMServer from 'react-dom/server';
 
 const Container = styled.div`
   margin: 30px;
@@ -83,7 +83,7 @@ const PlaceInfoContainer = styled.div`
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: relative;
 
-  .close-button {
+  .close-button{
     position: absolute;
     top: 5px;
     right: 10px;
@@ -187,51 +187,26 @@ function Map() {
     }
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (infoWindow.current && !infoWindow.current.contains(event.target)) { // 에러
-        handleCloseInfoWindow();
-      }
-    };
-
-    const closeButton = document.querySelector(".close-button");
-    if (closeButton) {
-      closeButton.addEventListener("click", handleCloseInfoWindow);
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      if (closeButton) {
-        closeButton.removeEventListener("click", handleCloseInfoWindow);
-      }
-    };
-  }, []);
-
-  const handleCloseInfoWindow = () => {
+    const displayPlaceInfo = (marker, place) => {
     if (infoWindow.current) {
       infoWindow.current.close();
     }
-  };
-
-  const displayPlaceInfo = (marker, place) => {
-    handleCloseInfoWindow();
 
     const newInfoWindow = new window.kakao.maps.InfoWindow({
       position: marker.getPosition(),
     });
 
     const content = (
-      <PlaceInfoContainer ref={infoWindow}>
-        <button className="close-button" onClick={handleCloseInfoWindow}>
+      <PlaceInfoContainer>
+
+        <button className="close-button">
           X
         </button>
 
-        <a className="title" href={place.place_url} target="_blank">
-          {place.place_name}
+        <a className="title" href={place.place_url} target="_blank"> 
+          {place.place_name} 
         </a>
-
+        
         {place.road_address_name && (
           <div className="address">
             <span title={place.road_address_name}>{place.road_address_name}</span>
@@ -318,7 +293,9 @@ function Map() {
 
     prevSearchKeywordRef.current = inputValue;
 
-    handleCloseInfoWindow();
+    if (infoWindow.current) {
+      infoWindow.current.close();
+    }
 
     const ps = new window.kakao.maps.services.Places(map);
     ps.keywordSearch(inputValue, placesSearchCB);
