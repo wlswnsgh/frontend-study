@@ -154,12 +154,19 @@ function Map() {
     setSelectedPlace(place);
   };
 
+  const EnterSearch = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  }
+
   return (
     <Container>
       <SearchContainer>
         <Input
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          onKeyUp={EnterSearch}
           placeholder="장소를 검색하세요"
         />
         <Button onClick={handleSearch}>
