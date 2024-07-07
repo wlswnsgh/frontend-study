@@ -73,11 +73,12 @@ function Map() {
   const [selectedPlace, setSelectedPlace] = useState(null);
 
   const infoWindow = useRef();
+  const timerRef = useRef(null);
 
   useEffect(() => {
     const script = document.createElement("script");
     script.async = true;
-    script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=8eb4e510757118f8218df5b91c7413bf&libraries&libraries=services";
+    script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=8eb4e510757118f8218df5b91c7413bf&libraries=services";
     script.onload = initMap;
     document.head.appendChild(script);
 
@@ -134,39 +135,71 @@ function Map() {
     }
   }, [selectedPlace, map]);
 
-  const handleSearch = () => {
-    if (!inputValue || !map) return;
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    setInputValue(value);
 
-    const ps = new window.kakao.maps.services.Places(map);
-    ps.keywordSearch(inputValue, (data, status) => {
-      if (status === window.kakao.maps.services.Status.OK) {
-        setSearchResults(data);
-      } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
+    // 입력이 있을 때마다 검색 결과를 가져오기 위해 타이머를 사용
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    // 300ms 후에 검색 요청
+    timerRef.current = setTimeout(() => {
+      if (value.trim() !== "") {
+        const ps = new window.kakao.maps.services.Places(map);
+        ps.keywordSearch(value, (data, status) => {
+          if (status === window.kakao.maps.services.Status.OK) {
+            setSearchResults(data);
+          } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
+            setSearchResults([]);
+            console.log("검색 결과가 없습니다.");
+          } else if (status === window.kakao.maps.services.Status.ERROR) {
+            console.error("검색 중 오류가 발생했습니다.");
+          }
+        });
+      } else {
         setSearchResults([]);
-        console.log("검색 결과가 없습니다.");
-      } else if (status === window.kakao.maps.services.Status.ERROR) {
-        console.error("검색 중 오류가 발생했습니다.");
       }
-    });
+    }, 300);
   };
 
   const handleSelectPlace = (place) => {
     setSelectedPlace(place);
   };
 
+  const handleSearch = () => {
+    // 검색 버튼 클릭 시 검색 요청
+    if (inputValue.trim() !== "" && map) {
+      const ps = new window.kakao.maps.services.Places(map);
+      ps.keywordSearch(inputValue, (data, status) => {
+        if (status === window.kakao.maps.services.Status.OK) {
+          setSearchResults(data);
+        } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
+          setSearchResults([]);
+          console.log("검색 결과가 없습니다.");
+        } else if (status === window.kakao.maps.services.Status.ERROR) {
+          console.error("검색 중 오류가 발생했습니다.");
+        }
+      });
+    } else {
+      setSearchResults([]);
+    }
+  };
+
   const EnterSearch = (e) => {
     if (e.key === "Enter") {
       handleSearch();
     }
-  }
+  };
 
   return (
     <Container>
       <SearchContainer>
         <Input
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyUp={EnterSearch}
+          onChange={handleInputChange} // handleInputChange로 변경
+          onKeyDown={EnterSearch}
           placeholder="장소를 검색하세요"
         />
         <Button onClick={handleSearch}>
