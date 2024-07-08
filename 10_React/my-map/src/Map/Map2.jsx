@@ -73,7 +73,7 @@ const CategoryItem = styled.li`
   }
 `;
 
-function Map() {
+function Map2() {
   const [inputValue, setInputValue] = useState("");
   const [currCategory, setCurrCategory] = useState("");
   const [map, setMap] = useState(null);
@@ -353,4 +353,4 @@ function Map() {
   );
 }
 
-export default Map;
+export default Map2;

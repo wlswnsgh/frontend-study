@@ -65,7 +65,7 @@ const ResultItem = styled.li`
   }
 `;
 
-function Map() {
+function MapSearch() {
   const [inputValue, setInputValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [map, setMap] = useState(null);
@@ -199,7 +199,7 @@ function Map() {
         <Input
           value={inputValue}
           onChange={handleInputChange} // handleInputChange로 변경
-          onKeyDown={EnterSearch}
+          // onKeyDown={EnterSearch}
           placeholder="장소를 검색하세요"
         />
         <Button onClick={handleSearch}>
@@ -222,4 +222,4 @@ function Map() {
   );
 }
 
-export default Map;
+export default MapSearch;
