@@ -51,15 +51,15 @@ const MapContainer = styled.div`
 
 const SearchResults = styled.div`
   position: absolute;
-  width: 100%; /* 왼쪽과 오른쪽 padding 고려하여 너비 조정 */
+  width: 100%;
   background-color: #fff;
   border: 1px solid #ccc;
   border-top: none;
   max-height: 200px;
   overflow-y: auto;
-  z-index: 9; /* 검색 결과 목록을 검색창 아래로 내리기 위해 z-index를 낮춤 */
-  border-radius: 10px; /* 동그란 테두리 조정 */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  z-index: 9;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   top: 6.3%;
 `;
 
@@ -96,7 +96,7 @@ const CategoryItem = styled.li`
   }
 `;
 
-function Map() {
+function MapEX2() {
   const [inputValue, setInputValue] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [map, setMap] = useState(null);
@@ -145,6 +145,7 @@ function Map() {
         position: marker.getPosition(),
       });
 
+      // 커스텀 정보창 내용 생성
       const content = document.createElement("div");
       content.style.padding = "10px";
       content.style.width = "200px";
@@ -165,6 +166,7 @@ function Map() {
       marker.setMap(map);
       setMarkers([marker]);
 
+      // 검색 결과와 입력 값 초기화
       setSearchResults([]);
       setInputValue("");
     }
@@ -174,7 +176,7 @@ function Map() {
     const value = event.target.value;
     setInputValue(value);
 
-    // 입력이 있을 때마다 검색 결과를 가져오기 위해 타이머를 사용
+    // 입력이 있을 때마다 검색 결과를 가져오기 위해 타이머 사용
     if (timerRef.current) {
       clearTimeout(timerRef.current);
     }
@@ -201,27 +203,6 @@ function Map() {
 
   const handleSelectPlace = (place) => {
     setSelectedPlace(place);
-  };
-
-  const handleCategoryClick = (category) => {
-    const isSelected = selectedCategories.includes(category);
-
-    if (isSelected) {
-      const filteredCategories = selectedCategories.filter((cat) => cat !== category);
-      setSelectedCategories(filteredCategories);
-
-      // 해당 카테고리에 맞는 마커 제거
-      const filteredMarkers = markers.filter((marker) => marker.category !== category);
-      filteredMarkers.forEach((marker) => marker.setMap(null));
-      setMarkers(filteredMarkers);
-    } else {
-      setSelectedCategories([...selectedCategories, category]);
-
-      // 선택된 카테고리에 맞는 마커 추가
-      const newMarkers = markers.filter((marker) => marker.category === category);
-      newMarkers.forEach((marker) => marker.setMap(map));
-      setMarkers([...markers, ...newMarkers]);
-    }
   };
 
   useEffect(() => {
@@ -300,17 +281,9 @@ function Map() {
       const reviewsDiv = document.createElement('div');
       reviewsDiv.className = 'reviews';
       place.reviews.forEach((review) => {
-        const reviewDiv = document.createElement('div');
-        reviewDiv.className = 'review';
-        const reviewerSpan = document.createElement('span');
-        reviewerSpan.className = 'reviewer';
-        reviewerSpan.innerText = review.author;
-        reviewDiv.appendChild(reviewerSpan);
-        const reviewTextSpan = document.createElement('span');
-        reviewTextSpan.className = 'review-text';
-        reviewTextSpan.innerText = review.text;
-        reviewDiv.appendChild(reviewTextSpan);
-        reviewsDiv.appendChild(reviewDiv);
+        const reviewSpan = document.createElement('span');
+        reviewSpan.innerText = review;
+        reviewsDiv.appendChild(reviewSpan);
       });
       content.appendChild(reviewsDiv);
     }
@@ -319,9 +292,9 @@ function Map() {
     newInfoWindow.open(map, marker);
     infoWindow.current = newInfoWindow;
   };
-  
+
   const displayPlaces = (places) => {
-    markers.forEach((marker) => marker.setMap(null)); // 기존 마커들 제거
+    removeMarkers();
 
     const newMarkers = places.map((place) => {
       const marker = new window.kakao.maps.Marker({
@@ -375,47 +348,15 @@ function Map() {
   };
 
   const toggleCategory = (categoryId) => {
-    setSelectedCategories((prevCategories) => {
-      const isSelected = prevCategories.includes(categoryId);
-      
-      if (isSelected) {
-        // 선택 해제 시
-        const filteredCategories = prevCategories.filter((cat) => cat !== categoryId);
-        setSelectedCategories(filteredCategories);
-  
-        // 해당 카테고리에 맞는 마커 제거
-        const filteredMarkers = markers.filter((marker) => marker.category !== categoryId);
-        filteredMarkers.forEach((marker) => marker.setMap(null));
-        setMarkers(filteredMarkers);
+    setSelectedCategories((prev) => {
+      if (prev.includes(categoryId)) {
+        return prev.filter((id) => id !== categoryId);
       } else {
-        // 선택 시
-        setSelectedCategories([...prevCategories, categoryId]);
-  
-        // 검색 결과에서 해당 카테고리에 맞는 장소만 필터링하여 places 배열 생성
-        const filteredPlaces = searchResults.filter((place) => place.category === categoryId);
-  
-        // 새로운 마커 생성
-        const newMarkers = filteredPlaces.map((place) => {
-          const marker = new window.kakao.maps.Marker({
-            position: new window.kakao.maps.LatLng(place.y, place.x),
-            category: categoryId, // 마커에 카테고리 속성 추가
-          });
-
-          window.kakao.maps.event.addListener(marker, "click", function () {
-            displayPlaceInfo(marker, place);
-          });
-  
-          marker.setMap(map);
-          return marker;
-        });
-  
-        setMarkers((prevMarkers) => [...prevMarkers, ...newMarkers]);
+        return [...prev, categoryId];
       }
-  
-      return prevCategories;
     });
   };
-  
+
   useEffect(() => {
     if (!map) return;
 
@@ -428,7 +369,6 @@ function Map() {
   }, [selectedCategories, map]);
 
   const handleSearchClick = () => {
-    // 검색 버튼 클릭 시 검색 요청
     if (inputValue.trim() !== "" && map) {
       const ps = new window.kakao.maps.services.Places(map);
       ps.keywordSearch(inputValue, (data, status) => {
@@ -450,73 +390,33 @@ function Map() {
     <Container>
       <SearchContainer>
         <Input
+          type="text"
+          placeholder="장소를 검색하세요..."
           value={inputValue}
           onChange={handleInputChange}
           onKeyUp={handleEnterSearch}
-          placeholder="검색어를 입력하세요"
         />
-        <Button onClick={handleSearch}>
-          <SearchIcon>🔍</SearchIcon>
+        <Button onClick={handleSearchClick}>
+          <SearchIcon>&#x1F50D;</SearchIcon>
         </Button>
       </SearchContainer>
-
-      {searchResults.length > 0 && (
-        <SearchResults>
-          {searchResults.map((place) => (
-            <ResultItem key={place.id} onClick={() => handleSelectPlace(place)}>
-              {place.place_name}
-            </ResultItem>
-          ))}
-        </SearchResults>
-      )}
-
-      <CategoryList>
-        <CategoryItem
-          selected={selectedCategories.includes("BK9")}
-          onClick={() => toggleCategory("BK9")}
-        >
-          은행
-        </CategoryItem>
-
-        <CategoryItem
-          selected={selectedCategories.includes("MT1")}
-          onClick={() => toggleCategory("MT1")}
-        >
-          대형마트
-        </CategoryItem>
-
-        <CategoryItem
-          selected={selectedCategories.includes("HP8")}
-          onClick={() => toggleCategory("HP8")}
-        >
-          병원
-        </CategoryItem>
-
-        <CategoryItem
-          selected={selectedCategories.includes("CT1")}
-          onClick={() => toggleCategory("CT1")}
-        >
-          문화시설
-        </CategoryItem>
-
-        <CategoryItem
-          selected={selectedCategories.includes("CE7")}
-          onClick={() => toggleCategory("CE7")}
-        >
-          카페
-        </CategoryItem>
-
-        <CategoryItem
-          selected={selectedCategories.includes("CS2")}
-          onClick={() => toggleCategory("CS2")}
-        >
-          편의점
-        </CategoryItem>
-      </CategoryList>
-
-      <MapContainer id="map"></MapContainer>
+      <SearchResults>
+        {searchResults.length > 0 && (
+          <CategoryList>
+            {searchResults.map((place) => (
+              <ResultItem
+                key={place.id}
+                onClick={() => handleSearchResultClick(place)}
+              >
+                {place.place_name}
+              </ResultItem>
+            ))}
+          </CategoryList>
+        )}
+      </SearchResults>
+      <MapContainer id="map" />
     </Container>
   );
 }
 
-export default Map;
+export default MapEX2;
