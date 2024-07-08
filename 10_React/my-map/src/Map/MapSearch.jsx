@@ -48,7 +48,7 @@ const MapContainer = styled.div`
   height: 50vh;
 `;
 
-const SearchResults = styled.ul`
+const SearchResults = styled.div`
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -132,6 +132,10 @@ function MapSearch() {
 
       marker.setMap(map);
       setMarkers([marker]);
+
+      // Clear search results and input value
+      setSearchResults([]);
+      setInputValue("");
     }
   }, [selectedPlace, map]);
 
@@ -198,8 +202,8 @@ function MapSearch() {
       <SearchContainer>
         <Input
           value={inputValue}
-          onChange={handleInputChange} // handleInputChange로 변경
-          // onKeyDown={EnterSearch}
+          onChange={handleInputChange}
+          onKeyUp={EnterSearch}
           placeholder="장소를 검색하세요"
         />
         <Button onClick={handleSearch}>
