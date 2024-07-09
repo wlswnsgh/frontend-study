@@ -212,6 +212,7 @@ function Map() {
 
   // 장소 선택 시 호출되는 핸들러
   const handleSelectPlace = (place) => {
+
     // 선택된 장소의 마커를 생성하여 지도에 표시
     const marker = new window.kakao.maps.Marker({
       position: new window.kakao.maps.LatLng(place.y, place.x),
@@ -223,6 +224,12 @@ function Map() {
     });
   
     marker.setMap(map); // 지도에 마커 표시
+
+    // 검색 결과 목록을 비웁니다.
+    setSearchResults([]);
+
+    // 검색창의 입력값을 비워줍니다.
+    setInputValue("");
   };
 
   // Kakao 지도 이벤트 설정
@@ -445,24 +452,29 @@ function Map() {
   const handleSearchClick = () => {
     // 기존 마커 제거
     removeMarkers();
-  
+
     if (inputValue.trim() !== "" && map) {
       const ps = new window.kakao.maps.services.Places(map);
       ps.keywordSearch(inputValue, (data, status) => {
         if (status === window.kakao.maps.services.Status.OK) {
-          setSearchResults(data);
           // 첫 번째 장소의 마커를 생성하여 지도에 표시
           if (data.length > 0) {
             const marker = new window.kakao.maps.Marker({
               position: new window.kakao.maps.LatLng(data[0].y, data[0].x),
             });
-  
+
             // 마커 클릭 시 장소 정보 표시
             window.kakao.maps.event.addListener(marker, "click", function () {
               displayPlaceInfo(marker, data[0]);
             });
-  
+
             marker.setMap(map); // 지도에 마커 표시
+
+            // 검색 결과 목록을 비웁니다.
+            setSearchResults([]);
+          } else {
+            setSearchResults([]); // 검색 결과 초기화
+            console.log("검색 결과가 없습니다.");
           }
         } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
           setSearchResults([]);
@@ -472,9 +484,13 @@ function Map() {
         }
       });
     } else {
-      setSearchResults([]);
+      setSearchResults([]); // 검색 결과 초기화
     }
+
+    // 검색창의 입력값을 비워줍니다.
+    setInputValue("");
   };
+
 
   return (
     <Container>
