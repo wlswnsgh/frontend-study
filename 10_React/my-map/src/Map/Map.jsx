@@ -104,6 +104,7 @@ function Map() {
   const [markers, setMarkers] = useState([]); // 마커 배열 상태
   const [selectedPlace, setSelectedPlace] = useState(null); // 선택된 장소 상태
   const [searchResults, setSearchResults] = useState([]); // 검색 결과 상태
+  const [selectedItemIndex, setSelectedItemIndex] = useState(-1); // 선택된 항목 인덱스 상태
 
   const infoWindow = useRef(); // Kakao 지도 인포윈도우 useRef 사용
   const timerRef = useRef(null); // 검색 디바운스 타이머 useRef 사용
@@ -329,6 +330,20 @@ function Map() {
     infoWindow.current = newInfoWindow;
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setSelectedItemIndex((prev) =>
+        prev < searchResults.length - 1 ? prev + 1 : prev
+      );
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setSelectedItemIndex((prev) => (prev > 0 ? prev - 1 : prev));
+    } else if (e.key === 'Enter' && selectedItemIndex !== -1) {
+      handleSelectPlace(searchResults[selectedItemIndex]);
+    }
+  };
+
   // 검색 결과를 지도에 표시하는 함수
   const displayPlaces = (places) => {
     markers.forEach((marker) => marker.setMap(null)); // 기존 마커 제거
@@ -373,7 +388,7 @@ function Map() {
   const handleEnterSearch = (e) => {
     if (e.key === "Enter") {
       handleSearchClick();
-    }
+    } 
   };
 
   // 마커 제거 함수
@@ -433,8 +448,6 @@ function Map() {
       return prevCategories;
     });
   };
-  
-  
 
   // 선택된 카테고리가 변경될 때마다 호출되는 useEffect
   useEffect(() => {
@@ -489,8 +502,7 @@ function Map() {
 
     // 검색창의 입력값을 비워줍니다.
     setInputValue("");
-  };
-
+  }; 
 
   return (
     <Container>
@@ -509,13 +521,14 @@ function Map() {
       {searchResults.length > 0 && (
         <SearchResults>
           {searchResults.map((place) => (
-            <ResultItem key={place.id} onClick={() => handleSelectPlace(place)}>
+            <ResultItem 
+              key={place.id} 
+              onClick={() => handleSelectPlace(place)} >
               {place.place_name}
             </ResultItem>
           ))}
         </SearchResults>
       )}
-
 
       <CategoryList>
         <CategoryItem
