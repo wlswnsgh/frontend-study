@@ -78,6 +78,12 @@ const ResultItem = styled.div`
   &:hover {
     background-color: #f9f9f9;
   }
+
+  &.selected {
+    background-color: #f9f9f9; /* 선택된 항목의 배경색 */
+    font-weight: bold; /* 선택된 항목의 글꼴 굵기 */
+    color: #007bff; /* 선택된 항목의 글자색 */
+  }
 `;
 
 const CategoryItem = styled.li`
@@ -192,6 +198,7 @@ function Map() {
       clearTimeout(timerRef.current);
     }
 
+    // 입력값이 변경된 경우 디바운스 처리
     timerRef.current = setTimeout(() => {
       if (value.trim() !== "") {
         const ps = new window.kakao.maps.services.Places(map);
@@ -331,6 +338,7 @@ function Map() {
   };
 
   const handleKeyPress = (e) => {
+    console.log(handleKeyPress);
     if (e.key === 'ArrowDown') {
       e.preventDefault();
       setSelectedItemIndex((prev) =>
@@ -367,6 +375,7 @@ function Map() {
 
   // 장소 검색 결과 콜백 함수
   const placesSearchCB = (data, status) => {
+    console.log(placesSearchCB);
     if (status === window.kakao.maps.services.Status.OK) {
       displayPlaces(data); // 검색 결과를 지도에 표시
     } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
@@ -510,7 +519,7 @@ function Map() {
         <Input
           value={inputValue}
           onChange={handleInputChange}
-          onKeyUp={handleEnterSearch}
+          onKeyUp={handleKeyPress}
           placeholder="검색어를 입력하세요"
         />
         <Button onClick={handleSearchClick}>
@@ -518,12 +527,15 @@ function Map() {
         </Button>
       </SearchContainer>
 
+      {/* 목록창 */}
       {searchResults.length > 0 && (
         <SearchResults>
-          {searchResults.map((place) => (
+          {searchResults.map((place, index) => (
             <ResultItem 
-              key={place.id} 
-              onClick={() => handleSelectPlace(place)} >
+              key={place.id}
+              onClick={() => handleSelectPlace(place)}
+              className={index === selectedItemIndex ? 'selected' : ''}
+              >
               {place.place_name}
             </ResultItem>
           ))}
