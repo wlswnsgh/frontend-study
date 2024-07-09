@@ -114,6 +114,7 @@ function Map() {
 
   const infoWindow = useRef(); // Kakao 지도 인포윈도우 useRef 사용
   const timerRef = useRef(null); // 검색 디바운스 타이머 useRef 사용
+  const searchResultsRef = useRef(null);
 
   // Kakao 지도 초기화 및 설정
   useEffect(() => {
@@ -337,18 +338,29 @@ function Map() {
     infoWindow.current = newInfoWindow;
   };
 
-  const handleKeyPress = (e) => {
-    console.log(handleKeyPress);
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setSelectedItemIndex((prev) =>
-        prev < searchResults.length - 1 ? prev + 1 : prev
-      );
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setSelectedItemIndex((prev) => (prev > 0 ? prev - 1 : prev));
-    } else if (e.key === 'Enter' && selectedItemIndex !== -1) {
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      if (selectedItemIndex < searchResults.length - 1) {
+        setSelectedItemIndex(selectedItemIndex + 1);
+        scrollToItem(selectedItemIndex + 1);
+      }
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      if (selectedItemIndex > 0) {
+        setSelectedItemIndex(selectedItemIndex - 1);
+        scrollToItem(selectedItemIndex - 1);
+      }
+    } else if (event.key === "Enter" && selectedItemIndex !== -1) {
       handleSelectPlace(searchResults[selectedItemIndex]);
+      setSelectedItemIndex(-1);
+    }
+  };
+
+  const scrollToItem = (index) => {
+    if (searchResultsRef.current && searchResultsRef.current.children.length > index) {
+      const item = searchResultsRef.current.children[index];
+      item.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   };
 
@@ -391,13 +403,6 @@ function Map() {
 
     const ps = new window.kakao.maps.services.Places(map);
     ps.categorySearch(category, placesSearchCB, { useMapBounds: true });
-  };
-
-  // 엔터 키 입력 시 검색 실행
-  const handleEnterSearch = (e) => {
-    if (e.key === "Enter") {
-      handleSearchClick();
-    } 
   };
 
   // 마커 제거 함수
@@ -517,9 +522,10 @@ function Map() {
     <Container>
       <SearchContainer>
         <Input
+          type="text"
           value={inputValue}
           onChange={handleInputChange}
-          onKeyUp={handleKeyPress}
+          onKeyDown={handleKeyDown}
           placeholder="검색어를 입력하세요"
         />
         <Button onClick={handleSearchClick}>
@@ -529,12 +535,12 @@ function Map() {
 
       {/* 목록창 */}
       {searchResults.length > 0 && (
-        <SearchResults>
+        <SearchResults ref={searchResultsRef}>
           {searchResults.map((place, index) => (
             <ResultItem 
               key={place.id}
               onClick={() => handleSelectPlace(place)}
-              className={index === selectedItemIndex ? 'selected' : ''}
+              className={index === selectedItemIndex ? "selected" : ""}
               >
               {place.place_name}
             </ResultItem>
