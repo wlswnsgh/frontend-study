@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import ReactDOMServer from 'react-dom/server';
-// import "./Mapstyle.css";
+import "./Mapstyle.css";
 
 const Container = styled.div`
   margin: 30px;
@@ -116,8 +115,7 @@ function Map() {
 
   const infoWindow = useRef(); // Kakao 지도 인포윈도우 useRef 사용
   const timerRef = useRef(null); // 검색 디바운스 타이머 useRef 사용
-  const searchResultsRef = useRef(null);
-
+  const searchResultsRef = useRef(null); 
 
   // Kakao 지도 초기화 및 설정
   useEffect(() => {
@@ -188,7 +186,7 @@ function Map() {
 
       // 검색 결과 초기화 및 입력값 초기화
       setSearchResults([]);
-      setInputValue("");
+      // setInputValue("");
     }
   }, [selectedPlace, map]);
 
@@ -224,7 +222,6 @@ function Map() {
 
   // 장소 선택 시 호출되는 핸들러
   const handleSelectPlace = (place) => {
-
     // 선택된 장소의 마커를 생성하여 지도에 표시
     const marker = new window.kakao.maps.Marker({
       position: new window.kakao.maps.LatLng(place.y, place.x),
@@ -241,7 +238,11 @@ function Map() {
     setSearchResults([]);
 
     // 검색창의 입력값을 비워줍니다.
-    setInputValue("");
+    // setInputValue("");
+
+    setSelectedItemIndex(-1); // Clear selected item index
+
+    setInputValue(place.place_name);
   };
 
   // Kakao 지도 이벤트 설정
@@ -257,101 +258,92 @@ function Map() {
 
   // 장소 정보를 표시하는 함수
   const displayPlaceInfo = (marker, place) => {
-    useEffect(() => {
-      if (marker && place && map && infoWindowRef.current) {
-        // InfoWindow 객체 생성
-        const newInfoWindow = new window.kakao.maps.InfoWindow({
-          position: marker.getPosition(),
-        });
-  
-        // content 요소 생성
-        const content = document.createElement('div');
-        const closeButton = document.createElement('button');
-        closeButton.className = 'close-button';
-        closeButton.innerHTML = 'X';
-        closeButton.onclick = () => newInfoWindow.close();
-        content.appendChild(closeButton);
-  
-        const title = document.createElement('a');
-        title.className = 'title';
-        title.href = place.place_url;
-        title.target = '_blank';
-        title.innerText = place.place_name;
-        content.appendChild(title);
-  
-        if (place.road_address_name) {
-          const addressDiv = document.createElement('div');
-          addressDiv.className = 'address';
-          const roadAddressSpan = document.createElement('span');
-          roadAddressSpan.title = place.road_address_name;
-          roadAddressSpan.innerText = place.road_address_name;
-          addressDiv.appendChild(roadAddressSpan);
-          const jibunSpan = document.createElement('span');
-          jibunSpan.className = 'jibun';
-          jibunSpan.title = place.address_name;
-          jibunSpan.innerText = `(지번 : ${place.address_name})`;
-          addressDiv.appendChild(jibunSpan);
-          content.appendChild(addressDiv);
-        } else {
-          const addressDiv = document.createElement('div');
-          addressDiv.className = 'address';
-          const addressSpan = document.createElement('span');
-          addressSpan.title = place.address_name;
-          addressSpan.innerText = place.address_name;
-          addressDiv.appendChild(addressSpan);
-          content.appendChild(addressDiv);
-        }
-  
-        if (place.phone) {
-          const telDiv = document.createElement('div');
-          telDiv.className = 'tel';
-          telDiv.innerText = place.phone;
-          content.appendChild(telDiv);
-        }
-  
-        if (place.opening_hours) {
-          const openingHoursDiv = document.createElement('div');
-          openingHoursDiv.className = 'opening-hours';
-          openingHoursDiv.innerText = place.opening_hours;
-          content.appendChild(openingHoursDiv);
-        }
-  
-        if (place.reviews && place.reviews.length > 0) {
-          const reviewsDiv = document.createElement('div');
-          reviewsDiv.className = 'reviews';
-          place.reviews.forEach((review) => {
-            const reviewDiv = document.createElement('div');
-            reviewDiv.className = 'review';
-            const reviewerSpan = document.createElement('span');
-            reviewerSpan.className = 'reviewer';
-            reviewerSpan.innerText = review.author;
-            reviewDiv.appendChild(reviewerSpan);
-            const reviewTextSpan = document.createElement('span');
-            reviewTextSpan.className = 'review-text';
-            reviewTextSpan.innerText = review.text;
-            reviewDiv.appendChild(reviewTextSpan);
-            reviewsDiv.appendChild(reviewDiv);
-          });
-          content.appendChild(reviewsDiv);
-        }
-  
-        // InfoWindow에 content 설정하고 지도에 연결
-        newInfoWindow.setContent(content);
-        newInfoWindow.open(map, marker);
-  
-        // infoWindowRef.current에 생성된 InfoWindow 할당
-        infoWindowRef.current = newInfoWindow;
-  
-        // clean-up 함수 반환
-        return () => {
-          if (infoWindowRef.current) {
-            infoWindowRef.current.close();
-          }
-        };
-      }
-    }, [marker, place, map, infoWindowRef.current]);
+    if (infoWindow.current) {
+      infoWindow.current.close();
+    }
+
+    const newInfoWindow = new window.kakao.maps.InfoWindow({
+      position: marker.getPosition(),
+    });
+
+    const content = document.createElement('div');
+    content.className = 'info-window';
+
+    const closeButton = document.createElement('button');
+    closeButton.className = 'close-button';
+    closeButton.innerHTML = 'X';
+    closeButton.onclick = () => newInfoWindow.close();
+
+    content.appendChild(closeButton);
+
+    const title = document.createElement('a');
+    title.className = 'title';
+    title.href = place.place_url;
+    title.target = '_blank';
+    title.innerText = place.place_name;
+    content.appendChild(title);
+
+    if (place.road_address_name) {
+      const addressDiv = document.createElement('div');
+      addressDiv.className = 'address';
+      const roadAddressSpan = document.createElement('span');
+      roadAddressSpan.title = place.road_address_name;
+      roadAddressSpan.innerText = place.road_address_name;
+      addressDiv.appendChild(roadAddressSpan);
+      addressDiv.appendChild(document.createElement('br'));
+      const jibunSpan = document.createElement('span');
+      jibunSpan.className = 'jibun';
+      jibunSpan.title = place.address_name;
+      jibunSpan.innerText = `(지번 : ${place.address_name})`;
+      addressDiv.appendChild(jibunSpan);
+      content.appendChild(addressDiv);
+    } else {
+      const addressDiv = document.createElement('div');
+      addressDiv.className = 'address';
+      const addressSpan = document.createElement('span');
+      addressSpan.title = place.address_name;
+      addressSpan.innerText = place.address_name;
+      addressDiv.appendChild(addressSpan);
+      content.appendChild(addressDiv);
+    }
+
+    if (place.phone) {
+      const telDiv = document.createElement('div');
+      telDiv.className = 'tel';
+      telDiv.innerText = place.phone;
+      content.appendChild(telDiv);
+    }
+
+    if (place.opening_hours) {
+      const openingHoursDiv = document.createElement('div');
+      openingHoursDiv.className = 'opening-hours';
+      openingHoursDiv.innerText = place.opening_hours;
+      content.appendChild(openingHoursDiv);
+    }
+
+    if (place.reviews && place.reviews.length > 0) {
+      const reviewsDiv = document.createElement('div');
+      reviewsDiv.className = 'reviews';
+      place.reviews.forEach((review) => {
+        const reviewDiv = document.createElement('div');
+        reviewDiv.className = 'review';
+        const reviewerSpan = document.createElement('span');
+        reviewerSpan.className = 'reviewer';
+        reviewerSpan.innerText = review.author;
+        reviewDiv.appendChild(reviewerSpan);
+        const reviewTextSpan = document.createElement('span');
+        reviewTextSpan.className = 'review-text';
+        reviewTextSpan.innerText = review.text;
+        reviewDiv.appendChild(reviewTextSpan);
+        reviewsDiv.appendChild(reviewDiv);
+      });
+      content.appendChild(reviewsDiv);
+    }
+
+    newInfoWindow.setContent(content);
+    newInfoWindow.open(map, marker);
+    infoWindow.current = newInfoWindow;
   };
-  
 
   const handleKeyDown = (event) => {
     if (event.key === "ArrowDown") {
@@ -359,16 +351,32 @@ function Map() {
       if (selectedItemIndex < searchResults.length - 1) {
         setSelectedItemIndex(selectedItemIndex + 1);
         scrollToItem(selectedItemIndex + 1);
+         // 선택된 항목의 텍스트를 실시간으로 검색창에 반영
+        setInputValue(searchResults[selectedItemIndex + 1].place_name);
       }
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
       if (selectedItemIndex > 0) {
         setSelectedItemIndex(selectedItemIndex - 1);
         scrollToItem(selectedItemIndex - 1);
+        // 선택된 항목의 텍스트를 실시간으로 검색창에 반영
+        setInputValue(searchResults[selectedItemIndex - 1].place_name);
       }
-    } else if (event.key === "Enter" && selectedItemIndex !== -1) {
-      handleSelectPlace(searchResults[selectedItemIndex]);
-      setSelectedItemIndex(-1);
+    } else if (event.key === "Enter") {
+      if (selectedItemIndex !== -1) {
+        // 검색창에 선택된 항목의 텍스트를 입력
+        setInputValue(searchResults[selectedItemIndex].place_name);
+        
+        // 선택된 항목 처리
+        handleSelectPlace(searchResults[selectedItemIndex]);
+        setSelectedItemIndex(-1);
+      } else if (inputValue.trim() !== "") {
+        // 검색어가 입력된 경우 검색 실행
+        handleSearchClick();
+      } else {
+        // 검색어가 없는 경우 처리
+        console.log("검색어를 입력하세요");
+      }
     }
   };
 
@@ -435,10 +443,17 @@ function Map() {
         // 선택 해제 시
         const filteredCategories = prevCategories.filter((cat) => cat !== categoryId);
         setSelectedCategories(filteredCategories);
-  
+
         // 해당 카테고리에 맞는 마커 제거
-        const filteredMarkers = markers.filter((marker) => marker.category !== categoryId);
-        filteredMarkers.forEach((marker) => marker.setMap(null));
+        const filteredMarkers = markers.filter((marker) => {
+          if (marker.category === categoryId) {
+            marker.setMap(null); // 마커 제거
+            if (infoWindow.current) {
+              infoWindow.current.close(); // 커스텀 오버레이 닫기
+            }
+          }
+          return marker.category !== categoryId;
+        });
         setMarkers(filteredMarkers);
 
         // 선택된 장소의 상세 정보가 열려 있다면 닫기
@@ -473,7 +488,7 @@ function Map() {
 
         setMarkers((prevMarkers) => [...prevMarkers, ...newMarkers]);
       }
-  
+
       return prevCategories;
     });
   };
@@ -528,9 +543,6 @@ function Map() {
     } else {
       setSearchResults([]); // 검색 결과 초기화
     }
-
-    // 검색창의 입력값을 비워줍니다.
-    setInputValue("");
   }; 
 
   return (
@@ -553,7 +565,7 @@ function Map() {
         <SearchResults ref={searchResultsRef}>
           {searchResults.map((place, index) => (
             <ResultItem 
-              key={place.id}
+              key={place}
               onClick={() => handleSelectPlace(place)}
               className={index === selectedItemIndex ? "selected" : ""}
               >
