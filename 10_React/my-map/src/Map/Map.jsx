@@ -240,7 +240,7 @@ function Map() {
     // 검색창의 입력값을 비워줍니다.
     // setInputValue("");
 
-    setSelectedItemIndex(-1); // Clear selected item index
+    setSelectedItemIndex(-1);
 
     setInputValue(place.place_name);
   };
@@ -436,61 +436,7 @@ function Map() {
 
   // 카테고리 선택 상태 토글 함수
   const toggleCategory = (categoryId) => {
-    setSelectedCategories((prevCategories) => {
-      const isSelected = prevCategories.includes(categoryId);
-
-      if (isSelected) {
-        // 선택 해제 시
-        const filteredCategories = prevCategories.filter((cat) => cat !== categoryId);
-        setSelectedCategories(filteredCategories);
-
-        // 해당 카테고리에 맞는 마커 제거
-        const filteredMarkers = markers.filter((marker) => {
-          if (marker.category === categoryId) {
-            marker.setMap(null); // 마커 제거
-            if (infoWindow.current) {
-              infoWindow.current.close(); // 커스텀 오버레이 닫기
-            }
-          }
-          return marker.category !== categoryId;
-        });
-        setMarkers(filteredMarkers);
-
-        // 선택된 장소의 상세 정보가 열려 있다면 닫기
-        if (selectedPlace && selectedPlace.category === categoryId) {
-          if (infoWindow.current) {
-            infoWindow.current.close();
-          }
-          setSelectedPlace(null);
-        }
-      } else {
-        // 선택 시
-        setSelectedCategories([...prevCategories, categoryId]);
-
-        // 검색 결과에서 해당 카테고리에 맞는 장소만 필터링하여 places 배열 생성
-        const filteredPlaces = searchResults.filter((place) => place.category === categoryId);
-
-        // 새로운 마커 생성
-        const newMarkers = filteredPlaces.map((place) => {
-          const marker = new window.kakao.maps.Marker({
-            position: new window.kakao.maps.LatLng(place.y, place.x),
-            category: categoryId, // 마커에 카테고리 속성 추가
-          });
-
-          // 마커 클릭 시 장소 정보 표시
-          window.kakao.maps.event.addListener(marker, "click", function () {
-            displayPlaceInfo(marker, place);
-          });
-
-          marker.setMap(map); // 지도에 마커 표시
-          return marker;
-        });
-
-        setMarkers((prevMarkers) => [...prevMarkers, ...newMarkers]);
-      }
-
-      return prevCategories;
-    });
+    
   };
 
   // 선택된 카테고리가 변경될 때마다 호출되는 useEffect
