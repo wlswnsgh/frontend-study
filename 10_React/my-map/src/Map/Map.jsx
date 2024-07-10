@@ -61,7 +61,7 @@ const SearchResults = styled.div`
   z-index: 9; /* 검색 결과 목록을 검색창 아래로 내리기 위해 z-index를 낮춤 */
   border-radius: 10px; /* 동그란 테두리 조정 */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
-  top: 6.3%; /* 검색창과의 간격 조정 */
+  top: 5.6%; /* 검색창과의 간격 조정 */
 `;
 
 const CategoryList = styled.ul`
