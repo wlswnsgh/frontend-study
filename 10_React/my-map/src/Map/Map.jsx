@@ -122,19 +122,19 @@ const SavedSearchItem = styled.div`
 `;
 
 const PlaceName = styled.p`
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
   margin-bottom: 5px;
 `;
 
 const Address = styled.p`
-  font-size: 14px;
+  font-size: 13px;
   color: #555;
   margin-bottom: 5px;
 `;
 
 const Phone = styled.p`
-  font-size: 14px;
+  font-size: 13px;
   color: #555;
   margin-bottom: 5px;
 `;
@@ -406,7 +406,7 @@ function Map() {
             </ButtonContainer>
           </SavedSearchItem>
         ))}
-
+        
         </MenuBar>
       </Sidebar>
       <MapContainer id="map" />
