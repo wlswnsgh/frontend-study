@@ -109,6 +109,53 @@ const CategoryItem = styled.li`
   }
 `;
 
+const SavedSearchItem = styled.div`
+  background-color: white;
+  margin-bottom: 5px;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: #f9f9f9;
+  }
+`;
+
+const PlaceName = styled.p`
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+`;
+
+const Address = styled.p`
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+`;
+
+const Phone = styled.p`
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+`;
+
+const StyledButton = styled.button`
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-left: 10px;
+`;
+
+
 function Map() {
   const [inputValue, setInputValue] = useState(""); // Search query state
   const [selectedCategories, setSelectedCategories] = useState([]); // Selected categories state
@@ -227,7 +274,6 @@ function Map() {
 
     setSelectedItemIndex(-1);
 
-    // Save the search
     setSavedSearches([...savedSearches, place]);
   };
 
@@ -329,21 +375,24 @@ function Map() {
             </SearchResults>
           )}
 
-      {savedSearches.length > 0 && (
-        <div>
-          {savedSearches.map((search, index) => (
-            <div key={index}>
-              <p>{search.place_name}</p>
-              {search.road_address_name && (
-                <p>{search.road_address_name}</p>
-              )}
-              {search.address_name && !search.road_address_name && (
-                <p>{search.address_name}</p>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
+        {savedSearches.map((search, index) => (
+          <SavedSearchItem key={index}>
+            <PlaceName>{search.place_name}</PlaceName>
+            {search.road_address_name && (
+              <Address>주소: {search.road_address_name}</Address>
+            )}
+            {search.address_name && (
+              <Address>지번: {search.address_name}</Address>
+            )}
+            {search.phone && (
+              <Phone>전화번호: {search.phone}</Phone>
+            )}
+            <ButtonContainer>
+              <StyledButton>상세보기</StyledButton>
+              <StyledButton>길찾기</StyledButton>
+            </ButtonContainer>
+          </SavedSearchItem>
+        ))}
 
         </MenuBar>
       </Sidebar>
