@@ -328,16 +328,23 @@ function Map() {
               </CategoryList>
             </SearchResults>
           )}
-          {savedSearches.length > 0 && (
-            <div>
-                {savedSearches.map((search, index) => (
-                  <div 
-                    key={index}
-                    
-                  >{search.place_name}</div>
-                ))}
+
+      {savedSearches.length > 0 && (
+        <div>
+          {savedSearches.map((search, index) => (
+            <div key={index}>
+              <p>{search.place_name}</p>
+              {search.road_address_name && (
+                <p>{search.road_address_name}</p>
+              )}
+              {search.address_name && !search.road_address_name && (
+                <p>{search.address_name}</p>
+              )}
             </div>
-          )}
+          ))}
+        </div>
+      )}
+
         </MenuBar>
       </Sidebar>
       <MapContainer id="map" />
