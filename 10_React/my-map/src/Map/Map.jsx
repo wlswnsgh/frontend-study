@@ -343,6 +343,14 @@ function Map() {
     }
   };
 
+  const openDetails = (url) => {
+    window.open(url, '_blank');
+  };
+
+  const openDetails2 = (url) => {
+    window.open(url, '_blank');
+  };
+
   return (
     <Container>
       <Sidebar>
@@ -359,6 +367,7 @@ function Map() {
               <SearchIcon className="fa fa-search" />
             </Button>
           </SearchContainer>
+          
           {searchResults.length > 0 && (
             <SearchResults ref={searchResultsRef}>
               <CategoryList>
@@ -388,8 +397,12 @@ function Map() {
               <Phone>전화번호: {search.phone}</Phone>
             )}
             <ButtonContainer>
-              <StyledButton>상세보기</StyledButton>
-              <StyledButton>길찾기</StyledButton>
+              <StyledButton 
+                onClick={() => openDetails(search.place_url)}>
+              상세보기</StyledButton>
+              <StyledButton
+                onClick={() => openDetails2(`https://map.kakao.com/link/to/${search.place_name},${search.y},${search.x}`)}
+              >길찾기</StyledButton>
             </ButtonContainer>
           </SavedSearchItem>
         ))}
