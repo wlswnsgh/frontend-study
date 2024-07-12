@@ -1,0 +1,71 @@
+.info-window {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* padding: 10px; */
+  width: 280px;
+  /* max-width: 100%; */
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: blue;
+  /* margin-bottom: 8px; */
+  text-decoration: none;
+  display: block;
+}
+
+.coordinates {
+ font-size: 9.8px;
+}
+
+.address {
+  font-size: 14px;
+  color: #666;
+  /* margin-bottom: 8px; */
+  white-space: pre-wrap; /* 줄 바꿈 처리를 위한 속성 추가 */
+}
+
+.tel {
+  font-size: 14px;
+  color: #666;
+  /* margin-bottom: 8px; */
+}
+
+.opening-hours {
+  font-size: 14px;
+  color: #666;
+  /* margin-bottom: 8px; */
+}
+/* 
+.reviews {
+  margin-top: 10px;
+} */
+
+.review {
+  /* margin-bottom: 5px; */
+  /* padding-bottom: 5px; */
+  border-bottom: 1px solid #ccc;
+}
+
+.review .reviewer {
+  font-weight: bold;
+  color: #333;
+}
+
+.review .review-text {
+  font-size: 14px;
+  color: #666;
+}

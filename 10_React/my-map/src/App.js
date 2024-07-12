@@ -6,9 +6,9 @@ import SearchEx from './Map/SearchEx';
 
 function App() {
   return (
-    // <Map />
+    <Map />
     // <Map2 />
-    <MapSearch />
+    // <MapSearch />
     // <SearchEx />
   );
 }
