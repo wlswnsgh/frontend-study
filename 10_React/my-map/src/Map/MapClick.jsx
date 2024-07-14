@@ -332,42 +332,38 @@ function Map() {
   }, [map]);
 
   // 장소 정보를 표시하는 함수
-  const displayPlaceInfo = (marker, place) => {  
+  const displayPlaceInfo = (marker, place) => {
     if (infoWindow.current) {
       infoWindow.current.close();
     }
-  
-    // Create a new InfoWindow instance
+
     const newInfoWindow = new window.kakao.maps.InfoWindow({
       position: marker.getPosition(),
     });
-  
-    // Create content for the InfoWindow
+
     const content = document.createElement('div');
     content.className = 'info-window';
-  
-    // Create and add a close button
+
     const closeButton = document.createElement('button');
     closeButton.className = 'close-button';
     closeButton.innerHTML = 'X';
     closeButton.onclick = () => newInfoWindow.close();
+
     content.appendChild(closeButton);
-  
-    // Create and add a title link
+
     const title = document.createElement('a');
     title.className = 'title';
     title.href = place.place_url;
     title.target = '_blank';
     title.innerText = place.place_name;
     content.appendChild(title);
-  
-    // Add latitude and longitude
+
+    // 추가: 위도와 경도 표시
     const coordinates = document.createElement('div');
     coordinates.className = 'coordinates';
     coordinates.innerText = `위도: ${place.y}, 경도: ${place.x}`;
     content.appendChild(coordinates);
-  
-    // Add address information
+
     if (place.road_address_name) {
       const addressDiv = document.createElement('div');
       addressDiv.className = 'address';
@@ -391,24 +387,21 @@ function Map() {
       addressDiv.appendChild(addressSpan);
       content.appendChild(addressDiv);
     }
-  
-    // Add phone number
+
     if (place.phone) {
       const telDiv = document.createElement('div');
       telDiv.className = 'tel';
       telDiv.innerText = place.phone;
       content.appendChild(telDiv);
     }
-  
-    // Add opening hours
+
     if (place.opening_hours) {
       const openingHoursDiv = document.createElement('div');
       openingHoursDiv.className = 'opening-hours';
       openingHoursDiv.innerText = place.opening_hours;
       content.appendChild(openingHoursDiv);
     }
-  
-    // Add reviews
+
     if (place.reviews && place.reviews.length > 0) {
       const reviewsDiv = document.createElement('div');
       reviewsDiv.className = 'reviews';
@@ -427,15 +420,11 @@ function Map() {
       });
       content.appendChild(reviewsDiv);
     }
-  
-    // Set the content of the InfoWindow
+
     newInfoWindow.setContent(content);
-  
-    // Open the InfoWindow on the map
     newInfoWindow.open(map, marker);
     infoWindow.current = newInfoWindow;
   };
-  
 
   const handleKeyDown = (event) => {
     if (event.key === "ArrowDown") {
@@ -540,13 +529,6 @@ function Map() {
     setMarkers([]); // 마커 상태 초기화
   };
 
-  const removeCustomOverlay = () => {
-    if (customOverlayRef.current) {
-      customOverlayRef.current.setMap(null); // 현재 표시된 커스텀 오버레이를 지도에서 제거
-      customOverlayRef.current = null; // useRef를 통해 관리하므로 null로 초기화
-    }
-  };
-  
   // 카테고리 선택 상태 토글 함수
   const toggleCategory = (categoryId) => {
     setSelectedCategories((prevCategories) => {
@@ -575,7 +557,11 @@ function Map() {
           setSelectedPlace(null); // 선택된 장소 초기화
         }
   
-        removeCustomOverlay();
+        // 선택 해제 시 커스텀 오버레이도 제거
+        if (customOverlayRef.current) {
+          customOverlayRef.current.setMap(null); // 현재 표시된 커스텀 오버레이를 지도에서 제거
+          customOverlayRef.current = null; // useRef를 통해 관리하므로 null로 초기화
+        }
       } else {
         // 처음 클릭된 경우 -> 선택 추가
         setSelectedCategories([categoryId]); // 새로운 카테고리 선택
@@ -604,7 +590,12 @@ function Map() {
           });
   
         setMarkers(newMarkers); // 새로운 마커 배열로 업데이트
-        removeCustomOverlay();
+  
+        // 선택 시 커스텀 오버레이도 제거
+        if (customOverlayRef.current) {
+          customOverlayRef.current.setMap(null); // 현재 표시된 커스텀 오버레이를 지도에서 제거
+          customOverlayRef.current = null; // useRef를 통해 관리하므로 null로 초기화
+        }
       }
   
       // 선택된 카테고리 상태 반환
@@ -631,62 +622,49 @@ const handleSearchClick = () => {
 
   if (inputValue.trim() !== "" && map) {
     const ps = new window.kakao.maps.services.Places(map);
-      ps.keywordSearch(inputValue, (data, status) => {
-        if (status === window.kakao.maps.services.Status.OK) {
-          // 첫 번째 장소의 마커를 생성하여 지도에 표시
-          if (data.length > 0) {
-            const firstPlace = data[0];
-            const newCenter = new window.kakao.maps.LatLng(firstPlace.y, firstPlace.x);
-            // 지도 이동
-            map.panTo(newCenter);
+    ps.keywordSearch(inputValue, (data, status) => {
+      if (status === window.kakao.maps.services.Status.OK) {
+        // 첫 번째 장소의 마커를 생성하여 지도에 표시
+        if (data.length > 0) {
+          const firstPlace = data[0];
+          const newCenter = new window.kakao.maps.LatLng(firstPlace.y, firstPlace.x);
+          // 지도 이동
+          map.panTo(newCenter);
 
-            const marker = new window.kakao.maps.Marker({
-              position: newCenter,
-            });
+          const marker = new window.kakao.maps.Marker({
+            position: newCenter,
+          });
 
-            // 마커 클릭 시 장소 정보 표시
-            window.kakao.maps.event.addListener(marker, "click", function () {
-              displayPlaceInfo(marker, firstPlace);
-            });
+          // 마커 클릭 시 장소 정보 표시
+          window.kakao.maps.event.addListener(marker, "click", function () {
+            displayPlaceInfo(marker, firstPlace);
+          });
 
-            marker.setMap(map); // 지도에 마커 표시
-            setSavedSearches([...savedSearches, firstPlace]); 
-            setSearchResults([]); // 검색 결과 목록을 비웁니다.  
-          } else {
-            setSearchResults([]); // 검색 결과 초기화
-            console.log("검색 결과가 없습니다.");
-          }
-        } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
+          marker.setMap(map); // 지도에 마커 표시
+
+          // 검색 결과 목록을 비웁니다.
           setSearchResults([]);
+        } else {
+          setSearchResults([]); // 검색 결과 초기화
           console.log("검색 결과가 없습니다.");
-        } else if (status === window.kakao.maps.services.Status.ERROR) {
-          console.error("검색 중 오류가 발생했습니다.");
         }
-      });
-    } else {
-      setSearchResults([]); // 검색 결과 초기화
-    }
-  };
+      } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
+        setSearchResults([]);
+        console.log("검색 결과가 없습니다.");
+      } else if (status === window.kakao.maps.services.Status.ERROR) {
+        console.error("검색 중 오류가 발생했습니다.");
+      }
+    });
+  } else {
+    setSearchResults([]); // 검색 결과 초기화
+  }
+};
 
-  // handleClick 함수 정의
-  // const handleClick = (search) => {
-  //     // 입력 필드에 장소 이름 설정
-  //     setInputValue(search.place_name);
-
-  //     // 장소 검색 수행
-  //     searchPlaces(search.place_name);
-
-  //     // 선택된 장소 설정
-  //     setSelectedPlace(search);
-
-  //     // const marker = new window.kakao.maps.Marker({
-  //     //   position: new window.kakao.maps.LatLng(search.y, search.x),
-  //     // });
-    
-  //     // 선택된 장소에 대한 정보를 표시하는 함수 호출
-  //     // displayPlaceInfo(marker, search);
-
-  // }
+const handleSavedSearchClick = (search) => {
+  setInputValue(search.place_name);
+  searchPlaces(search.place_name);
+  setSelectedPlace(search);
+};
 
   const openDetails = (url) => {
     window.open(url, '_blank');
@@ -776,7 +754,7 @@ const handleSearchClick = () => {
       {savedSearches.map((search, index) => (
           <SavedSearchItem 
             key={index} 
-            // onClick={() => handleClick(search)}
+            onClick={() => handleSavedSearchClick()}
             >
             <PlaceName>{search.place_name}</PlaceName>
             {search.road_address_name && (
@@ -804,7 +782,7 @@ const handleSearchClick = () => {
       {categoryPlaces.map((place, index) => (
         <SavedSearchItem 
           key={index} 
-          // onClick={() => handleClick(place)}
+          onClick={() => handleSavedSearchClick(place)}
           >
           <PlaceName>{place.place_name}</PlaceName>
           {place.road_address_name && (
