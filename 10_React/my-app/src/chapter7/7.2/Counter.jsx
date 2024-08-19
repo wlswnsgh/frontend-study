@@ -11,7 +11,7 @@ function Counter(props) {
   // state 미사용 시
   let wrongCount = 0;
   const [ClickEX, setColor] = useState('blue');
-  const [changeText, settext] = useState('구독을 환영해욧!');
+  const [changeText, settext] = useState();
 
   return (
     <>
