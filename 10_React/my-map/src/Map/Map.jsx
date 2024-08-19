@@ -210,7 +210,7 @@ function Map() {
       const script = document.createElement("script");
       script.async = true;
       script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?appkey=8eb4e510757118f8218df5b91c7413bf&libraries=services";
+        `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_MAP_KEY}&libraries=services`;
       script.onload = initMap;
       document.head.appendChild(script);
     }
