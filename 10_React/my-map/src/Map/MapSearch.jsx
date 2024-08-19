@@ -7,11 +7,13 @@ const Container = styled.div`
 `;
 
 const SearchContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
+  justify-content: center; /* 수평 중앙 정렬 */
   margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 25px;
+  border-radius: 10px;
   padding: 5px 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 `;
@@ -21,7 +23,7 @@ const Input = styled.input`
   padding: 10px;
   font-size: 16px;
   border: none;
-  border-radius: 25px;
+  border-radius: 15px;
   outline: none;
 
   &::placeholder {
@@ -48,13 +50,23 @@ const MapContainer = styled.div`
   height: 50vh;
 `;
 
-const SearchResults = styled.ul`
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+const SearchResults = styled.div`
+  position: absolute;
+  width: 100%; /* 왼쪽과 오른쪽 padding 고려하여 너비 조정 */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 9; /* 검색 결과 목록을 검색창 아래로 내리기 위해 z-index를 낮춤 */
+  border-radius: 10px; /* 동그란 테두리 조정 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  top: 11%;
 `;
 
-const ResultItem = styled.li`
+
+
+const ResultItem = styled.div`
   cursor: pointer;
   padding: 10px;
   border-bottom: 1px solid #eee;
@@ -132,6 +144,10 @@ function MapSearch() {
 
       marker.setMap(map);
       setMarkers([marker]);
+
+      // Clear search results and input value
+      setSearchResults([]);
+      setInputValue("");
     }
   }, [selectedPlace, map]);
 
@@ -187,33 +203,28 @@ function MapSearch() {
     }
   };
 
-  const EnterSearch = (e) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  };
-
   return (
     <Container>
       <SearchContainer>
         <Input
           value={inputValue}
-          onChange={handleInputChange} // handleInputChange로 변경
-          // onKeyDown={EnterSearch}
+          onChange={handleInputChange}
           placeholder="장소를 검색하세요"
         />
         <Button onClick={handleSearch}>
           <SearchIcon>🔍</SearchIcon>
         </Button>
       </SearchContainer>
-
-      <SearchResults>
-        {searchResults.map((place) => (
-          <ResultItem key={place.id} onClick={() => handleSelectPlace(place)}>
-            {place.place_name}
-          </ResultItem>
-        ))}
-      </SearchResults>
+      
+      {searchResults.length > 0 && (
+        <SearchResults>
+          {searchResults.map((place) => (
+            <ResultItem key={place.id} onClick={() => handleSelectPlace(place)}>
+              {place.place_name}
+            </ResultItem>
+          ))}
+        </SearchResults>
+      )}
 
       <MapContainer id="map">
         {/* 지도가 여기에 표시됩니다 */}

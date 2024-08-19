@@ -27,10 +27,13 @@
   display: block;
 }
 
+<<<<<<< HEAD
 .coordinates {
  font-size: 9.8px;
 }
 
+=======
+>>>>>>> 02a5478814615a7e8f9e2148332cad809f759b6b
 .address {
   font-size: 14px;
   color: #666;
