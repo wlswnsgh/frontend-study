@@ -1,20 +1,19 @@
 import { MdCheckBox, MdCheckBoxOutlineBlank, MdEdit, MdRemoveCircleOutline } from "react-icons/md";
 import styled, { css } from "styled-components";
 
-
 const TodoListItemWrapper = styled.div`
   padding: 1rem;
   display: flex;
   align-items: center;
 
-  /* 짝수번째 배경색 일때 */
+  /* 짝수번째 배경색 지정 */
   &:nth-child(even) {
-    background: skyblue; 
-    /* background: #f8f9fa; */
-    /* 아이템 사이사이에 위쪽 테두리 넣기 */
-    & + & {
-      border-top: 1px solid #dee2e6;
-    }
+    background: #f8f9fa;
+  }
+
+  /* 아이템 사이사이에 위쪽 테두리 넣기 */
+  & + & {
+    border-top: 1px solid #dee2e6;
   }
 `;
 
@@ -25,7 +24,7 @@ const Checkbox = styled.div`
 
   svg {
     font-size: 1.5rem;
-    color: ${props => props.done && 'lightblue'};
+    color: ${props => props.done && '#22b8cf'}
   }
 `;
 
@@ -34,12 +33,12 @@ const Text = styled.div`
   flex: 1; // 차지할 수 있는 영역 모두 차지
 
   /* 조건부 스타일링 시 여러 개의 css를 설정할 때는 아래와 같이 사용 */
-  color: ${props => props.done && 
+  ${props => props.done &&
     css`
       color: #adb5bd;
       text-decoration: line-through;
     `
-  };
+  }
 `;
 
 const Remove = styled.div`

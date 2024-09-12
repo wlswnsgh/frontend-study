@@ -150,7 +150,7 @@ function App() {
       <GlobalStyle />
       <TodoTemplate>
       <TodoInsert onInsert={handleInsert}/>
-        <TodoList todos={todos} onRemove={handleRemove} onToggle = {handleToggle}/>
+        <TodoList todos={todos} onRemove={handleRemove} onToggle = {handleToggle} onModal = {handleOpenModal}/>
       </TodoTemplate>   
 
       {/* 수정하기 모달 */}
